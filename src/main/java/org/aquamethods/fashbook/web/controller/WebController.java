@@ -1,19 +1,21 @@
 package org.aquamethods.fashbook.web.controller;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import org.aquamethods.fashbook.web.form.PersonForm;
+import org.aquamethods.fashbook.web.form.UploadOutfitForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import org.aquamethods.fashbook.dao.IPersonServiceDao;
-import org.aquamethods.fashbook.domain.Person;
-import org.aquamethods.fashbook.web.form.*;
 
 
 
@@ -76,13 +78,51 @@ public class WebController {
 	}
 	
 	@RequestMapping(value="/outfit", method = RequestMethod.POST)
-	public String save(@ModelAttribute("UploadItemForm") UploadOutfitForm uploadItem,
+	public String save(@ModelAttribute("uploadOutfit") UploadOutfitForm uploadOutfit,
 			BindingResult result) {
+		if (result.hasErrors()) {
+			for (ObjectError error : result.getAllErrors()) {
+				System.err.println("Error: " + error.getCode() + " - "
+						+ error.getDefaultMessage());
+			}
+			return "/uploadfile";
+		}
 
-		ModelMap map = new ModelMap();
-		//map.addAttribute("name", person.getFirstName() );
+		// Some type of file processing...
+		System.err.println("File processing-------------------------------------");
+		try {
+			MultipartFile file = uploadOutfit.getFileData();
+			String fileName = null;
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+			if (file.getSize() > 0) {
+				inputStream = file.getInputStream();
+				if (file.getSize() > 10000) {
+					System.out.println("File Size:::" + file.getSize());
+					System.out.println("File Original Name:::" + file.getOriginalFilename());
+					return "/uploadfile";
+				}
+				System.out.println("size ::" + file.getSize());
+				fileName = //""+"/images/" +
+						file.getOriginalFilename();
+				outputStream = new FileOutputStream(fileName);
+				System.out.println("fileName:" + file.getOriginalFilename());
 
-		// name of jsp - list.jsp
-		return "list";
+				int readBytes = 0;
+				byte[] buffer = new byte[10000];
+				while ((readBytes = inputStream.read(buffer, 0, 10000)) != -1) {
+					outputStream.write(buffer, 0, readBytes);
+				}
+				outputStream.close();
+				inputStream.close();
+			}
+
+			// ..........................................
+			//session.setAttribute("uploadFile", file.getOriginalFilename());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/forms/uploadfileindex";
 	}
+
 }
