@@ -4,10 +4,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/person")
 public class WebController {
 
+	private String uploadFolderPath;
 /*	private ApplicationContext ctx;
 	private IPersonServiceDao personService;*/
 	
@@ -33,16 +38,21 @@ public class WebController {
 
 	}
 	
-	@RequestMapping(value = "person/{name}", method = RequestMethod.GET)
-	public String getPerson(@PathVariable String name, ModelMap model) {
+	public String getUploadFolderPath() {
+		return uploadFolderPath;
+	}
 
-		//Person person = personService.getByName(name);
+	public void setUploadFolderPath(String uploadFolderPath) {
+		this.uploadFolderPath = uploadFolderPath;
+	}
 
-		model.addAttribute("name", "Vishal");
+	
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
+	public String getPerson(@PathVariable String name,  ModelMap modelMap) {
 
-		// name of jsp - list.jsp
-		return "list";
 
+		//modelMap.addAttribute("person", personService.find(id));
+		return "mypage";
 	}
 
 	@RequestMapping(value="/newuser", method = RequestMethod.POST)
@@ -79,10 +89,10 @@ public class WebController {
 	
 	@RequestMapping(value="/outfit", method = RequestMethod.POST)
 	public String save(@ModelAttribute("uploadOutfit") UploadOutfitForm uploadOutfit,
-			BindingResult result) {
+			BindingResult result, HttpServletRequest request, HttpServletResponse response ) {
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
-				System.err.println("Error: " + error.getCode() + " - "
+				System.err.println("Error in uploading: " + error.getCode() + " - "
 						+ error.getDefaultMessage());
 			}
 			return "/uploadfile";
@@ -97,32 +107,34 @@ public class WebController {
 			OutputStream outputStream = null;
 			if (file.getSize() > 0) {
 				inputStream = file.getInputStream();
-				if (file.getSize() > 10000) {
-					System.out.println("File Size:::" + file.getSize());
+				if (file.getSize() > 100000) {
+					System.out.println("File Size increases the limit:::" + file.getSize());
 					System.out.println("File Original Name:::" + file.getOriginalFilename());
 					return "/uploadfile";
 				}
 				System.out.println("size ::" + file.getSize());
-				fileName = //""+"/images/" +
-						file.getOriginalFilename();
+				String filePath = "C://VG_DATA//TECH_MAT//POCs//fashbook//images//";
+				fileName = filePath + file.getOriginalFilename();
 				outputStream = new FileOutputStream(fileName);
-				System.out.println("fileName:" + file.getOriginalFilename());
+				System.out.println("fileName:" + fileName);
 
 				int readBytes = 0;
-				byte[] buffer = new byte[10000];
-				while ((readBytes = inputStream.read(buffer, 0, 10000)) != -1) {
+				byte[] buffer = new byte[100000];
+				while ((readBytes = inputStream.read(buffer, 0, 100000)) != -1) {
 					outputStream.write(buffer, 0, readBytes);
 				}
 				outputStream.close();
 				inputStream.close();
 			}
+			
+			
 
 			// ..........................................
 			//session.setAttribute("uploadFile", file.getOriginalFilename());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/forms/uploadfileindex";
+		return "/uploadfile";
 	}
 
 }

@@ -21,6 +21,6 @@
 
 		</fieldset>
 	</form:form>
-
+	<h2><a href="../person/vishal">My Wardrobe</a></h2>
 </body>
 </html>
