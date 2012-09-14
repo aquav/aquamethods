@@ -23,10 +23,17 @@
 		</property>
 	</bean>
 	<!-- Configure the multipart resolver -->
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
+		<property name="maxInMemorySize" value="100000" />
+		<!-- <property name="uploadTempDir" ref="uploadDirResource" /> -->
+	</bean>
 
+	<bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
+		<constructor-arg>
+			<value>C:\VG_DATA\TECH_MAT\POCs\fashbook\images</value>
+		</constructor-arg>
 	</bean>
 </beans>
 
