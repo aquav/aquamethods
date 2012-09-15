@@ -97,6 +97,7 @@ public class PersonDaoSpringJpaTest {
 		Person p = personServiceDao.getById(2);
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		log.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
+		log.info("Tags : " + p.getOutfits().get(0).getTags().get(0) );
 	}
 
 	@Test

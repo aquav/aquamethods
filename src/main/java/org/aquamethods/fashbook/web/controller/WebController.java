@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
-import org.aquamethods.fashbook.services.*;
+import org.aquamethods.fashbook.services.IPersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,8 +36,6 @@ public class WebController {
 	
 
 	public WebController(){
-
-
 	}
 	
 	public String getUploadFolderPath() {

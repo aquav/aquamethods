@@ -9,9 +9,11 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<context:component-scan base-package="org.aquamethods.fashbook.web.controller" />
-	<context:component-scan base-package="org.aquamethods.fashbook.dao" />
-	<context:component-scan base-package="org.aquamethods.fashbook.services" />
+	<context:annotation-config />
+	<context:component-scan base-package="org.aquamethods.fashbook">
+		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+	</context:component-scan>
+
 	<mvc:annotation-driven />
 
 	<bean
