@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
+import org.aquamethods.fashbook.services.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
@@ -28,13 +31,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class WebController {
 
 	private String uploadFolderPath;
-/*	private ApplicationContext ctx;
-	private IPersonServiceDao personService;*/
+
+	@Autowired
+	private IPersonService personService;
 	
 
 	public WebController(){
-/*		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		personService = (IPersonServiceDao) ctx.getBean("iPersonService");*/
+
 
 	}
 	
@@ -51,7 +54,7 @@ public class WebController {
 	public String getPerson(@PathVariable String name,  ModelMap modelMap) {
 
 
-		//modelMap.addAttribute("person", personService.find(id));
+		modelMap.addAttribute("person", personService.getById(8));
 		return "mypage";
 	}
 

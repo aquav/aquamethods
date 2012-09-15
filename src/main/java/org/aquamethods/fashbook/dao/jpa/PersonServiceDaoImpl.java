@@ -19,7 +19,7 @@ import org.aquamethods.fashbook.domain.Person;
  */
 
 
-@Repository("iPersonService")
+@Repository("personServiceDao")
 @Transactional(readOnly = true)
 public class PersonServiceDaoImpl implements IPersonServiceDao {
 

@@ -1,0 +1,10 @@
+in order to enable deployment of app from Maven - 
+
+added plugin in POM
+
+file changed - 
+1. C:\Tools\apache-tomcat-6.0.33\conf\tomcat-users
+2. C:\Tools\Apache_Maven\Apache-Maven-2.2.1\conf\settings.xml
+
+add external configuration in Eclipse to run Maven
+clean tomcat:redeploy -Dmaven.test.skip=true
