@@ -8,18 +8,19 @@ import junit.framework.Assert;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.domain.Outfit;
-
+import org.aquamethods.fashbook.dao.jpa.*;
 
 public class PersonDaoSpringJpaTest {
 
 	private ApplicationContext ctx;
-	private IPersonServiceDao personService;
+	private IPersonServiceDao personServiceDao;
 	private Logger log = Logger.getLogger(this.getClass());
 
 	public PersonDaoSpringJpaTest() {
@@ -27,14 +28,14 @@ public class PersonDaoSpringJpaTest {
 		BasicConfigurator.configure();
 		// TODO Auto-generated constructor stub
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		personService = (IPersonServiceDao) ctx.getBean("iPersonService");
+		personServiceDao = (IPersonServiceDao) ctx.getBean("personServiceDao");
 		log.info("Application Context Loaded");
 	}
 
 	@Test
 	public void testGetAll() {
 		log.info("Test get all =================================");
-		for (Person p : personService.getAll()) {
+		for (Person p : personServiceDao.getAll()) {
 			log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		}
 	}
@@ -64,14 +65,14 @@ public class PersonDaoSpringJpaTest {
 		outfit.setTags(list);
 				
 		person.setOutfits(listOutfit);
-		personService.savePerson(person);
+		personServiceDao.savePerson(person);
 	}
 	
 	@Test
 	public void testSavePersonOutfit() {
 		log.info("Test Save Person and its outfit ====================");
 		
-		Person person = personService.getById(17);
+		Person person = personServiceDao.getById(17);
 		List<Outfit> listOutfit = new ArrayList<Outfit>();
 		Outfit outfit = new Outfit();
 		outfit.setOutfitPicture("pic2");
@@ -86,14 +87,14 @@ public class PersonDaoSpringJpaTest {
 		outfit.setTags(list);
 		
 		person.setOutfits(listOutfit);
-		personService.updatePerson(person);
+		personServiceDao.updatePerson(person);
 	}
 
 	
 	@Test
 	public void testGetDataById() {
 		log.info("Test get data by id ==========================");
-		Person p = personService.getById(2);
+		Person p = personServiceDao.getById(2);
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		log.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 	}
@@ -101,7 +102,7 @@ public class PersonDaoSpringJpaTest {
 	@Test
 	public void testGetByName() {
 		log.info("Test get data by Name ==========================");
-		Person p = personService.getByName("Alex");
+		Person p = personServiceDao.getByName("Alex");
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		Assert.assertEquals("Alex", p.getFirstName());
 		Assert.assertEquals("23", p.getAge());
