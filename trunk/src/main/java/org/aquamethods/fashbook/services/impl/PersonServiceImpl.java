@@ -2,7 +2,7 @@ package org.aquamethods.fashbook.services.impl;
 
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.services.IPersonService;
-import org.aquamethods.fashbook.dao.*;
+import org.aquamethods.fashbook.dao.IPersonServiceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +17,5 @@ public class PersonServiceImpl implements IPersonService{
 		return personDao.getById(id);
 		
 	}
+	
 }

@@ -10,8 +10,10 @@
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<!-- <context:annotation-config /> -->
-	<context:component-scan base-package="org.aquamethods.fashbook" />
+	<context:annotation-config />
+	<context:component-scan base-package="org.aquamethods.fashbook">
+		<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+	</context:component-scan>
 	<tx:annotation-driven />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
