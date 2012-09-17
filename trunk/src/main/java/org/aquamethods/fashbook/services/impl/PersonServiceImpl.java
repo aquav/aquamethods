@@ -13,9 +13,23 @@ public class PersonServiceImpl implements IPersonService{
 	IPersonServiceDao personDao;
 	
 	public Person getById(int id){
+		Person p = personDao.getById(id);
+		Person returnPerson ;
+		if (p!=null){
+			returnPerson = new Person();
+			returnPerson.setFirstName(p.getFirstName());
+			returnPerson.setLastName(p.getLastName());
+			returnPerson.setAge(p.getAge());
+			returnPerson.setEmail(p.getEmail());
+			returnPerson.getOutfits().addAll(p.getOutfits());
+	
+			System.out.println("Name : " + returnPerson.getFirstName() + " Age " + returnPerson.getAge());
+			System.out.println("Outfit : " + returnPerson.getOutfits().get(0).getOutfitPicture() );
+			System.out.println("Tags : " + returnPerson.getOutfits().get(0).getTags().get(0).getTag() );
+
+		}
 		
-		return personDao.getById(id);
-		
+		return p;
 	}
 	
 }
