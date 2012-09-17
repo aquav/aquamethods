@@ -11,6 +11,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
@@ -92,7 +95,7 @@ public class PersonDaoSpringJpaTest {
 
 	
 	@Test
-	public void testGetDataById() {
+	public void testGetById() {
 		log.info("Test get data by id ==========================");
 		Person p = personServiceDao.getById(2);
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
@@ -105,6 +108,7 @@ public class PersonDaoSpringJpaTest {
 		log.info("Test get data by Name ==========================");
 		Person p = personServiceDao.getByName("Alex");
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
+		log.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		Assert.assertEquals("Alex", p.getFirstName());
 		Assert.assertEquals("23", p.getAge());
 	}

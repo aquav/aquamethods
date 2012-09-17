@@ -1,5 +1,8 @@
 package org.aquamethods.fashbook.web.form;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonForm {
 
 
@@ -7,6 +10,7 @@ public class PersonForm {
 	private String lastName;
 	private String email;
 	private int age;
+	private List<OutfitForm> outfits = new ArrayList<OutfitForm>();
 
 	public String getFirstName() {
 		return firstName;
@@ -38,6 +42,14 @@ public class PersonForm {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public List<OutfitForm> getOutfits() {
+		return outfits;
+	}
+
+	public void setOutfits(List<OutfitForm> outfits) {
+		this.outfits = outfits;
 	}
 
 	

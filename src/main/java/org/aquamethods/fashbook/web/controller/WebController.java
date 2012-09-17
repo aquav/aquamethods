@@ -3,12 +3,17 @@ package org.aquamethods.fashbook.web.controller;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.aquamethods.fashbook.web.form.OutfitForm;
 import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
+import org.aquamethods.fashbook.domain.Outfit;
+import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.services.IPersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +55,9 @@ public class WebController {
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	public String getPerson(@PathVariable String name,  ModelMap modelMap) {
 
-
-		modelMap.addAttribute("person", personService.getById(8));
+		Person person = personService.getById(8);
+		PersonForm form = convertToWebForm(person);
+		modelMap.addAttribute("person", form);
 		return "mypage";
 	}
 
@@ -135,6 +141,23 @@ public class WebController {
 			e.printStackTrace();
 		}
 		return "/uploadfile";
+	}
+	
+	private PersonForm convertToWebForm(Person person){
+		PersonForm form = new PersonForm();
+		form.setFirstName(person.getFirstName());
+		form.setLastName(person.getLastName());
+		form.setEmail(person.getEmail());
+		form.setAge(person.getAge());
+		List<OutfitForm> outfitFormList = new ArrayList<OutfitForm>();
+		for (Outfit outfit : person.getOutfits()){
+			OutfitForm outfitForm = new OutfitForm();
+			outfitForm.setOutfitPicture(outfit.getOutfitPicture());
+			outfitForm.setOutfitDescription(outfit.getOutfitDescription());
+			outfitFormList.add(outfitForm);
+		}
+		form.setOutfits(outfitFormList);
+		return form;
 	}
 
 }

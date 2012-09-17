@@ -26,7 +26,7 @@ public class Outfit {
 	private String outfitPicture;
 	@Column(name = "OUTFIT_DESCRIPTION")
 	private String outfitDescription;
-	@OneToMany(mappedBy="associatedOutfit", cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="associatedOutfit", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<Tag> tags = new ArrayList<Tag>();
 	
 	@ManyToOne

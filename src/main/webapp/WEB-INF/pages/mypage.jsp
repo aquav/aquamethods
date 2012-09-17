@@ -1,4 +1,9 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>My Wardrobe</title>
@@ -25,6 +30,11 @@
             <label for="age">Age:</label>
             <div id="age">${person.age}</div>
         </div>
+        <c:forEach items="${outfits}" var="outfit">
+        	<tr>
+        		<td>${outfit.outfitPicture}</td>
+        	</tr>
+        </c:forEach>
     </c:if>
     <c:if test="${empty person}">No person found with this id.</c:if>
 </body>

@@ -20,7 +20,6 @@ import org.aquamethods.fashbook.domain.Person;
 
 
 @Repository("personServiceDao")
-@Transactional(readOnly = true)
 public class PersonServiceDaoImpl implements IPersonServiceDao {
 
 	private EntityManager entityManager;
@@ -35,11 +34,12 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 	}
 
 	@Override
+
 	public Person getById(int id) {
 		// TODO Auto-generated method stub
 		return entityManager.find(Person.class, id);
 	}
-
+	
 	public Person getByName(String name){
 		Query query = entityManager.createNamedQuery("Person.findByName");
 		query.setParameter("name", name);

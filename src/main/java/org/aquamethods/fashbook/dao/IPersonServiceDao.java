@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Outfit;
+import org.springframework.transaction.annotation.Transactional;
 
 
 

@@ -1,5 +1,6 @@
 package org.aquamethods.fashbook.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,8 +40,8 @@ public class Person {
 	private String email;
 	private int age;
 	
-	@OneToMany(mappedBy="associatedPerson", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	private List<Outfit> outfits;
+	@OneToMany(mappedBy="associatedPerson", cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
+	private List<Outfit> outfits = new ArrayList<Outfit>();
 	
 	public int getId() {
 		return id;
