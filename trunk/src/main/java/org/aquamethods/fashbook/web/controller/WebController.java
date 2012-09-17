@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.aquamethods.fashbook.web.form.OutfitForm;
 import org.aquamethods.fashbook.web.form.PersonForm;
+import org.aquamethods.fashbook.web.form.TagForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.services.IPersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +156,13 @@ public class WebController {
 			OutfitForm outfitForm = new OutfitForm();
 			outfitForm.setOutfitPicture(outfit.getOutfitPicture());
 			outfitForm.setOutfitDescription(outfit.getOutfitDescription());
+			List<TagForm> tagFormList = new ArrayList<TagForm>();
+			for (Tag tag : outfit.getTags()){
+				TagForm tagForm = new TagForm();
+				tagForm.setTag(tag.getTag());
+				tagFormList.add(tagForm);
+			}
+			outfitForm.setTags(tagFormList);
 			outfitFormList.add(outfitForm);
 		}
 		form.setOutfits(outfitFormList);
