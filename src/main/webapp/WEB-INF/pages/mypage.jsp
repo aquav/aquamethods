@@ -30,10 +30,20 @@
             <label for="age">Age:</label>
             <div id="age">${person.age}</div>
         </div>
-        <c:forEach items="${outfits}" var="outfit">
+        </br>
+        <c:forEach items="${person.outfits}" var="outfit">
+        	<table border="1">
         	<tr>
         		<td>${outfit.outfitPicture}</td>
+        		<td>
+					<c:forEach items="${outfit.tags}" var="tag">
+						
+						${tag.tag}
+						</br>
+					</c:forEach>
+				</td>
         	</tr>
+        	</table>
         </c:forEach>
     </c:if>
     <c:if test="${empty person}">No person found with this id.</c:if>
