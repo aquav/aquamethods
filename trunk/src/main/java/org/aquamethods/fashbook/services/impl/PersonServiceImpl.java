@@ -32,4 +32,13 @@ public class PersonServiceImpl implements IPersonService{
 		return p;
 	}
 	
+	public Person savePerson(Person person){
+		return personDao.savePerson(person);
+		
+	}
+	
+	public Person updatePerson(Person person){
+		return personDao.updatePerson(person);
+	}
+	
 }

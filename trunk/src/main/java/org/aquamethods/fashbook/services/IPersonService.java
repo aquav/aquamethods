@@ -9,5 +9,11 @@ public interface IPersonService {
 	
 	@Transactional
 	public Person getById(int id);
-
+	
+	@Transactional
+	public Person savePerson(Person person);
+	
+	@Transactional
+	public Person updatePerson(Person person);
+	
 }

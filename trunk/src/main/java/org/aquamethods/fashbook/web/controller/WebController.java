@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mysql.jdbc.log.Log;
+
 
 
 @Controller
@@ -53,7 +55,12 @@ public class WebController {
 		this.uploadFolderPath = uploadFolderPath;
 	}
 
-	
+	/**
+	 * 
+	 * @param name
+	 * @param modelMap
+	 * @return
+	 */
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	public String getPerson(@PathVariable String name,  ModelMap modelMap) {
 
@@ -63,12 +70,22 @@ public class WebController {
 		return "mypage";
 	}
 
+	/**
+	 * 
+	 * @param person
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value="/newuser", method = RequestMethod.POST)
-	public String save(@ModelAttribute("person") PersonForm person,
+	public String save(@ModelAttribute("person") PersonForm personForm,
 			BindingResult result) {
 
+		Person personEntity = convertToDaoEntity(personForm);
+		
+		personForm = convertToWebForm(personService.savePerson(personEntity));
+	
 		ModelMap map = new ModelMap();
-		map.addAttribute("name", person.getFirstName() );
+		map.addAttribute("person", personForm );
 
 		// name of jsp - list.jsp
 		return "list";
@@ -96,7 +113,7 @@ public class WebController {
 	}
 	
 	@RequestMapping(value="/outfit", method = RequestMethod.POST)
-	public String save(@ModelAttribute("uploadOutfit") UploadOutfitForm uploadOutfit,
+	public String saveOutfit(@ModelAttribute("uploadOutfit") UploadOutfitForm uploadOutfit,
 			BindingResult result, HttpServletRequest request, HttpServletResponse response ) {
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
@@ -121,7 +138,7 @@ public class WebController {
 					return "/uploadfile";
 				}
 				System.out.println("size ::" + file.getSize());
-				String filePath = "C://VG_DATA//TECH_MAT//POCs//fashbook//images//";
+				String filePath = "C://fashbook//images//person";
 				fileName = filePath + file.getOriginalFilename();
 				outputStream = new FileOutputStream(fileName);
 				System.out.println("fileName:" + fileName);
@@ -134,7 +151,7 @@ public class WebController {
 				outputStream.close();
 				inputStream.close();
 			}
-			
+			 
 			
 
 			// ..........................................
@@ -145,8 +162,14 @@ public class WebController {
 		return "/uploadfile";
 	}
 	
+	/**
+	 * 
+	 * @param person
+	 * @return
+	 */
 	private PersonForm convertToWebForm(Person person){
 		PersonForm form = new PersonForm();
+		form.setId(person.getId());
 		form.setFirstName(person.getFirstName());
 		form.setLastName(person.getLastName());
 		form.setEmail(person.getEmail());
@@ -167,6 +190,16 @@ public class WebController {
 		}
 		form.setOutfits(outfitFormList);
 		return form;
+	}
+	
+	private Person convertToDaoEntity(PersonForm personForm){
+		Person person = new Person();
+		person.setFirstName(personForm.getFirstName());
+		person.setLastName(personForm.getLastName());
+		person.setAge(personForm.getAge());
+		person.setEmail(personForm.getEmail());
+		
+		return person;
 	}
 
 }
