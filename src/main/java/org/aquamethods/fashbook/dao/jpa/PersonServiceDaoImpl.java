@@ -55,17 +55,17 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 	}
 
 	@Override
-	public boolean savePerson(Person person) {
+	public Person savePerson(Person person) {
 		entityManager.persist(person);
 		entityManager.flush();
-		return true;
+		return person;
 	}
 
 	@Override
-	public boolean updatePerson(Person person) {
+	public Person updatePerson(Person person) {
 		entityManager.merge(person);
 		entityManager.flush();
-		return true;
+		return person;
 	}
 
 	@Override

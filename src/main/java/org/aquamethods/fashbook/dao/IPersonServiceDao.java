@@ -9,12 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 public interface IPersonServiceDao {
-	public boolean savePerson(Person person);
+	public Person savePerson(Person person);
 	public List<Person> getAll();
 	public Person getById(int id);
 	public Person getByName(String name);
 	public boolean delete(Person person);
-	public boolean updatePerson(Person person);
+	public Person updatePerson(Person person);
 	//public boolean saveOutfit(Outfit outfit);
 }
 
