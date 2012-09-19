@@ -1,14 +1,6 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<html>
-<head>
-    <title>My Wardrobe</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/pages/includes.jsp" %>
+<%@ include file="/WEB-INF/pages/header.jsp" %>
+
 <h2>My Wardrobe</h2>
     <c:if test="${not empty person}">       
         <div>
@@ -47,6 +39,5 @@
         </c:forEach>
     </c:if>
     <c:if test="${empty person}">No person found with this id.</c:if>
-</body>
-</html>
 
+<%@ include file="/WEB-INF/pages/footer.jsp" %>

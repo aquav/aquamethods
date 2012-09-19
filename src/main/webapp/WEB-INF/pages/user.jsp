@@ -1,9 +1,7 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<html>
-<head>
-    <title>Create profile</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/pages/includes.jsp" %>
+<%@ include file="/WEB-INF/pages/header.jsp" %>
+
+
 <h2>Create your free profile!</h2>
 <form:form method="post" modelAttribute="person">
  
@@ -32,5 +30,5 @@
 </table>  
      
 </form:form>
-</body>
-</html>
+
+<%@ include file="/WEB-INF/pages/footer.jsp" %>
