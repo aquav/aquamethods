@@ -1,7 +1,5 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<html>
-<body>
-
+<%@ include file="/WEB-INF/pages/includes.jsp" %>
+<%@ include file="/WEB-INF/pages/header.jsp" %>
 
 	<form:form modelAttribute="uploadOutfit" method="post"
 		enctype="multipart/form-data">
@@ -22,5 +20,4 @@
 		</fieldset>
 	</form:form>
 	<h2><a href="../person/vishal">My Wardrobe</a></h2>
-</body>
-</html>
+<%@ include file="/WEB-INF/pages/footer.jsp" %>
