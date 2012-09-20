@@ -24,8 +24,8 @@ public class PersonServiceImpl implements IPersonService{
 			returnPerson.getOutfits().addAll(p.getOutfits());
 	
 			System.out.println("Name : " + returnPerson.getFirstName() + " Age " + returnPerson.getAge());
-			System.out.println("Outfit : " + returnPerson.getOutfits().get(0).getOutfitPicture() );
-			System.out.println("Tags : " + returnPerson.getOutfits().get(0).getTags().get(0).getTag() );
+			//System.out.println("Outfit : " + returnPerson.getOutfits().get(0).getOutfitPicture() );
+			//System.out.println("Tags : " + returnPerson.getOutfits().get(0).getTags().get(0).getTag() );
 
 		}
 		

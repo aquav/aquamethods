@@ -4,6 +4,10 @@ added plugin in POM
 
 file changed - 
 1. C:\Tools\apache-tomcat-6.0.33\conf\tomcat-users
+	<role rolename="manager"/>
+  	<role rolename="admin"/>
+  	<user username="admin" password="password" roles="admin,manager"/>
+  
 2. C:\Tools\Apache_Maven\Apache-Maven-2.2.1\conf\settings.xml
 
 add external configuration in Eclipse to run Maven

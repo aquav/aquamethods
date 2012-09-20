@@ -18,8 +18,11 @@ import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.services.IPersonService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -30,16 +33,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.jdbc.log.Log;
-
-
 
 @Controller
 @RequestMapping("/person")
 public class WebController {
 
 	private String uploadFolderPath;
-
+	private static final Logger logger = LoggerFactory.getLogger(WebController.class);
+	
 	@Autowired
 	private IPersonService personService;
 	
@@ -55,21 +56,18 @@ public class WebController {
 		this.uploadFolderPath = uploadFolderPath;
 	}
 
+	
 	/**
-	 * 
-	 * @param name
-	 * @param modelMap
+	 * Create new user
 	 * @return
 	 */
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	public String getPerson(@PathVariable String name,  ModelMap modelMap) {
-
-		Person person = personService.getById(8);
-		PersonForm form = convertToWebForm(person);
-		modelMap.addAttribute("person", form);
-		return "mypage";
+	@RequestMapping(value = "/newuser", method = RequestMethod.GET)
+	public ModelAndView newUser() {
+		PersonForm form = new PersonForm();
+		ModelMap map = new ModelMap();
+		map.put("person", form);
+		return new ModelAndView("user", map);
 	}
-
 	/**
 	 * 
 	 * @param person
@@ -82,37 +80,37 @@ public class WebController {
 
 		Person personEntity = convertToDaoEntity(personForm);
 		
-		personForm = convertToWebForm(personService.savePerson(personEntity));
+		personService.savePerson(personEntity);
+		int id = personEntity.getId();
 	
-		ModelMap map = new ModelMap();
-		map.addAttribute("person", personForm );
+		personForm.setId(id);
 
 		// name of jsp - list.jsp
-		return "list";
+		return "redirect:/person/"+ id+"/outfit";
+
 	}
 
-	/**
-	 * Create new user
-	 * @return
-	 */
-	@RequestMapping(value = "/newuser", method = RequestMethod.GET)
-	public ModelAndView newUser() {
-		PersonForm form = new PersonForm();
-		ModelMap map = new ModelMap();
-		map.put("person", form);
-		return new ModelAndView("user", map);
-	}
-
-	@RequestMapping(value="/outfit", method = RequestMethod.GET)
-	public ModelAndView uploadOutfit() {
+	@RequestMapping(value="{personId}/outfit", method = RequestMethod.GET)
+	public String getOutfit(@PathVariable("personId") int personId, Model model) {
 		
-		UploadOutfitForm form = new UploadOutfitForm();
-		ModelMap map = new ModelMap();
-		map.put("uploadOutfit", form);
-		return new ModelAndView("uploadfile", map);
+		Person person = personService.getById(personId);
+		PersonForm form = convertToWebForm(person);
+		model.addAttribute("person", form);
+		return "mypage";
 	}
 	
-	@RequestMapping(value="/outfit", method = RequestMethod.POST)
+	@RequestMapping(value="{personId}/outfit/upload", method = RequestMethod.GET)
+	public String uploadOutfit(@PathVariable("personId") int personId, Model model) {
+		
+		UploadOutfitForm form = new UploadOutfitForm();
+		
+		form.setPersonId(personId);
+		model.addAttribute("uploadOutfit", form);
+		
+		return "/uploadfile";
+	}
+	
+	@RequestMapping(value="{personId}/outfit/upload", method = RequestMethod.POST)
 	public String saveOutfit(@ModelAttribute("uploadOutfit") UploadOutfitForm uploadOutfit,
 			BindingResult result, HttpServletRequest request, HttpServletResponse response ) {
 		if (result.hasErrors()) {
@@ -138,8 +136,8 @@ public class WebController {
 					return "/uploadfile";
 				}
 				System.out.println("size ::" + file.getSize());
-				String filePath = "C://fashbook//images//person";
-				fileName = filePath + file.getOriginalFilename();
+				String filePath = "C://fashbook//images//person//"+uploadOutfit.getPersonId();
+				fileName = filePath +"//"+ file.getOriginalFilename();
 				outputStream = new FileOutputStream(fileName);
 				System.out.println("fileName:" + fileName);
 
@@ -151,13 +149,20 @@ public class WebController {
 				outputStream.close();
 				inputStream.close();
 			}
-			 
 			
+			Person personEntity = personService.getById(uploadOutfit.getPersonId());
+			
+			Outfit outfit = new Outfit();
+			outfit.setOutfitPicture(fileName);
+			personEntity.getOutfits().add(outfit);
+			personService.updatePerson(personEntity);
 
+			logger.info("Person id after uploading pic ::" + personEntity.getId());
 			// ..........................................
 			//session.setAttribute("uploadFile", file.getOriginalFilename());
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error(e.toString());
 		}
 		return "/uploadfile";
 	}
