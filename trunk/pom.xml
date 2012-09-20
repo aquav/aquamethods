@@ -42,7 +42,14 @@
 					<server>TomcatServer</server>
 					<username>admin</username>
 					<password>password</password>
-					<path>/fashbook-0.0.1-SNAPSHOT</path>
+					<path>/fashbook</path>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warFile>path/target/fashbook.war</warFile>
 				</configuration>
 			</plugin>
 		</plugins>
