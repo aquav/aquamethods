@@ -13,6 +13,8 @@
 				<form:input path="fileData" type="file" />
 			</p>
 
+			<!-- Hidden value - need to set person id else it will go as null in form -->
+			<input name="personId" type="hidden" value="${uploadOutfit.personId}"/>
 			<p>
 				<input type="submit" value="Upload" />
 			</p>

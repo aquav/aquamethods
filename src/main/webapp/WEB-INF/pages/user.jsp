@@ -18,7 +18,7 @@
         <td><form:label path="age">Age</form:label></td>
         <td><form:input path="age" id ="age" /></td>
     </tr>
-        <tr>
+     <tr>
         <td><form:label path="email">Email</form:label></td>
         <td><form:input path="email" id ="email" /></td>
     </tr>

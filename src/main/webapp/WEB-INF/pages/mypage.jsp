@@ -11,7 +11,7 @@ ${person.firstName} ${person.lastName}
 	</div>
 
 	<br />
-	<spring:url value="{personId}/outfit" var="editUrl">
+	<spring:url value="/{personId}/outfit/upload" var="editUrl">
 		<spring:param name="personId" value="${person.id}" />
 	</spring:url>
 	<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
@@ -20,8 +20,13 @@ ${person.firstName} ${person.lastName}
 	<c:forEach items="${person.outfits}" var="outfit">
 		<table border="1">
 			<tr>
-				<td>${outfit.outfitPicture}</td>
-				<td><c:forEach items="${outfit.tags}" var="tag">
+			
+				<td> "${outfit.outfitPicture}" 
+				</td>
+				<td>
+				Add new Tag
+				<br/>
+				<c:forEach items="${outfit.tags}" var="tag">
 						
 						${tag.tag}
 						</br>
