@@ -5,7 +5,9 @@ import java.util.Calendar;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.aquamethods.fashbook.dao.IPersonServiceDao;
+import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Tag;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -38,7 +40,7 @@ public class PersonServiceImplTest {
 	@Test
 	public void testGetById() {
 		log.info("Test get data by id ==========================");
-		Person p = personService.getById(2);
+		Person p = personService.getById(50);
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		log.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		log.info("Tags : " + p.getOutfits().get(0).getTags().get(0).getTag() );
@@ -58,5 +60,47 @@ public class PersonServiceImplTest {
 		personService.savePerson(p);
 
 		log.info("ID of saved Person : " + p.getId());
+	}
+	
+	@Test
+	public void testSaveCompleteHierarchy(){
+		log.info("Test Save Person ==========================");
+		Person p = new Person();
+		Calendar cal = Calendar.getInstance();
+		cal.getTime();
+		p.setFirstName("TestUser-" + cal.getTime());
+		p.setLastName("TestLastNm");
+		p.setAge(23);
+		p.setEmail("TestEmail@email.com");
+		
+		//Save only person entity
+		Person savedPerson = personService.savePerson(p);
+
+		log.info("ID of saved Person : " + p.getId());
+		
+		Outfit outfit = new Outfit();
+		outfit.setOutfitPicture("Pic12");
+		outfit.setAssociatedPerson(savedPerson);
+		
+		savedPerson.getOutfits().add(outfit);
+		
+		//Save Outfit for already saved Person
+		Person updatedPerson = personService.updatePerson(savedPerson);
+		
+		log.info("ID of Updated Person : " + updatedPerson.getId());
+		log.info("Putfit pic of Updated Person : " + updatedPerson.getOutfits().get(0).getOutfitPicture());
+		
+		
+		Tag tag = new Tag();
+		tag.setTag("Traditional");
+		tag.setAssociatedOutfit(updatedPerson.getOutfits().get(0));
+		updatedPerson.getOutfits().get(0).getTags().add(tag);
+		
+		Person updatedPerson2 = personService.updatePerson(updatedPerson);
+		
+		log.info("ID of Updated Person : " + updatedPerson2.getId());
+		log.info("Outfit pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getOutfitPicture());
+		log.info("Tag pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getTags().get(0).getTag());
+	
 	}
 }
