@@ -1,10 +1,13 @@
 package org.aquamethods.fashbook.services.impl;
 
+import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.services.IPersonService;
 import org.aquamethods.fashbook.dao.IPersonServiceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("personService")
 public class PersonServiceImpl implements IPersonService{
@@ -41,4 +44,11 @@ public class PersonServiceImpl implements IPersonService{
 		return personDao.updatePerson(person);
 	}
 	
+	public Tag saveTag(Tag tag){
+		return personDao.saveTag(tag);
+	}
+	
+	public Outfit loadOutfit(int id) {
+		return personDao.loadOutfit(id);
+	}
 }

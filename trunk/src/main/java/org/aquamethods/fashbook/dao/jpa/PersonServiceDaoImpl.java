@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.aquamethods.fashbook.dao.IPersonServiceDao;
+import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Tag;
 
 /**
  * 
@@ -78,4 +80,15 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		return true;
 	}
 	
+	@Override
+	public Outfit loadOutfit(int id) {
+		return entityManager.find(Outfit.class, id);
+	}
+	
+	@Override
+	public Tag saveTag(Tag tag) {
+		entityManager.merge(tag);
+		entityManager.flush();
+		return tag;
+	}
 }

@@ -5,10 +5,26 @@ import java.util.List;
 
 public class OutfitForm {
 
+	private int id;
+	private int personId;
 	private String outfitPicture;
 	private String outfitDescription;
 	private List<TagForm> tags = new ArrayList<TagForm>();
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getPersonId() {
+		return personId;
+	}
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
 	public String getOutfitPicture() {
 		return outfitPicture;
 	}
