@@ -215,6 +215,63 @@ public class WebController {
 		return "/uploadfile";
 	}
 
+	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.GET)
+	public String getTag (@PathVariable("personId") int personId,@PathVariable("outfitId") int outfitId, Model model){
+		Person person = personService.getById(personId);
+		PersonForm form = convertToWebForm(person);
+		
+		OutfitForm outfitForm = null;
+		for(OutfitForm x :form.getOutfits() ){
+			if (x.getId() == outfitId){
+				outfitForm = x;
+				break;
+			}
+		}
+		TagForm tagForm = new TagForm();
+		model.addAttribute("outfit", outfitForm);
+		model.addAttribute("tag", tagForm);
+		return "mytags";
+	}
+	
+	
+	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.POST)
+	public String saveTag (@ModelAttribute("tag") TagForm tagForm, BindingResult result, HttpServletRequest request,
+			HttpServletResponse response){
+		
+		int outfitId = tagForm.getOutfitId();
+		Outfit outfit = personService.loadOutfit(outfitId);
+		int personId = outfit.getAssociatedPerson().getId();
+		
+		logger.debug("Person Id in saveTag ::" + personId);
+		Tag tagEntity = new Tag();
+		tagEntity.setAssociatedOutfit(outfit);
+		tagEntity.setTag(tagForm.getTag());
+		
+		Tag savedTag = personService.saveTag(tagEntity);
+		
+		OutfitForm outfitForm = new OutfitForm();
+		
+		outfitForm.setPersonId(personId);
+		outfitForm.setOutfitPicture(outfit.getOutfitPicture());
+		outfitForm.setOutfitDescription(outfit.getOutfitDescription());
+		
+		List<TagForm> tagFormList = new ArrayList<TagForm>();
+		for (Tag tag : outfit.getTags()) {
+			TagForm newTagForm = new TagForm();
+			newTagForm.setTag(tag.getTag());
+			tagFormList.add(newTagForm);
+		}
+		outfitForm.setTags(tagFormList);
+				
+		//TagForm tagForm = new TagForm();
+		ModelMap map = new ModelMap();
+		
+		map.addAttribute("outfit", outfitForm);
+		map.addAttribute("tag", tagForm);
+		
+		//return "mytags";
+		return "redirect:/person/"+personId+"/outfit/"+outfitId+"/tag";
+	}
 	/**
 	 * 
 	 * @param person
@@ -229,7 +286,10 @@ public class WebController {
 		form.setAge(person.getAge());
 		List<OutfitForm> outfitFormList = new ArrayList<OutfitForm>();
 		for (Outfit outfit : person.getOutfits()) {
+			
 			OutfitForm outfitForm = new OutfitForm();
+			outfitForm.setId(outfit.getId());
+			outfitForm.setPersonId(person.getId());
 			outfitForm.setOutfitPicture(outfit.getOutfitPicture());
 			outfitForm.setOutfitDescription(outfit.getOutfitDescription());
 			List<TagForm> tagFormList = new ArrayList<TagForm>();

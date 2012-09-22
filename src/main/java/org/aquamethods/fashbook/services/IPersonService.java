@@ -2,7 +2,9 @@ package org.aquamethods.fashbook.services;
 
 import java.util.List;
 
+import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Tag;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface IPersonService {
@@ -16,4 +18,9 @@ public interface IPersonService {
 	@Transactional
 	public Person updatePerson(Person person);
 	
+	@Transactional
+	public Tag saveTag(Tag tag);
+	
+	@Transactional
+	public Outfit loadOutfit(int id) ;
 }

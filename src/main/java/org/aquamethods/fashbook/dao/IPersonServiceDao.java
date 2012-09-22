@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Outfit;
+import org.aquamethods.fashbook.domain.Tag;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -16,5 +17,7 @@ public interface IPersonServiceDao {
 	public boolean delete(Person person);
 	public Person updatePerson(Person person);
 	//public boolean saveOutfit(Outfit outfit);
+	public Tag saveTag(Tag tag);
+	public Outfit loadOutfit(int id) ;
 }
 

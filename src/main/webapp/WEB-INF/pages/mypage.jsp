@@ -27,7 +27,12 @@ ${person.firstName} ${person.lastName}
 						</spring:url> <img src="${fn:escapeXml(imageUrl)}" />
 			</div>
 			<div class = "tag">
-					Add new Tag <br /> 
+
+				<spring:url value="/person/{personId}/outfit/{outfitId}/tag" var="tagUrl">
+					<spring:param name="personId" value="${person.id}" />
+					<spring:param name="outfitId" value="${outfit.id}" />
+				</spring:url>
+				<a href="${fn:escapeXml(tagUrl)}">Add new Tag</a> <br /> 
 					<c:forEach items="${outfit.tags}"
 							var="tag">
 						${tag.tag}
