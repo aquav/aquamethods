@@ -147,9 +147,15 @@ public class WebController {
 					return "/uploadfile";
 				}
 				logger.debug("size ::" + multipartFile.getSize());
-				String filePath = "C://fashbook//images//person//"
-						+ personId;
-				fileName = filePath + "//"
+				String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
+						
+				String filePath = tomcatWebappsDir 
+								+ "/"
+								+ "resources/fashbook/images/person" 
+								+ "/"
+								+ personId;
+				
+				fileName = filePath + "/"
 						+ multipartFile.getOriginalFilename();
 
 				File dir = new File(filePath);
@@ -183,12 +189,15 @@ public class WebController {
 				inputStream.close();
 			}
 
-			logger.debug("Person id after uploading pic ::"
-					+ personId);
+			int index = fileName.lastIndexOf("resource");
+			String dbFilePath = fileName.substring(index);
+			 
+			logger.debug("DB File Path of image for Person id " +personId+ " after uploading pic ::"
+					+ dbFilePath);
 			Person personEntity = personService.getById(personId);
 
 			Outfit outfit = new Outfit();
-			outfit.setOutfitPicture(fileName);
+			outfit.setOutfitPicture(dbFilePath);
 			outfit.setAssociatedPerson(personEntity);
 			
 			personEntity.getOutfits().add(outfit);

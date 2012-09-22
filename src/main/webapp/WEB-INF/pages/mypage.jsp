@@ -8,34 +8,38 @@ ${person.firstName} ${person.lastName}
 <c:if test="${not empty person.outfits}">
 	<div>
 
+		<br />
+		<spring:url value="/person/{personId}/outfit/upload" var="editUrl">
+			<spring:param name="personId" value="${person.id}" />
+		</spring:url>
+		<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
 	</div>
-
 	<br />
-	<spring:url value="/{personId}/outfit/upload" var="editUrl">
-		<spring:param name="personId" value="${person.id}" />
-	</spring:url>
-	<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
-
-	<br />
-	<c:forEach items="${person.outfits}" var="outfit">
-		<table border="1">
-			<tr>
-			
-				<td> "${outfit.outfitPicture}" 
-				</td>
-				<td>
-				Add new Tag
-				<br/>
-				<c:forEach items="${outfit.tags}" var="tag">
-						
+	<div id="parent">
+		
+		<c:forEach items="${person.outfits}" var="outfit">
+			<div class="image">
+				
+					<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
+					<spring:url value="http://localhost:8080/{dbImagePath}"
+							var="imageUrl">
+							<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
+						</spring:url> <img src="${fn:escapeXml(imageUrl)}" />
+			</div>
+			<div class = "tag">
+					Add new Tag <br /> 
+					<c:forEach items="${outfit.tags}"
+							var="tag">
 						${tag.tag}
-						</br>
-					</c:forEach></td>
-			</tr>
-		</table>
-	</c:forEach>
-</c:if>
+					</br>
+					</c:forEach>
+			
+			</div>
+		</c:forEach>
+	
 
+	</div>
+</c:if>
 <c:if test="${empty person.outfits}">
 
 	<h3>Your wardrobe is empty!!</h3>
@@ -43,9 +47,9 @@ ${person.firstName} ${person.lastName}
 
 	<h2>
 		<spring:url value="/person/{personId}/outfit/upload" var="editUrl">
-		<spring:param name="personId" value="${person.id}" />
-	</spring:url>
-	<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
+			<spring:param name="personId" value="${person.id}" />
+		</spring:url>
+		<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
 
 	</h2>
 

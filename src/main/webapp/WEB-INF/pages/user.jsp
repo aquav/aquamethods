@@ -22,6 +22,7 @@
         <td><form:label path="email">Email</form:label></td>
         <td><form:input path="email" id ="email" /></td>
     </tr>
+   
     <tr>
         <td colspan="2">
             <input type="submit" value="Create"/>
