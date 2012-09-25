@@ -40,7 +40,7 @@ public class PersonServiceImplTest {
 	@Test
 	public void testGetById() {
 		log.info("Test get data by id ==========================");
-		Person p = personService.getById(50);
+		Person p = personService.getById(61);
 		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		log.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		log.info("Tags : " + p.getOutfits().get(0).getTags().get(0).getTag() );

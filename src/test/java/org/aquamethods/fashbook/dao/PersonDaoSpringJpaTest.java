@@ -8,10 +8,12 @@ import junit.framework.Assert;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,19 +22,23 @@ import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.dao.jpa.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
+@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 public class PersonDaoSpringJpaTest {
 
-	private ApplicationContext ctx;
+	//private ApplicationContext ctx;
+	@Autowired
 	private IPersonServiceDao personServiceDao;
 	private Logger log = Logger.getLogger(this.getClass());
 
 	public PersonDaoSpringJpaTest() {
 		log.info("Test Constructor====================================");
 		BasicConfigurator.configure();
-		// TODO Auto-generated constructor stub
-		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		personServiceDao = (IPersonServiceDao) ctx.getBean("personServiceDao");
-		log.info("Application Context Loaded");
+/*		// TODO Auto-generated constructor stub
+		//ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		//personServiceDao = (IPersonServiceDao) ctx.getBean("personServiceDao");
+		log.info("Application Context Loaded");*/
 	}
 
 	@Test
