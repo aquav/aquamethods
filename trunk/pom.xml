@@ -8,15 +8,9 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<description></description>
-<!-- 	<distributionManagement>
-		<repository>
-			<uniqueVersion>false</uniqueVersion>
-			<id>corp1</id>
-			<name>My Repository</name>
-			<url>http://127.0.0.1:8080/</url>
-			<layout>default</layout>
-		</repository>
-	</distributionManagement> -->
+	<!-- <distributionManagement> <repository> <uniqueVersion>false</uniqueVersion> 
+		<id>corp1</id> <name>My Repository</name> <url>http://127.0.0.1:8080/</url> 
+		<layout>default</layout> </repository> </distributionManagement> -->
 
 	<build>
 		<plugins>
@@ -190,10 +184,29 @@
 			<version>2.5</version>
 		</dependency>
 		<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.11</version>
+		</dependency>
+ <!-- Spring AOP  -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.11</version>
+		</dependency>
+       
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2</version>
+        </dependency>		
+
 	</dependencies>
 </project>
 
