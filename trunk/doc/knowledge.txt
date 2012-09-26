@@ -12,3 +12,28 @@ file changed -
 
 add external configuration in Eclipse to run Maven
 clean tomcat:redeploy -Dmaven.test.skip=true
+
+------------------------------------------------------
+
+Getting It Early.
+Another challenging requirement was selective data display. For example, if a manager searched for registrations, we needed to display all the penalties that the registered parties recorded. This information is not otherwise available to a normal caseworker. for some registrations, we needed to display all the penalties that the registered parties recorded. This information is not otherwise available to a normal caseworker.
+
+The relationship between a Party and Penalty is OneToMany. As mentioned earlier, the default FETCH type for this is LAZY. But to meet this search selective display requirement, it made sense to fetch the Penalty details as a single SQL to avoid multiple SQL calls.
+
+The FETCH Join feature in JP-QL came to our rescue. If we wanted to temporarily override the LAZY fetch type, we could use Fetch Join. However, if this was used frequently, it would be wise to consider refactoring the FETCH type to EAGER.
+
+                               
+@NamedQueries({@NamedQuery(name="generateReport",
+                           query=" SELECT NEW com.ssg.article.ReportDTO(p.name, SUM(pen.amount))
+                                
+
+
+                                    FROM Party p LEFT JOIN p.penalties pen GROUP BY p.name""),
+               @NamedQuery(name="bulkInactive",
+                           query="UPDATE PARTY P SET p.status=0 where p.registrationID=?1"),
+               @NamedQuery(name="getItEarly", query="SELECT p FROM Party p JOIN FETCH p.penalties")})
+
+
+public abstract class Party {
+.....
+}

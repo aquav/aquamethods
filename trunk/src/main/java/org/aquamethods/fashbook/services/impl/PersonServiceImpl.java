@@ -1,5 +1,8 @@
 package org.aquamethods.fashbook.services.impl;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
@@ -50,5 +53,23 @@ public class PersonServiceImpl implements IPersonService{
 	
 	public Outfit loadOutfit(int id) {
 		return personDao.loadOutfit(id);
+	}
+	
+	public List<Outfit> searchOutfitForTag(String searchString){
+		
+		List<Integer> outfitIdList = Arrays.asList(25, 26);
+		return personDao.searchOutfit(outfitIdList, 61);
+	}
+	
+	public Person search (Person person, String searchString){
+		
+		person.getOutfits().clear();
+		
+		List<Integer> outfitIdList = Arrays.asList(2, 3, 4, 5, 23, 25, 26);
+		
+		//Tags are eager fetched so outfit list will have them
+		person.getOutfits().addAll(personDao.searchOutfit(outfitIdList, 61));
+		
+		return person;
 	}
 }

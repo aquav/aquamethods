@@ -91,4 +91,23 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		entityManager.flush();
 		return tag;
 	}
+	
+	public List<Integer> getTagPerson(List<String> tagList, int personId){
+		Query query = entityManager.createNativeQuery("select t.outfit_id from tag_person t where t.person_id :personId" +
+				"and t.tag IN (:tagList)");
+		query.setParameter("personId", personId);
+		query.setParameter("tagList", tagList);
+		List<Integer> outfitIdList = query.getResultList();
+		return outfitIdList;
+	}
+	
+	public List<Outfit> searchOutfit(List<Integer> outfitIdList, int personId){
+		Query query = entityManager.createQuery("select o from Outfit o where o.id IN (:outfitIdList)" +
+				"								and o.associatedPerson.id =:personId");
+		query.setParameter("outfitIdList", outfitIdList);
+		query.setParameter("personId", personId);
+		List<Outfit> result =  query.getResultList();
+		
+		return result;
+	}
 }
