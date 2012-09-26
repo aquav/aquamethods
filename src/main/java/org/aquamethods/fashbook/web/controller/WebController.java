@@ -106,10 +106,10 @@ public class WebController {
 		if (searchString != null && !searchString.trim().isEmpty()) {
 			logger.debug("Search String ::" + searchString + "::");
 			// search logic
-			// SearchHelper.search(person, searchString);
+			 person = personService.search(person, searchString);
 
-			person.getOutfits().remove(1);
-			person.getOutfits().remove(2);
+			//person.getOutfits().remove(1);
+			//person.getOutfits().remove(2);
 			
 			search.setSearchString(searchString);
 		}

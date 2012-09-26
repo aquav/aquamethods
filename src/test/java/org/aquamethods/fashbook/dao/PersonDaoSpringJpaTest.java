@@ -1,6 +1,7 @@
 package org.aquamethods.fashbook.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -119,7 +120,16 @@ public class PersonDaoSpringJpaTest {
 		Assert.assertEquals("23", p.getAge());
 	}
 	
-
+	@Test
+	public void searchOutfitTest(){
+		
+		List<Integer> outfitIdList = Arrays.asList(2,3,4,24,25, 26);
+		List<Outfit> outfits = personServiceDao.searchOutfit(outfitIdList, 61);
+		for (Outfit o:outfits){
+			log.info(" Outfit Id "+ o.getId() + " outfit pic ::"+o.getOutfitPicture());
+			log.info("Tag ::"+o.getTags().get(0).getTag());
+		}
+	}
 /*
 	@Test
 	public void testDeleteData() {
