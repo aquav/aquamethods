@@ -1,5 +1,6 @@
 package org.aquamethods.fashbook.dao.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.aquamethods.fashbook.dao.IPersonServiceDao;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
+import org.aquamethods.fashbook.helper.QueryHelper;
 
 /**
  * 
@@ -92,22 +94,45 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		return tag;
 	}
 	
-	public List<Integer> getTagPerson(List<String> tagList, int personId){
-		Query query = entityManager.createNativeQuery("select t.outfit_id from tag_person t where t.person_id :personId" +
-				"and t.tag IN (:tagList)");
+/*	public List<Integer> getTagPerson(List<String> tagList, int personId){
+		Query query = entityManager.createQuery("select t.outfit_id from TagPerson t where t.person_id =:personId and " +
+				" t.tag IN (:tagList)");
 		query.setParameter("personId", personId);
 		query.setParameter("tagList", tagList);
 		List<Integer> outfitIdList = query.getResultList();
 		return outfitIdList;
+	}*/
+	
+	/**
+	 * 
+	 */
+	@Override
+	public List<Integer> getTagPerson(List<String> tagList, int personId, boolean matchWordFlag){
+		String queryString;
+		Query query=null;
+		if (matchWordFlag){
+			query = entityManager.createQuery("select t.outfit_id from TagPerson t where t.person_id =:personId and " +
+					" t.tag IN (:tagList)");
+			query.setParameter("personId", personId);
+			query.setParameter("tagList", tagList);
+		} else{
+			queryString = QueryHelper.getQueryStringForSearch(tagList);
+			query = entityManager.createQuery("select t.outfit_id from TagPerson t where t.person_id =:personId and " +
+					"( t.tag LIKE " +queryString+")");
+			query.setParameter("personId", personId);
+		}
+		List<Integer> outfitIdList = query.getResultList();
+		return outfitIdList;
 	}
 	
-	public List<Outfit> searchOutfit(List<Integer> outfitIdList, int personId){
-		Query query = entityManager.createQuery("select o from Outfit o where o.id IN (:outfitIdList)" +
-				"								and o.associatedPerson.id =:personId");
-		query.setParameter("outfitIdList", outfitIdList);
-		query.setParameter("personId", personId);
-		List<Outfit> result =  query.getResultList();
-		
+	public List<Outfit> searchOutfit(List<Integer> outfitIdList){
+		List<Outfit> result = new ArrayList<Outfit>();
+		if (outfitIdList!=null && !outfitIdList.isEmpty()){
+			Query query = entityManager.createQuery("select o from Outfit o where o.id IN (:outfitIdList)");
+			query.setParameter("outfitIdList", outfitIdList);
+			result =  query.getResultList();
+		}
+
 		return result;
 	}
 }

@@ -24,9 +24,6 @@ public interface IPersonService {
 	@Transactional
 	public Outfit loadOutfit(int id) ;
 	
-	@Transactional
-	public List<Outfit> searchOutfitForTag(String searchString);
-	
 	@Transactional 
-	public Person search(Person person, String searchString);
+	public Person search(Person person, String searchString, boolean matchWordFlag);
 }
