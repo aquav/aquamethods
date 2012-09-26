@@ -98,6 +98,7 @@ public class WebController {
 	public String getOutfit(
 			@PathVariable("personId") int personId,
 			@RequestParam(value = "searchString", required = false) String searchString,
+			@RequestParam(value="matchWordFlag", required=false) boolean matchWordFlag,
 			Model model) {
 
 		Person person = personService.getById(personId);
@@ -106,7 +107,7 @@ public class WebController {
 		if (searchString != null && !searchString.trim().isEmpty()) {
 			logger.debug("Search String ::" + searchString + "::");
 			// search logic
-			 person = personService.search(person, searchString);
+			 person = personService.search(person, searchString, matchWordFlag);
 
 			//person.getOutfits().remove(1);
 			//person.getOutfits().remove(2);

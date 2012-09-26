@@ -55,20 +55,18 @@ public class PersonServiceImpl implements IPersonService{
 		return personDao.loadOutfit(id);
 	}
 	
-	public List<Outfit> searchOutfitForTag(String searchString){
-		
-		List<Integer> outfitIdList = Arrays.asList(25, 26);
-		return personDao.searchOutfit(outfitIdList, 61);
-	}
 	
-	public Person search (Person person, String searchString){
+	public Person search (Person person, String searchString, boolean matchWordFlag){
 		
+		String regex = "\\s*(\\s|,)\\s*";
+		String[] str = searchString.split(regex);
+		List<String> tagList = Arrays.asList(str);
+	
+		List<Integer> outfitIdList = personDao.getTagPerson(tagList, person.getId(), matchWordFlag);
 		person.getOutfits().clear();
 		
-		List<Integer> outfitIdList = Arrays.asList(2, 3, 4, 5, 23, 25, 26);
-		
 		//Tags are eager fetched so outfit list will have them
-		person.getOutfits().addAll(personDao.searchOutfit(outfitIdList, 61));
+		person.getOutfits().addAll(personDao.searchOutfit(outfitIdList));
 		
 		return person;
 	}

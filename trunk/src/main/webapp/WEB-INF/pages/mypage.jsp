@@ -11,15 +11,19 @@ ${person.firstName} ${person.lastName}
 			<tr>
 				<td><form:label path="searchString">Tags</form:label></td>
 				<td><form:input path="searchString" id="searchString" /></td>
-				<td colspan="2"><input type="submit" value="Search Outfits" />
+				<td colspan="2"><input type="submit" value="Search Outfits" /></td>
+				<td><form:checkbox path="matchWordFlag"
+						value="Match exact word" /> <form:label path="matchWordFlag">Match Exact Word</form:label>
 				</td>
+			</tr>
+			<tr>
+				<td colspan="5"><spring:url
+						value="/person/{personId}/outfit/search" var="editUrl">
+						<spring:param name="personId" value="${person.id}" />
+					</spring:url> <a href="${fn:escapeXml(editUrl)}">Advance Search</a></td>
 			</tr>
 		</table>
 	</form:form>
-	<spring:url value="/person/{personId}/outfit/search" var="editUrl">
-		<spring:param name="personId" value="${person.id}" />
-	</spring:url>
-	<a href="${fn:escapeXml(editUrl)}">Advance Search</a>
 </div>
 
 <c:if test="${not empty search.searchString}">
@@ -29,12 +33,13 @@ ${person.firstName} ${person.lastName}
 	</div>
 </c:if>
 
-
-
 <c:if test="${empty person.outfits}">
 
-	<h3>Your wardrobe is empty!!</h3>
-	<h3>Would you like to upload pics</h3>
+	<h3>Your wardrobe is empty!</h3>
+	<c:if test="${not empty search.searchString}">
+		<h3>For filter criteria - ${search.searchString}</h3>
+	</c:if>
+	<h2>Would you like to upload pics</h2>
 </c:if>
 <h2>
 	<spring:url value="/person/{personId}/outfit/upload" var="editUrl">

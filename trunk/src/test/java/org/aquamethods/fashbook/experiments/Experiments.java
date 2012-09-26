@@ -1,6 +1,8 @@
 package org.aquamethods.fashbook.experiments;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class Experiments {
 
@@ -8,7 +10,27 @@ public class Experiments {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//String searchString = "black formal, semi-formal traditional    winter_black";
+		String searchString = "formal office";
+		
+		String regex = "\\s*(\\s|,)\\s*";
+		String[] str = searchString.split(regex);
+		
+		List<String> tagList = Arrays.asList(str);
+		String queryParam = "";
+		for (int i = 0; i < tagList.size(); i++) {
+			//System.out.println(":" + str[i]);
+
+			if (i == tagList.size() - 1) {
+				queryParam = queryParam + "'%" + tagList.get(i) + "%'";
+				break;
+			}
+			queryParam = queryParam + "'%" + tagList.get(i) + "%'" + " OR LIKE ";
+
+		}
+		System.out.println(queryParam);
+	}
+	public void getImagePath(){
 		String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
 		int personId = 55;
 		String filePath = tomcatWebappsDir 

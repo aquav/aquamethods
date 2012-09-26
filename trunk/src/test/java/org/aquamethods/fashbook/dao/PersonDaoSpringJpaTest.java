@@ -123,11 +123,17 @@ public class PersonDaoSpringJpaTest {
 	@Test
 	public void searchOutfitTest(){
 		
-		List<Integer> outfitIdList = Arrays.asList(2,3,4,24,25, 26);
-		List<Outfit> outfits = personServiceDao.searchOutfit(outfitIdList, 61);
+		//List<Integer> outfitIdList = Arrays.asList(2,3,4,24,25, 26);
+		List<String> tagList = Arrays.asList("black", "formal");
+		int personId = 61;
+		List<Integer> outfitIdList = personServiceDao.getTagPerson(tagList, personId, true);
+		
+		List<Outfit> outfits = personServiceDao.searchOutfit(outfitIdList);
 		for (Outfit o:outfits){
 			log.info(" Outfit Id "+ o.getId() + " outfit pic ::"+o.getOutfitPicture());
-			log.info("Tag ::"+o.getTags().get(0).getTag());
+			for(Tag t : o.getTags()){
+				log.info("Tag ::"+t.getTag());
+			}
 		}
 	}
 /*

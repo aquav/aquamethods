@@ -3,7 +3,7 @@ package org.aquamethods.fashbook.web.form;
 public class SearchForm {
  private int personId;
  private String searchString;
- 
+ private boolean matchWordFlag;
 
  public int getPersonId() {
 	return personId;
@@ -16,6 +16,12 @@ public String getSearchString() {
 }
 public void setSearchString(String searchString) {
 	this.searchString = searchString;
+}
+public boolean isMatchWordFlag() {
+	return matchWordFlag;
+}
+public void setMatchWordFlag(boolean matchWordFlag) {
+	this.matchWordFlag = matchWordFlag;
 }
  
  
