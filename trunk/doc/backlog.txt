@@ -1,0 +1,26 @@
+1 - Display tag as Hyperlink - for search
+2 - Tag Cloud
+3 - Remove Outfit
+4 - Archive Outfit
+5 - Remove Tag
+6 - Edit Tag
+7 - Advance Search
+8 - Login page - Spring security
+9 - Image Thumbnail
+10- Wear log
+11- Get Ready page
+12- cache
+
+
+
+
+
+GUI
+1 - Apache tiles
+2 - CSS
+3 - Jquery
+
+
+DONE
+
+- Aspect 
