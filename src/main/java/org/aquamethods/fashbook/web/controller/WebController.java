@@ -69,7 +69,7 @@ public class WebController {
 		PersonForm form = new PersonForm();
 		ModelMap map = new ModelMap();
 		map.put("person", form);
-		return new ModelAndView("user", map);
+		return new ModelAndView("user-tile", map);
 	}
 
 	/**

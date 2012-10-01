@@ -15,9 +15,11 @@
 
 	<mvc:annotation-driven />
 
-	<!-- <mvc:resources mapping="/static/**" location="/static/, classpath:C:/fashbook/images/person" /> -->
-
-	<bean
+	<!-- <mvc:resources mapping="/static/**" location="/static/, classpath:C:/fashbook/images/person" 
+		/> -->
+	<!-- Since we are using tiles - UrlBasedViewResolver, below bean has to 
+		be comented. dont know why -->
+<!-- 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
@@ -25,7 +27,7 @@
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
-	</bean>
+	</bean> -->
 	<!-- Configure the multipart resolver -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -38,6 +40,15 @@
 		<constructor-arg>
 			<value>C:\VG_DATA\TECH_MAT\POCs\fashbook\images</value>
 		</constructor-arg>
+	</bean>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles-defs/templates.xml"></property>
+	</bean>
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
 </beans>
 

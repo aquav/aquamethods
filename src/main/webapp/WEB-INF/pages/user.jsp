@@ -1,6 +1,6 @@
+<%-- <%@ include file="/WEB-INF/pages/includes.jsp" %>
+<%@ include file="/WEB-INF/pages/header.jsp" %> --%>
 <%@ include file="/WEB-INF/pages/includes.jsp" %>
-<%@ include file="/WEB-INF/pages/header.jsp" %>
-
 
 <h2>Create your free profile!</h2>
 <form:form method="post" modelAttribute="person">
@@ -25,11 +25,11 @@
    
     <tr>
         <td colspan="2">
-            <input type="submit" value="Create"/>
+            <input type="submit" value="Create my profile!"/>
         </td>
     </tr>
 </table>  
      
 </form:form>
-
-<%@ include file="/WEB-INF/pages/footer.jsp" %>
+<%-- 
+<%@ include file="/WEB-INF/pages/footer.jsp" %> --%>
