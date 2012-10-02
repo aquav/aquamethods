@@ -14,7 +14,9 @@
 	</context:component-scan>
 
 	<mvc:annotation-driven />
-
+	<!-- Maps '/' requests to the 'home' view -->
+	<mvc:view-controller path="/" view-name="home"/>
+	
 	<!-- <mvc:resources mapping="/static/**" location="/static/, classpath:C:/fashbook/images/person" 
 		/> -->
 	<!-- Since we are using tiles - UrlBasedViewResolver, below bean has to 

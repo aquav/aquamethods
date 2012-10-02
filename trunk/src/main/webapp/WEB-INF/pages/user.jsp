@@ -1,5 +1,3 @@
-<%-- <%@ include file="/WEB-INF/pages/includes.jsp" %>
-<%@ include file="/WEB-INF/pages/header.jsp" %> --%>
 <%@ include file="/WEB-INF/pages/includes.jsp" %>
 
 <h2>Create your free profile!</h2>
@@ -31,5 +29,3 @@
 </table>  
      
 </form:form>
-<%-- 
-<%@ include file="/WEB-INF/pages/footer.jsp" %> --%>

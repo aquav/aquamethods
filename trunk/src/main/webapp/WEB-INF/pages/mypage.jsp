@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
-<%@ include file="/WEB-INF/pages/header.jsp"%>
+
+
 <c:if test="${empty person}">No person found with this id.</c:if>
 <label for="welcome">Welcome:</label>
 ${person.firstName} ${person.lastName}
@@ -51,10 +52,11 @@ ${person.firstName} ${person.lastName}
 
 <c:if test="${not empty person.outfits}">
 
-	<div id="parent">
+	<div>
 
 		<c:forEach items="${person.outfits}" var="outfit">
-			<div class="image">
+			<div id="outfit">
+			<div id="outimage">
 
 				<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
 				<spring:url value="http://localhost:8080/{dbImagePath}"
@@ -77,11 +79,9 @@ ${person.firstName} ${person.lastName}
 				</c:forEach>
 
 			</div>
+			</div>
 		</c:forEach>
-
 
 	</div>
 </c:if>
 
-
-<%@ include file="/WEB-INF/pages/footer.jsp"%>

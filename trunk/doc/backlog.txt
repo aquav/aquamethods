@@ -10,17 +10,21 @@
 10- Wear log
 11- Get Ready page
 12- cache
-
+13- session, personid
+14- send email for password reset
+15- password encryption
 
 
 
 
 GUI
-1 - Apache tiles
+
 2 - CSS
 3 - Jquery
+
 
 
 DONE
 
 - Aspect 
+1 - Apache tiles

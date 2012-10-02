@@ -121,7 +121,7 @@ public class WebController {
 		
 		model.addAttribute("search", search);
 
-		return "mypage";
+		return "mywardrobe-tile";
 	}
 
 	@RequestMapping(value = "{personId}/outfit/search", method = RequestMethod.GET)
@@ -131,7 +131,7 @@ public class WebController {
 
 		Person person = personService.getById(personId);
 
-		return "mypage";
+		return "mywardrobe-tile";
 
 	}
 
@@ -144,7 +144,7 @@ public class WebController {
 		form.setPersonId(personId);
 		model.addAttribute("uploadOutfit", form);
 
-		return "/uploadfile";
+		return "uploadfile-tile";
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class WebController {
 				logger.error("Error in uploading: " + error.getCode() + " - "
 						+ error.getDefaultMessage());
 			}
-			return "/uploadfile";
+			return "uploadfile-tile";
 		}
 
 		// Some type of file processing...
@@ -189,7 +189,7 @@ public class WebController {
 							+ multipartFile.getSize());
 					logger.error("File Original Name:::"
 							+ multipartFile.getOriginalFilename());
-					return "/uploadfile";
+					return "uploadfile-tile";
 				}
 				logger.debug("size ::" + multipartFile.getSize());
 				String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
@@ -253,7 +253,7 @@ public class WebController {
 			logger.error("Error in upload file");
 			throw e;
 		}
-		return "/uploadfile";
+		return "uploadfile-tile";
 	}
 
 	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.GET)
@@ -272,7 +272,7 @@ public class WebController {
 		TagForm tagForm = new TagForm();
 		model.addAttribute("outfit", outfitForm);
 		model.addAttribute("tag", tagForm);
-		return "mytags";
+		return "mytags-tile";
 	}
 
 	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.POST)
