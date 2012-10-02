@@ -1,15 +1,13 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
-<%@ include file="/WEB-INF/pages/header.jsp"%>
+
 
 <label for="welcome">Welcome:</label>
 
 <h2>Outfit</h2>
 
 <c:if test="${not empty outfit}">
-	<div></div>
 	<br />
-	<div id="parent">
-
+	<div id="outfit">
 		<div class="image">
 
 			<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
@@ -39,17 +37,13 @@
 						${tag.tag}
 					</br>
 			</c:forEach>
-
 		</div>
-
-
 	</div>
 
-	<br>
 	<br>
 	<spring:url value="/person/{personId}/outfit" var="editUrl">
 		<spring:param name="personId" value="${outfit.personId}" />
 	</spring:url>
 	<a href="${fn:escapeXml(editUrl)}">My Wardrobe</a>
 </c:if>
-<%@ include file="/WEB-INF/pages/footer.jsp"%>
+

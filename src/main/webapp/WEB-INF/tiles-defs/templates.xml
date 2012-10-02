@@ -6,18 +6,36 @@
 <tiles-definitions>
 
 	<!-- Default Main Template -->
-	<definition name=".mainTemplate" template="/WEB-INF/pages/layout.jsp">
-		<put-attribute name="title" value="Simple Tiles 2 Example"
-			type="string" />
-		<put-attribute name="header" value="/WEB-INF/pages/header.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/pages/footer.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/pages/menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/pages/blank.jsp" />
+	<definition name="page" template="/WEB-INF/layouts/layout.jsp">
+		<put-attribute name="menu" value="/WEB-INF/layouts/menu.jsp"
+			type="template" />
 	</definition>
 
-	 <definition name="user-tile" extends=".mainTemplate">
-        <put-attribute name="title" value="Create User" />
-        <put-attribute name="body" value="/WEB-INF/pages/user.jsp" />
-    </definition>
+	<!-- Application Home -->
+	<definition name="home" extends="page">
+		<put-attribute name="title" value="Welcome to Fashbook"
+			type="string" />
+		<put-attribute name="content" value="/WEB-INF/pages/home.jsp"
+			type="template" />
+	</definition>
 
+	<definition name="user-tile" extends="page">
+		<put-attribute name="title" value="Create User" />
+		<put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
+	</definition>
+
+	<definition name="mywardrobe-tile" extends="page">
+		<put-attribute name="title" value="My Wardrobe" />
+		<put-attribute name="content" value="/WEB-INF/pages/mypage.jsp" />
+	</definition>
+
+	<definition name="uploadfile-tile" extends="page">
+		<put-attribute name="title" value="Upload File" />
+		<put-attribute name="content" value="/WEB-INF/pages/uploadfile.jsp" />
+	</definition>
+
+	<definition name="mytags-tile" extends="page">
+		<put-attribute name="title" value="My Tags" />
+		<put-attribute name="content" value="/WEB-INF/pages/mytags.jsp" />
+	</definition>
 </tiles-definitions>

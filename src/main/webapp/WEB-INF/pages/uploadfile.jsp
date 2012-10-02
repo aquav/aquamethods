@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/pages/includes.jsp" %>
-<%@ include file="/WEB-INF/pages/header.jsp" %>
+
 
 	<form:form modelAttribute="uploadOutfit" method="post"
 		enctype="multipart/form-data">
@@ -26,4 +26,3 @@
         </spring:url>
         <a href="${fn:escapeXml(editUrl)}">My Wardrobe</a>
         
-<%@ include file="/WEB-INF/pages/footer.jsp" %>
