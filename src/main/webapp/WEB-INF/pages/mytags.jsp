@@ -7,17 +7,17 @@
 
 <c:if test="${not empty outfit}">
 	<br />
-	<div id="outfit">
-		<div class="image">
+	<div id="outfitlarge">
+		<div id="outimagelarge">
 
 			<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
 			<spring:url value="http://localhost:8080/{dbImagePath}"
 				var="imageUrl">
 				<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
 			</spring:url>
-			<img src="${fn:escapeXml(imageUrl)}" />
+			<img width="300" height="500" src="${fn:escapeXml(imageUrl)}" />
 		</div>
-		<div>
+		<div id="tagslarge">
 			<form:form method="post" modelAttribute="tag">
 				<table>
 					<tr>
@@ -31,12 +31,14 @@
 				<!-- Hidden value - need to set person id else it will go as null in form -->
 				<input name="outfitId" type="hidden" value="${outfit.id}" />
 			</form:form>
-
 			</br>
-			<c:forEach items="${outfit.tags}" var="tag">
+			<div>
+
+				<c:forEach items="${outfit.tags}" var="tag">
 						${tag.tag}
 					</br>
-			</c:forEach>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 

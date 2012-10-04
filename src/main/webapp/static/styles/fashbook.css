@@ -1,52 +1,95 @@
-
 /*
  ALL IDs
 */
-#container{
+#container {
 	
 }
-#header{
+
+#header {
 	background-color: #D11919;
 	font-family: Helvetica, sans-serif;
 	color: #FFFFFF;
 }
 
-#content{
-	background-color:#FFFFFF;
-	float:left;
+#content {
+	background-color: #FFFFFF;
+	float: left;
 	min-height: 400px;
-	width:900px;
-	border: 2px solid #d6e2c3;
+	width: 900px;
+	border: 2px solid #DADADA;
 }
 
-#footer{
-	background-color:#D11919;
-	clear:both;
+#footer {
+	background-color: #D11919;
+	clear: both;
 	text-align: right;
+	font-family: Helvetica, sans-serif;
+	color: #FFFFFF;
 }
 
-#outfit{
-	float:left;
-	border: 2px solid #d6e2c3;
+#outfit {
+	float: left;
+	border: 1px solid #DADADA;
+	height: 300px;
+	width: 275px;
+}
+#outimage {
+	border: 1px solid #DADADA;
+float: left;
+	height: 300px;
+	width: 175px;
+}
+#tags {
+float: left;
+	border: 1px solid #D11919;
+	font-family: Helvetica, sans-serif;
+	height: 250px;
+	width: 90px;
+
 }
 
-#outimage{
-		float:left;
+#outfitlarge {
+	float: left;
+	border: 2px solid #DADADA;
+	height: 600px;
+	width: 600px;
 }
-#tag{
-		float:left;
+
+#outimagelarge {
+	float: left;
+	height: 600px;
+	width: 350px;
+}
+#tagslarge {
+float: left;
+	border: 1px solid #D11919;
+	font-family: Helvetica, sans-serif;
+	height: 600px;
+	width: 200px;
+
+}
+
+
+
+
+#search {
+	border: 1px solid #DADADA;
+	font-family: Helvetica, sans-serif;
+	background-color: #DADADA;
 }
 
 #leftnavigation {
-	background-color:#FFFFFF;
-	float:left;
-	width:200px;
+	background-color: #FFFFFF;
+	float: left;
+	width: 200px;
 	min-height: 400px;
-	border: 2px solid #d6e2c3;
 }
-#rightnavigation {
 
+.imagepic {
+	width: 175;
+	height: 300;
 }
+
 /* 
 .container {width:950px;margin:0 auto;}
 
@@ -291,4 +334,6 @@ fieldset th {
     background: #d6e2c3;
 	margin: 1px 5px 1px 1px;
 
-}​ */ */
+}​ */
+*
+/

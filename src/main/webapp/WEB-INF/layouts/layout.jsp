@@ -29,8 +29,8 @@
 		<div id="content">
 			<tiles:insertAttribute name="content" />
 		</div>
-		<div id="rightnavigation">
-			
+		<div id="rightmenu">
+			<tiles:insertAttribute name="rightmenu" />
 		</div>
 		<div id="footer">
 			Copyright (c) 2010 AquaMethods| About
