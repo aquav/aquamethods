@@ -4,7 +4,12 @@
 <label for="welcome">Welcome:</label>
 
 <h2>Outfit</h2>
-
+<h2>
+	<spring:url value="/person/{personId}/outfit" var="editUrl">
+		<spring:param name="personId" value="${outfit.personId}" />
+	</spring:url>
+	<a href="${fn:escapeXml(editUrl)}">My Wardrobe</a>
+</h2>
 <c:if test="${not empty outfit}">
 	<br />
 	<div id="outfitlarge">
@@ -16,6 +21,11 @@
 				<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
 			</spring:url>
 			<img width="300" height="500" src="${fn:escapeXml(imageUrl)}" />
+		</div>
+		<div id="deleteOutfit">
+		     <form:form method="delete">
+                  <input type="submit" alt="Delete Outfit" src="/fashbook/static/images/delete.png" title="Delete Outfit" type="image" value="Delete Outfit"/>
+             </form:form>
 		</div>
 		<div id="tagslarge">
 			<form:form method="post" modelAttribute="tag">
@@ -41,11 +51,5 @@
 			</div>
 		</div>
 	</div>
-
-	<br>
-	<spring:url value="/person/{personId}/outfit" var="editUrl">
-		<spring:param name="personId" value="${outfit.personId}" />
-	</spring:url>
-	<a href="${fn:escapeXml(editUrl)}">My Wardrobe</a>
 </c:if>
 

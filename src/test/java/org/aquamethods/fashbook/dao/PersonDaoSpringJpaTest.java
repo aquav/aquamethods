@@ -143,12 +143,12 @@ public class PersonDaoSpringJpaTest {
 			}
 		}
 	}
-/*
-	@Test
-	public void testDeleteData() {
-		log.info("Test delete all ==============================");
-		Person p = personService.getById(1);
-		personService.delete(p);
 
-	}*/
+	@Test
+	public void testDeleteOutfit() {
+		logger.info("Test delete Outfit ==============================");
+		Outfit o = personServiceDao.loadOutfit(33);
+		boolean deleted = personServiceDao.deleteOutfit(o);
+		logger.info("Deleted ::"+deleted);
+	}
 }

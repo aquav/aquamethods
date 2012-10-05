@@ -2,13 +2,12 @@ package org.aquamethods.fashbook.services;
 
 import java.util.Calendar;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-import org.aquamethods.fashbook.dao.IPersonServiceDao;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,32 +22,32 @@ public class PersonServiceImplTest {
 
 	@Autowired
 	private IPersonService personService;
-	private Logger log = Logger.getLogger(this.getClass());
+	private static final Logger logger = LoggerFactory
+			.getLogger(PersonServiceImplTest.class);
 	private ApplicationContext ctx;
 	
 	
 	public PersonServiceImplTest() {
-		log.info("Test Constructor====================================");
-		BasicConfigurator.configure();
+		logger.info("Test Constructor====================================");
 		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		personService = (IPersonService) ctx.getBean("personService");
-		log.info("Application Context Loaded");
+		logger.info("Application Context Loaded");
 	}
 
 
 
 	@Test
 	public void testGetById() {
-		log.info("Test get data by id ==========================");
+		logger.info("Test get data by id ==========================");
 		Person p = personService.getById(61);
-		log.info("Name : " + p.getFirstName() + " Age " + p.getAge());
-		log.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
-		log.info("Tags : " + p.getOutfits().get(0).getTags().get(0).getTag() );
+		logger.info("Name : " + p.getFirstName() + " Age " + p.getAge());
+		logger.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
+		logger.info("Tags : " + p.getOutfits().get(0).getTags().get(0).getTag() );
 	}
 	
 	@Test
 	public void testSavePerson() {
-		log.info("Test Save Person ==========================");
+		logger.info("Test Save Person ==========================");
 		Person p = new Person();
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
@@ -59,12 +58,12 @@ public class PersonServiceImplTest {
 		
 		personService.savePerson(p);
 
-		log.info("ID of saved Person : " + p.getId());
+		logger.info("ID of saved Person : " + p.getId());
 	}
 	
 	@Test
 	public void testSaveCompleteHierarchy(){
-		log.info("Test Save Person ==========================");
+		logger.info("Test Save Person ==========================");
 		Person p = new Person();
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
@@ -76,7 +75,7 @@ public class PersonServiceImplTest {
 		//Save only person entity
 		Person savedPerson = personService.savePerson(p);
 
-		log.info("ID of saved Person : " + p.getId());
+		logger.info("ID of saved Person : " + p.getId());
 		
 		Outfit outfit = new Outfit();
 		outfit.setOutfitPicture("Pic12");
@@ -87,8 +86,8 @@ public class PersonServiceImplTest {
 		//Save Outfit for already saved Person
 		Person updatedPerson = personService.updatePerson(savedPerson);
 		
-		log.info("ID of Updated Person : " + updatedPerson.getId());
-		log.info("Putfit pic of Updated Person : " + updatedPerson.getOutfits().get(0).getOutfitPicture());
+		logger.info("ID of Updated Person : " + updatedPerson.getId());
+		logger.info("Putfit pic of Updated Person : " + updatedPerson.getOutfits().get(0).getOutfitPicture());
 		
 		
 		Tag tag = new Tag();
@@ -98,9 +97,17 @@ public class PersonServiceImplTest {
 		
 		Person updatedPerson2 = personService.updatePerson(updatedPerson);
 		
-		log.info("ID of Updated Person : " + updatedPerson2.getId());
-		log.info("Outfit pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getOutfitPicture());
-		log.info("Tag pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getTags().get(0).getTag());
+		logger.info("ID of Updated Person : " + updatedPerson2.getId());
+		logger.info("Outfit pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getOutfitPicture());
+		logger.info("Tag pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getTags().get(0).getTag());
 	
+	}
+	
+	@Test
+	public void deleteOutfit(){
+		Outfit o = personService.loadOutfit(33);
+		boolean b = personService.deleteOutfit(o);
+		logger.info("Deleted ::"+b);
+		
 	}
 }

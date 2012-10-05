@@ -55,6 +55,9 @@ public class PersonServiceImpl implements IPersonService{
 		return personDao.loadOutfit(id);
 	}
 	
+	public boolean deleteOutfit(Outfit outfit){
+		return personDao.deleteOutfit(outfit);
+	}
 	
 	public Person search (Person person, String searchString, boolean matchWordFlag){
 		

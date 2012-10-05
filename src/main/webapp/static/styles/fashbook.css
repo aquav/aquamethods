@@ -14,6 +14,7 @@
 #content {
 	background-color: #FFFFFF;
 	float: left;
+	font-family: Helvetica, sans-serif;
 	min-height: 400px;
 	width: 900px;
 	border: 2px solid #DADADA;
@@ -64,12 +65,18 @@ float: left;
 float: left;
 	border: 1px solid #D11919;
 	font-family: Helvetica, sans-serif;
-	height: 600px;
+	height: 550px;
 	width: 200px;
 
 }
 
-
+#deleteOutfit{
+	float: left;
+	border: 1px solid #D11919;
+	font-family: Helvetica, sans-serif;
+	height: 50px;
+	width: 200px;
+}
 
 
 #search {

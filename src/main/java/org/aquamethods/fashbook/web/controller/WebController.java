@@ -315,6 +315,14 @@ public class WebController {
 		return "redirect:/person/" + personId + "/outfit/" + outfitId + "/tag";
 	}
 
+	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.DELETE)
+	public String deleteOutfit(@PathVariable("outfitId") int outfitId ) {
+
+		boolean b = personService.deleteOutfit(personService.loadOutfit(outfitId));
+		logger.info("Outfit "+outfitId+" Deleted :: "+b);
+		return "redirect:/person/{personId}/outfit";
+	}
+	
 	/**
 	 * 
 	 * @param person

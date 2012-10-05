@@ -26,4 +26,7 @@ public interface IPersonService {
 	
 	@Transactional 
 	public Person search(Person person, String searchString, boolean matchWordFlag);
+	
+	@Transactional
+	public boolean deleteOutfit(Outfit outfit);
 }
