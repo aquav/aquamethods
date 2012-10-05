@@ -88,6 +88,17 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 	}
 	
 	@Override
+	public boolean deleteOutfit(Outfit outfit) {
+		outfit = entityManager.find(Outfit.class, outfit.getId());
+		if (outfit == null){
+			return false;
+		}
+		entityManager.remove(outfit);
+		entityManager.flush();
+		return true;
+	}
+	
+	@Override
 	public Tag saveTag(Tag tag) {
 		entityManager.merge(tag);
 		entityManager.flush();

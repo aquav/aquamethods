@@ -13,7 +13,7 @@
 13- session, personid
 14- send email for password reset
 15- password encryption
-
+16- replace existing photo with better one
 
 
 
