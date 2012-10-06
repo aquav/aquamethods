@@ -89,7 +89,6 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 	
 	@Override
 	public boolean deleteOutfit(Outfit outfit) {
-		outfit = entityManager.find(Outfit.class, outfit.getId());
 		if (outfit == null){
 			return false;
 		}

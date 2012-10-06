@@ -23,8 +23,8 @@
 			<img width="300" height="500" src="${fn:escapeXml(imageUrl)}" />
 		</div>
 		<div id="deleteOutfit">
-		     <form:form method="delete">
-                  <input type="submit" alt="Delete Outfit" src="/fashbook/static/images/delete.png" title="Delete Outfit" type="image" value="Delete Outfit"/>
+		     <form:form action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}/tag" method="delete">
+              <input alt="Delete Outfit" src="/fashbook/static/images/delete.png" title="Delete Outfit" type="image" value="Delete Outfit"/>
              </form:form>
 		</div>
 		<div id="tagslarge">
