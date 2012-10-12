@@ -1,0 +1,31 @@
+
+<html>
+<head>
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+</head>
+<body>
+
+<script>
+$(document).ready(function() {
+	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
+	 $("#contactus").click(function() {
+	     alert("Hello world!");
+	    
+	     $( "#dialog" ).dialog("open");
+	     return false;
+	   });
+	 });
+
+
+</script>
+	<a href="" id="contactus">contactus</a>
+	<div id="dialog">
+	appear now
+	</div>
+</body>
+</html>

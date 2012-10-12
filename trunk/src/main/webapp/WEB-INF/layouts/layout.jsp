@@ -11,7 +11,8 @@
 		<tiles:insertAttribute name="title" />
 	</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/styles/fashbook.css" />" />
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 </HEAD>
 <body>
 

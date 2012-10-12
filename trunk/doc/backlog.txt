@@ -14,7 +14,7 @@
 14- send email for password reset
 15- password encryption
 16- replace existing photo with better one
-
+17- assign outfit id to new image
 
 
 GUI
