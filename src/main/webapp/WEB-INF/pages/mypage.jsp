@@ -81,4 +81,22 @@ ${person.firstName} ${person.lastName}
 		</c:forEach>
 
 </c:if>
+<!-- <script type="text/javascript"> 
+
+
+//$(document).ready(function() {
+	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
+	 function add(e) {
+	     alert("Hello world!");
+	    var url = $(e).attr('href');
+	    
+	    $("#dialog").load(url, function() {
+	        $("#dialog").dialog("open");
+	        
+	    });
+	    
+	 }
+//	 });
+
+</script> -->
 
