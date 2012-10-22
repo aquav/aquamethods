@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -196,8 +197,9 @@ public class WebController {
 
 				String filePath = tomcatWebappsDir + "/"
 						+ "resources/fashbook/images/person" + "/" + personId;
-
-				fileName = filePath + "/" + multipartFile.getOriginalFilename();
+				Calendar cal = Calendar.getInstance();
+				fileName = filePath + "/" + cal.getTimeInMillis() + ".jpg"; 
+				//multipartFile.getOriginalFilename();
 
 				File dir = new File(filePath);
 				if (!dir.exists()) {
