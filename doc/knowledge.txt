@@ -9,7 +9,11 @@ file changed -
   	<user username="admin" password="password" roles="admin,manager"/>
   
 2. C:\Tools\Apache_Maven\Apache-Maven-2.2.1\conf\settings.xml
-
+	      <server>
+      <id>TomcatServer</id>
+      <username>admin</username>
+      <password>password</password>
+    </server>
 add external configuration in Eclipse to run Maven
 clean tomcat:redeploy -Dmaven.test.skip=true
 

@@ -2,6 +2,7 @@ package org.aquamethods.fashbook.experiments;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class Experiments {
@@ -10,6 +11,19 @@ public class Experiments {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		new Experiments().timeInMillies();
+	}
+	
+	public void timeInMillies(){
+		System.out.println(System.currentTimeMillis());
+		
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal.getTimeInMillis());
+	}
+	
+	public void regexExp(){
+
 		//String searchString = "black formal, semi-formal traditional    winter_black";
 		String searchString = "formal office";
 		
@@ -29,6 +43,7 @@ public class Experiments {
 
 		}
 		System.out.println(queryParam);
+	
 	}
 	public void getImagePath(){
 		String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
