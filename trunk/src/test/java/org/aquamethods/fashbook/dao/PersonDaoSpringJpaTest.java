@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.domain.Outfit;
-import org.aquamethods.fashbook.dao.interceptor.DaoInterceptor;
 import org.aquamethods.fashbook.dao.jpa.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)

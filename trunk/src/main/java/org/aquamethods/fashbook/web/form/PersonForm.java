@@ -10,6 +10,7 @@ public class PersonForm {
 	private String lastName;
 	private String email;
 	private int age;
+	private String password;
 	private List<OutfitForm> outfits = new ArrayList<OutfitForm>();
 
 	
@@ -59,6 +60,14 @@ public class PersonForm {
 
 	public void setOutfits(List<OutfitForm> outfits) {
 		this.outfits = outfits;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	

@@ -198,7 +198,7 @@ public class WebController {
 				String filePath = tomcatWebappsDir + "/"
 						+ "resources/fashbook/images/person" + "/" + personId;
 				Calendar cal = Calendar.getInstance();
-				fileName = filePath + "/" + cal.getTimeInMillis() + ".jpg"; 
+				fileName = filePath + "/" + personId+"_"+cal.getTimeInMillis() + ".jpg"; 
 				//multipartFile.getOriginalFilename();
 
 				File dir = new File(filePath);
