@@ -38,10 +38,22 @@ public class Person {
 	private String lastName;
 
 	private String email;
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	private int age;
 	
 	@OneToMany(mappedBy="associatedPerson", cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
 	private List<Outfit> outfits = new ArrayList<Outfit>();
+	
+	@OneToOne(mappedBy="person", cascade={CascadeType.ALL})
+	private Role role;
 	
 	public int getId() {
 		return id;
@@ -89,6 +101,14 @@ public class Person {
 
 	public void setOutfits(List<Outfit> outfits) {
 		this.outfits = outfits;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 
