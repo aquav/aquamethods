@@ -24,9 +24,6 @@
 		<div id="content">
 			<tiles:insertAttribute name="content" />
 		</div>
-		<div id="content">
-			<tiles:insertAttribute name="newuser" />
-		</div>
 		
 		<div id="footer">
 			Copyright (c) 2010 AquaMethods| About

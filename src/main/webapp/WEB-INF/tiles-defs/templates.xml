@@ -22,10 +22,11 @@
 			type="string" />
 		<put-attribute name="content" value="/WEB-INF/pages/login.jsp"
 			type="template" />
-		<put-attribute name="newuser" value="/WEB-INF/pages/user.jsp"
-			type="template" />	
 	</definition>
-	
+	<definition name="newuser-tile" extends="login">
+		<put-attribute name="title" value="Create User" />
+		<put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
+	</definition>
 	
 	<!-- Application Home -->
 	<definition name="home" extends="page">
@@ -33,11 +34,6 @@
 			type="string" />
 		<put-attribute name="content" value="/WEB-INF/pages/home.jsp"
 			type="template" />
-	</definition>
-
-	<definition name="user-tile" extends="page">
-		<put-attribute name="title" value="Create User" />
-		<put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
 	</definition>
 
 	<definition name="mywardrobe-tile" extends="page">
