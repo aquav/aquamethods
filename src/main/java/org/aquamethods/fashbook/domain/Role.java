@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,6 +18,7 @@ public class Role {
 	private int id;
 	
 	@OneToOne
+	@JoinColumn(name = "PERSON_ID", nullable = false, insertable = true, updatable = false)
 	private Person person;
 	private Integer role;
 	

@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Role;
 import org.aquamethods.fashbook.domain.Tag;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -55,7 +56,12 @@ public class PersonServiceImplTest {
 		p.setLastName("TestLastNm");
 		p.setAge(23);
 		p.setEmail("TestEmail@email.com");
-		
+		p.setPassword("abc");
+		Role role = new Role();
+		role.setRole(1);
+		role.setPerson(p);
+		p.setRole(role);
+
 		personService.savePerson(p);
 
 		logger.info("ID of saved Person : " + p.getId());

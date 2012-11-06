@@ -15,12 +15,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 </HEAD>
 <body>
-
+<c:url value="/logout" var="logoutUrl"/>
 <div id="container">
 		<div id="header">
-			<h1>Fashbook</h1>
-			Your virtual wardrobe!!
-			<a  href="<c:url value="/" />" >Home</a>
+			<h1>Fashbook</h1> Your virtual wardrobe!!
+			
+			<div id="headernav"><a  href="<c:url value="/person" />" >Home</a><a href="${logoutUrl}">Logout</a></div>
 		</div>
 
 		<div id="leftnavigation">

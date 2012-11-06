@@ -13,7 +13,7 @@ public interface IPersonServiceDao {
 	public Person savePerson(Person person);
 	public List<Person> getAll();
 	public Person getById(int id);
-	public Person getByName(String name);
+	public Person getByEmail(String email);
 	public boolean delete(Person person);
 	public Person updatePerson(Person person);
 	//public boolean saveOutfit(Outfit outfit);

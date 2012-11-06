@@ -44,9 +44,9 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		return entityManager.find(Person.class, id);
 	}
 	
-	public Person getByName(String name){
-		Query query = entityManager.createNamedQuery("Person.findByName");
-		query.setParameter("name", name);
+	public Person getByEmail(String email){
+		Query query = entityManager.createNamedQuery("Person.findByEmail");
+		query.setParameter("email", email);
 		Person person = (Person)query.getSingleResult();
 		return person;
 	}
