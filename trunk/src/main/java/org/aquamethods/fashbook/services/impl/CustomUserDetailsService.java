@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.aquamethods.fashbook.dao.IPersonServiceDao;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.web.controller.WebController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +30,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	IPersonServiceDao personDao;
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(CustomUserDetailsService.class);
 	/**
 	 * Returns a populated {@link UserDetails} object. 
 	 * The username is first retrieved from the database and then mapped to 
@@ -35,7 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
 			//org.krams.domain.User domainUser = userRepository.findByUsername(username);
-			Person domainUser = personDao.getByName(username);
+			Person domainUser = personDao.getByEmail(username);
 			
 			boolean enabled = true;
 			boolean accountNonExpired = true;
@@ -52,6 +57,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 					getAuthorities(domainUser.getRole().getRole()));
 			
 		} catch (Exception e) {
+			logger.error("Exception in loadUserByUsername ");
 			throw new RuntimeException(e);
 		}
 	}

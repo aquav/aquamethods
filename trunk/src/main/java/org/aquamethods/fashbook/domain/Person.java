@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "PERSON")
 @NamedQueries({
 		@NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
-		@NamedQuery(name = "Person.findByName", query = "SELECT p FROM Person p where first_name = :name") }
+		@NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p where email = :email") }
 
 )
 public class Person {

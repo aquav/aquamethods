@@ -10,7 +10,11 @@
 	font-family: Helvetica, sans-serif;
 	color: #FFFFFF;
 }
-
+#headernav {
+	float: right;
+	font-family: Helvetica, sans-serif;
+	color: #FFFFFF;
+}
 #content {
 	background-color: #FFFFFF;
 	float: left;

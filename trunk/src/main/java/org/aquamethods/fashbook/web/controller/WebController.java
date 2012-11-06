@@ -19,12 +19,14 @@ import org.aquamethods.fashbook.web.form.TagForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
+import org.aquamethods.fashbook.domain.Role;
 import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.services.IPersonService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -60,6 +62,13 @@ public class WebController {
 		this.uploadFolderPath = uploadFolderPath;
 	}
 
+	@RequestMapping
+	public String getHomePage() {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		logger.info("userName ::"+ userName);
+		return "redirect:/person/" + 10 + "/outfit";
+	}
+	
 	/**
 	 * Create new user
 	 * 
@@ -364,6 +373,12 @@ public class WebController {
 		person.setLastName(personForm.getLastName());
 		person.setAge(personForm.getAge());
 		person.setEmail(personForm.getEmail());
+		person.setPassword(personForm.getPassword());
+		Role role = new Role();
+		role.setRole(1);
+		role.setPerson(person);
+		person.setRole(role);
+			
 
 		return person;
 	}

@@ -22,6 +22,8 @@
 			type="string" />
 		<put-attribute name="content" value="/WEB-INF/pages/login.jsp"
 			type="template" />
+		<put-attribute name="newuser" value="/WEB-INF/pages/user.jsp"
+			type="template" />	
 	</definition>
 	
 	

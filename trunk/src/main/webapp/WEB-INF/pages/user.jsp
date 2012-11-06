@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/pages/includes.jsp" %>
 
 <h2>Create your free profile!</h2>
-<form:form method="post" modelAttribute="person">
+<form:form method="post" action="/person/newuser">
  
     <table>
     <tr>
@@ -20,7 +20,10 @@
         <td><form:label path="email">Email</form:label></td>
         <td><form:input path="email" id ="email" /></td>
     </tr>
-   
+        <tr>
+        <td><form:label path="password">Password</form:label></td>
+        <td><form:input path="password" id ="password" type="password"/></td>
+    </tr>
     <tr>
         <td colspan="2">
             <input type="submit" value="Create my profile!"/>
