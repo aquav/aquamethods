@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/pages/includes.jsp" %>
 
 <h2>Create your free profile!</h2>
-<form:form method="post" action="/person/newuser">
+<form:form method="post" modelAttribute="person">
  
     <table>
     <tr>

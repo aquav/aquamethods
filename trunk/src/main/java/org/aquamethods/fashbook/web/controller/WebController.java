@@ -79,7 +79,7 @@ public class WebController {
 		PersonForm form = new PersonForm();
 		ModelMap map = new ModelMap();
 		map.put("person", form);
-		return new ModelAndView("user-tile", map);
+		return new ModelAndView("newuser-tile", map);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/newuser", method = RequestMethod.POST)
 	public String save(@ModelAttribute("person") PersonForm personForm,
-			BindingResult result) {
+			BindingResult result, Model model) {
 
 		Person personEntity = convertToDaoEntity(personForm);
 

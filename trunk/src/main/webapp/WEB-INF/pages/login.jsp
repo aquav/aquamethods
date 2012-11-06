@@ -25,6 +25,9 @@
 			<p><input type="submit" value="Login"/></p>
 		</fieldset>
 	</form>
+	<h2>OR <br>
+	<a  href="<c:url value="/person/newuser" />" >Create New Profile</a>
+	</h2>			
 	<p class="message">${message}</p>
 </body>
 </html>
