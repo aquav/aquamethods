@@ -24,7 +24,8 @@
 		
 		<form-login login-page="/login" 
 			authentication-failure-url="/login/failure" 
-			default-target-url="/person"/>
+			default-target-url="/person"
+			always-use-default-target="true" />
 		
 		<access-denied-handler error-page="/denied"/>
 		

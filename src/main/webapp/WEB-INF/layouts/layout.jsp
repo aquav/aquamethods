@@ -20,7 +20,9 @@
 		<div id="header">
 			<h1>Fashbook</h1> Your virtual wardrobe!!
 			
-			<div id="headernav"><a  href="<c:url value="/person" />" >Home</a><a href="${logoutUrl}">Logout</a></div>
+			<div id="headernav">${sessionScope['scopedTarget.userSessionData'].personFirstName}  ${sessionScope['scopedTarget.userSessionData'].personLastName} <a  href="<c:url value="/person" />" > Home </a>
+			<a href="${logoutUrl}"> Logout </a></div>
+			
 		</div>
 
 		<div id="leftnavigation">

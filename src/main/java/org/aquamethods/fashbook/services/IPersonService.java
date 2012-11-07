@@ -29,4 +29,7 @@ public interface IPersonService {
 	
 	@Transactional
 	public boolean deleteOutfit(Outfit outfit);
+	
+	@Transactional
+	public Person getByEmail(String email);
 }

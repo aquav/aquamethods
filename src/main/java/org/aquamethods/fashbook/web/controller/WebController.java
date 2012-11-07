@@ -17,6 +17,7 @@ import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.SearchForm;
 import org.aquamethods.fashbook.web.form.TagForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
+import org.aquamethods.fashbook.common.UserSessionData;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Role;
@@ -50,6 +51,9 @@ public class WebController {
 
 	@Autowired
 	private IPersonService personService;
+	
+	@Autowired
+	private UserSessionData userSessionData;
 
 	public WebController() {
 	}
@@ -64,9 +68,22 @@ public class WebController {
 
 	@RequestMapping
 	public String getHomePage() {
-		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-		logger.info("userName ::"+ userName);
-		return "redirect:/person/" + 10 + "/outfit";
+		String userName = SecurityContextHolder.getContext()
+				.getAuthentication().getName();
+		logger.info("userName ::" + userName);
+		int personId = 0;
+
+		if (userSessionData.getPersonId() == 0) {
+			Person person = personService.getByEmail(userName);
+			personId = person.getId();
+			// Set person id in session scoped bean
+			userSessionData.setPersonId(personId);
+			userSessionData.setPersonFirstName(person.getFirstName());
+			userSessionData.setPersonLastName(person.getLastName());
+		} else {
+			personId = userSessionData.getPersonId();
+		}
+		return "redirect:/person/" + personId + "/outfit";
 	}
 	
 	/**

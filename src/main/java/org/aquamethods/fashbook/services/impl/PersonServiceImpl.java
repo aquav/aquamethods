@@ -73,4 +73,8 @@ public class PersonServiceImpl implements IPersonService{
 		
 		return person;
 	}
+	
+	public Person getByEmail(String email){
+		return personDao.getByEmail(email);
+	}
 }
