@@ -2,9 +2,9 @@
 
 
 <c:if test="${empty person}">No person found with this id.</c:if>
-<label for="welcome">Welcome:</label>
+<%-- <label for="welcome">Welcome:</label>
 ${person.firstName} ${person.lastName}
-<!-- <h2>My Wardrobe</h2> -->
+<!-- <h2>My Wardrobe</h2> --> --%>
 
 <div id="search">
 	<form:form method="get" modelAttribute="search">

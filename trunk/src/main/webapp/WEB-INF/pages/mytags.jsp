@@ -1,15 +1,12 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
 
-
-<label for="welcome">Welcome:</label>
-
-<h2>Outfit</h2>
+<%-- <h2>Outfit</h2>
 <h2>
 	<spring:url value="/person/{personId}/outfit" var="editUrl">
 		<spring:param name="personId" value="${outfit.personId}" />
 	</spring:url>
 	<a href="${fn:escapeXml(editUrl)}">My Wardrobe</a>
-</h2>
+</h2> --%>
 <c:if test="${not empty outfit}">
 	<br />
 	<div id="outfitlarge">

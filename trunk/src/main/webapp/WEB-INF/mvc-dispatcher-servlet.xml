@@ -21,7 +21,7 @@
 	only WebController method to work with aspect, I need to put it here -->
 	<aop:aspectj-autoproxy/>
 	<!-- Maps '/' requests to the 'home' view -->
-	<mvc:view-controller path="/" view-name="home"/>
+	<!-- <mvc:view-controller path="/" view-name="home"/> -->
 	
 	<!-- <mvc:resources mapping="/static/**" location="/static/, classpath:C:/fashbook/images/person" 
 		/> -->
