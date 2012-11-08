@@ -96,9 +96,19 @@ float: left;
 	min-height: 400px;
 }
 
+#leftmenu {
+	font-family: Helvetica, sans-serif;
+	background-color: #FFFFFF;
+
+}
 .imagepic {
 	width: 175;
 	height: 300;
+}
+
+.shadow {
+-moz-box-shadow: 0 0 30px 5px #999;
+-webkit-box-shadow: 0 0 30px 5px #999;
 }
 
 /* 
