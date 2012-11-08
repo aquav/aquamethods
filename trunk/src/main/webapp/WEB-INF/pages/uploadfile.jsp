@@ -21,8 +21,8 @@
 
 		</fieldset>
 	</form:form>
-	   <spring:url value="/person/{personId}/outfit" var="editUrl">
+<%-- 	   <spring:url value="/person/{personId}/outfit" var="editUrl">
         	<spring:param name="personId" value="${uploadOutfit.personId}" />
         </spring:url>
-        <a href="${fn:escapeXml(editUrl)}">My Wardrobe</a>
+        <a href="${fn:escapeXml(editUrl)}">My Wardrobe</a> --%>
         

@@ -17,12 +17,12 @@ ${person.firstName} ${person.lastName}
 						value="Match exact word" /> <form:label path="matchWordFlag">Match Exact Word</form:label>
 				</td>
 			</tr>
-			<tr>
+<%-- 			<tr>
 				<td colspan="5"><spring:url
 						value="/person/{personId}/outfit/search" var="editUrl">
 						<spring:param name="personId" value="${person.id}" />
 					</spring:url> <a href="${fn:escapeXml(editUrl)}">Advance Search</a></td>
-			</tr>
+			</tr> --%>
 		</table>
 	</form:form>
 
@@ -40,20 +40,17 @@ ${person.firstName} ${person.lastName}
 		<h3>For filter criteria - ${search.searchString}</h3>
 	</c:if>
 	<h2>Would you like to upload pics</h2>
-</c:if>
-<h2>
+
 	<spring:url value="/person/{personId}/outfit/upload" var="editUrl">
 		<spring:param name="personId" value="${person.id}" />
 	</spring:url>
 	<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
-
-</h2>
-
+</c:if>
+<br>
 <c:if test="${not empty person.outfits}">
 
-
 		<c:forEach items="${person.outfits}" var="outfit">
-			<div id="outfit">
+			<div id="outfit" class="shadow">
 				<div id="outimage">
 
 					<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
