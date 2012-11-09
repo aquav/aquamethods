@@ -9,7 +9,7 @@
 </h2> --%>
 <c:if test="${not empty outfit}">
 	<br />
-	<div id="outfitlarge">
+	<div id="outfitlarge"  class="shadow">
 		<div id="outimagelarge">
 
 			<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
