@@ -16,26 +16,28 @@
 </HEAD>
 <body>
 <c:url value="/logout" var="logoutUrl"/>
-<div id="container">
-		<div id="header">
+<div>
+		<div id="layoutheader">
+			<div id="headerTitle">
 			<h1>Fashbook</h1> Your virtual wardrobe!!
-			
+			</div>
 			<div id="headernav">${sessionScope['scopedTarget.userSessionData'].personFirstName}  ${sessionScope['scopedTarget.userSessionData'].personLastName} 
-			<a href="${logoutUrl}"> Logout </a></div>
-			
+			<a href="${logoutUrl}"> Logout </a>
+			</div>			
 		</div>
 
-		<div id="leftnavigation">
-		<tiles:insertAttribute name="menu" />
+		<div id="layoutleftnav">
+		<tiles:insertAttribute name="leftmenu" />
 		</div>
 
-		<div id="content">
+		<div id="layoutcenter">
 			<tiles:insertAttribute name="content" />
 		</div>
-		<div id="rightmenu">
+		<div id="layoutrightnav">
 			<tiles:insertAttribute name="rightmenu" />
 		</div>
-		<div id="footer">
+		<div id="layoutfooter">
+		<HR />
 			Copyright (c) 2010 AquaMethods| About
 		</div>
 	</div>

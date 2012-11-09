@@ -1,61 +1,103 @@
-/*
- ALL IDs
-*/
-#container {
-	
+body {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana,
+		sans-serif;
+	font-size: 12px;
 }
-
-#header {
+#layoutheader {
 	background-color: #D11919;
-	font-family: Helvetica, sans-serif;
-	color: #FFFFFF;
+	margin-bottom: 10px;
 }
-#headernav {
-	float: right;
-	font-family: Helvetica, sans-serif;
-	color: #FFFFFF;
-}
-#content {
+#layoutleftnav {
 	background-color: #FFFFFF;
 	float: left;
-	font-family: Helvetica, sans-serif;
+	width: 200px;
+	min-height: 400px;
+}
+#layoutcenter {
+	background-color: #FFFFFF;
+	float: left;
 	min-height: 400px;
 	width: 900px;
-	border: 2px solid #DADADA;
+/* 	border: 2px solid #DADADA; */
 }
-
-#footer {
-	background-color: #D11919;
+#layoutrightnav {
+	}
+#layoutfooter {
+	background-color: #FFFFFF;
 	clear: both;
 	text-align: right;
-	font-family: Helvetica, sans-serif;
+	color: #D11919;
+}
+#layoutfooter hr {
+	 height: 0; border: 0; border-top: 1px solid #ccc; margin: 5px 5px ;
+}
+
+#headerTitle {
+	color: #FFFFFF;
+	margin: 0;
+}
+#headerTitle h1 {
+	color: #FFFFFF;
+	font-size: 20px;
+}
+#headernav {
+/* 	float: right; */
 	color: #FFFFFF;
 }
+
+#loginForm {
+	margin-top: 20px;
+	width: 240px;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	padding: 20px 30px;
+}
+#loginForm h3 { margin-bottom: 15px; }
+#loginForm label { width: 100px; display: block; float: left; }
+
+#logincontainer {
+ margin: 0 auto;
+}
+/* typo */
+h1 { color: #FFFFFF; font-size: 16px; font-weight: bold; margin: 10px 0 20px 0; }
+h2 { color: #444; font-size: 14px; font-weight: bold; margin: 10px 0 10px 0; }
+h3 { color: #333; font-size: 13px; margin: 10px 0 10px 0; }
+h4 { font-size: 12px; }
+hr { height: 0; border: 0; border-top: 1px solid #ccc; margin: 10px 10px; }
+
+
+
+
 
 #outfit {
 	float: left;
 	border: 1px solid #DADADA;
 	height: 300px;
 	width: 275px;
+	margin-right:10px;
+	margin-bottom:10px;
+	
 }
+
 #outimage {
-	border: 1px solid #DADADA;
-float: left;
+	/* border: 1px solid #DADADA; */
+	float: left;
 	height: 300px;
 	width: 175px;
 }
+
 #tags {
-float: left;
-	border: 1px solid #D11919;
-	font-family: Helvetica, sans-serif;
+	float: left;
+	/* border: 1px solid #D11919; */
 	height: 250px;
 	width: 90px;
-
 }
 
 #outfitlarge {
 	float: left;
-	border: 2px solid #DADADA;
+	/* border: 2px solid #DADADA; */
 	height: 600px;
 	width: 600px;
 }
@@ -65,50 +107,39 @@ float: left;
 	height: 600px;
 	width: 350px;
 }
+
 #tagslarge {
-float: left;
-	border: 1px solid #D11919;
-	font-family: Helvetica, sans-serif;
+	float: left;
+	/* border: 1px solid #D11919; */
 	height: 550px;
 	width: 200px;
-
 }
 
-#deleteOutfit{
+#deleteOutfit {
 	float: left;
-	border: 1px solid #D11919;
-	font-family: Helvetica, sans-serif;
+	/* border: 1px solid #D11919; */
 	height: 50px;
 	width: 200px;
 }
 
-
 #search {
 	border: 1px solid #DADADA;
-	font-family: Helvetica, sans-serif;
 	background-color: #DADADA;
 }
 
-#leftnavigation {
-	background-color: #FFFFFF;
-	float: left;
-	width: 200px;
-	min-height: 400px;
-}
 
 #leftmenu {
-	font-family: Helvetica, sans-serif;
 	background-color: #FFFFFF;
-
 }
+
 .imagepic {
 	width: 175;
 	height: 300;
 }
 
 .shadow {
--moz-box-shadow: 0 0 30px 5px #999;
--webkit-box-shadow: 0 0 30px 5px #999;
+	-moz-box-shadow: 5px 5px 5px #888;
+	-webkit-box-shadow: 5px 5px 5px #888;
 }
 
 /* 

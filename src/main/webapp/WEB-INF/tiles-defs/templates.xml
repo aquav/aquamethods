@@ -7,7 +7,7 @@
 
 	<!-- Default Main Template -->
 	<definition name="page" template="/WEB-INF/layouts/layout.jsp">
-		<put-attribute name="menu" value="/WEB-INF/layouts/menu.jsp"
+		<put-attribute name="leftmenu" value="/WEB-INF/layouts/menu.jsp"
 			type="template" />
 		<put-attribute name="rightmenu" value="/WEB-INF/layouts/rightmenu.jsp" />
 			
