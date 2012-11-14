@@ -119,7 +119,7 @@ public class PersonDaoSpringJpaTest {
 	@Test
 	public void testGetByName() {
 		logger.info("Test get data by Name ==========================");
-		Person p = personServiceDao.getByName("Alex");
+		Person p = personServiceDao.getByEmail("Alex");
 		logger.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		logger.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		Assert.assertEquals("Alex", p.getFirstName());
@@ -131,7 +131,7 @@ public class PersonDaoSpringJpaTest {
 		
 		//List<Integer> outfitIdList = Arrays.asList(2,3,4,24,25, 26);
 		List<String> tagList = Arrays.asList("black", "formal");
-		int personId = 61;
+		int personId = 10;
 		List<Integer> outfitIdList = personServiceDao.getTagPerson(tagList, personId, true);
 		
 		List<Outfit> outfits = personServiceDao.searchOutfit(outfitIdList);

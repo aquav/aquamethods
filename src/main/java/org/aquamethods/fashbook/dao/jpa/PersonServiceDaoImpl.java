@@ -97,6 +97,19 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		return true;
 	}
 	
+	/**
+	 * In future this method can be used to update outfit also
+	 */
+	@Override
+	public boolean archiveOutfit(Outfit outfit){
+		if (outfit == null){
+			return false;
+		}
+		entityManager.merge(outfit);
+		entityManager.flush();
+		return true;
+	}
+	
 	@Override
 	public Tag saveTag(Tag tag) {
 		entityManager.merge(tag);

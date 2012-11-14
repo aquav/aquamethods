@@ -5,77 +5,79 @@
 <%-- <label for="welcome">Welcome:</label>
 ${person.firstName} ${person.lastName}
 <!-- <h2>My Wardrobe</h2> --> --%>
-
-<div id="search">
-	<form:form method="get" modelAttribute="search">
-		<table>
-			<tr>
-				<td><form:label path="searchString">Tags</form:label></td>
-				<td><form:input path="searchString" id="searchString" /></td>
-				<td colspan="2"><input type="submit" value="Search Outfits" /></td>
-				<td><form:checkbox path="matchWordFlag"
-						value="Match exact word" /> <form:label path="matchWordFlag">Match Exact Word</form:label>
-				</td>
-			</tr>
-<%-- 			<tr>
+<c:if test="${not empty search}">
+	<div id="search">
+		<form:form method="get" modelAttribute="search">
+			<table>
+				<tr>
+					<td><form:label path="searchString">Tags</form:label></td>
+					<td><form:input path="searchString" id="searchString" /></td>
+					<td colspan="2"><input type="submit" value="Search Outfits" /></td>
+					<td><form:checkbox path="matchWordFlag"
+							value="Match exact word" /> <form:label path="matchWordFlag">Match Exact Word</form:label>
+					</td>
+				</tr>
+				<%-- 			<tr>
 				<td colspan="5"><spring:url
 						value="/person/{personId}/outfit/search" var="editUrl">
 						<spring:param name="personId" value="${person.id}" />
 					</spring:url> <a href="${fn:escapeXml(editUrl)}">Advance Search</a></td>
 			</tr> --%>
-		</table>
-	</form:form>
+			</table>
+		</form:form>
 
-	<c:if test="${not empty search.searchString}">
-		</br>
-		<div>
-			<h2>Filter Outfits - ${search.searchString}</h2>
-		</div>
+		<c:if test="${not empty search.searchString}">
+			</br>
+			<div>
+				<h2>Filter Outfits - ${search.searchString}</h2>
+			</div>
+		</c:if>
+	</div>
+
+	<c:if test="${empty person.outfits}">
+
+		<h3>
+			Your wardrobe is empty!
+			<c:if test="${not empty search.searchString}">
+		for filter criteria - ${search.searchString}
 	</c:if>
-</div>
-<c:if test="${empty person.outfits}">
+		</h3>
+		<h2>Would you like to upload pics</h2>
 
-	<h3>Your wardrobe is empty!</h3>
-	<c:if test="${not empty search.searchString}">
-		<h3>For filter criteria - ${search.searchString}</h3>
+		<spring:url value="/person/{personId}/outfit/upload" var="editUrl">
+			<spring:param name="personId"
+				value="${sessionScope['scopedTarget.userSessionData'].personId}" />
+		</spring:url>
+		<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
 	</c:if>
-	<h2>Would you like to upload pics</h2>
-
-	<spring:url value="/person/{personId}/outfit/upload" var="editUrl">
-		<spring:param name="personId" value="${person.id}" />
-	</spring:url>
-	<a href="${fn:escapeXml(editUrl)}">Upload Pics</a>
+	<br>
 </c:if>
-<br>
 <c:if test="${not empty person.outfits}">
 
-		<c:forEach items="${person.outfits}" var="outfit">
-			<div id="outfit" class="shadow">
-				<div id="outimage">
+	<c:forEach items="${person.outfits}" var="outfit">
 
-					<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
-					<spring:url value="http://localhost:8080/{dbImagePath}"
-						var="imageUrl">
-						<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
-					</spring:url>
-					<img width="150" height="250" src="${fn:escapeXml(imageUrl)}" />
-				</div>
-				<div id="tags">
-
-					<spring:url value="/person/{personId}/outfit/{outfitId}/tag"
-						var="tagUrl">
-						<spring:param name="personId" value="${person.id}" />
-						<spring:param name="outfitId" value="${outfit.id}" />
-					</spring:url>
-					<a href="${fn:escapeXml(tagUrl)}">Add new Tag</a> <br />
-					<c:forEach items="${outfit.tags}" var="tag">
+		<div id="outfit" class="shadow">
+			<div id="outimage">
+				<spring:url value="http://localhost:8080/{dbImagePath}"
+					var="imageUrl">
+					<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
+				</spring:url>
+				<img width="150" height="250" src="${fn:escapeXml(imageUrl)}" />
+			</div>
+			<div id="tags">
+				<c:forEach items="${outfit.tags}" var="tag">
 						${tag.tag}
 					</br>
-					</c:forEach>
-
-				</div>
+				</c:forEach>
 			</div>
-		</c:forEach>
+			<spring:url value="/person/{personId}/outfit/{outfitId}/tag"
+				var="tagUrl">
+				<spring:param name="personId" value="${person.id}" />
+				<spring:param name="outfitId" value="${outfit.id}" />
+			</spring:url>
+			<a href="${fn:escapeXml(tagUrl)}"><span class="link-spanner"></span></a>
+		</div>
+	</c:forEach>
 
 </c:if>
 <!-- <script type="text/javascript"> 

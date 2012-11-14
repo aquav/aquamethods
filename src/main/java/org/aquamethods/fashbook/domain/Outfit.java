@@ -32,6 +32,8 @@ public class Outfit {
 	@ManyToOne
 	@JoinColumn(name = "PERSON_ID", nullable = false, insertable = true, updatable = false)
 	private Person associatedPerson;
+	@Column(nullable=false)
+	private boolean archived;
 	
 	public int getId() {
 		return id;
@@ -64,6 +66,11 @@ public class Outfit {
 	public void setAssociatedPerson(Person associatedPerson) {
 		this.associatedPerson = associatedPerson;
 	}
-
+	public boolean isArchived() {
+		return archived;
+	}
+	public void setArchived(boolean archived) {
+		this.archived = archived;
+	}
 	
 }

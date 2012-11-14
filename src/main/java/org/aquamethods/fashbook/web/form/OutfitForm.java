@@ -10,7 +10,7 @@ public class OutfitForm {
 	private String outfitPicture;
 	private String outfitDescription;
 	private List<TagForm> tags = new ArrayList<TagForm>();
-	
+	private boolean archived;
 	
 	public int getId() {
 		return id;
@@ -42,6 +42,12 @@ public class OutfitForm {
 	}
 	public void setTags(List<TagForm> tags) {
 		this.tags = tags;
+	}
+	public boolean isArchived() {
+		return archived;
+	}
+	public void setArchived(boolean archived) {
+		this.archived = archived;
 	}
 	
 	
