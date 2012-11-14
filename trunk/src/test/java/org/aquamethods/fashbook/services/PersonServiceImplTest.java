@@ -40,7 +40,7 @@ public class PersonServiceImplTest {
 	@Test
 	public void testGetById() {
 		logger.info("Test get data by id ==========================");
-		Person p = personService.getById(61);
+		Person p = personService.getById(61, false);
 		logger.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		logger.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		logger.info("Tags : " + p.getOutfits().get(0).getTags().get(0).getTag() );
@@ -76,7 +76,8 @@ public class PersonServiceImplTest {
 		p.setFirstName("TestUser-" + cal.getTime());
 		p.setLastName("TestLastNm");
 		p.setAge(23);
-		p.setEmail("TestEmail@email.com");
+		p.setEmail("TestEmail1@email.com");
+		p.setPassword("123");
 		
 		//Save only person entity
 		Person savedPerson = personService.savePerson(p);
@@ -86,6 +87,7 @@ public class PersonServiceImplTest {
 		Outfit outfit = new Outfit();
 		outfit.setOutfitPicture("Pic12");
 		outfit.setAssociatedPerson(savedPerson);
+		outfit.setArchived(true);
 		
 		savedPerson.getOutfits().add(outfit);
 		

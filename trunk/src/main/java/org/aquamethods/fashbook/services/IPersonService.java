@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IPersonService {
 	
 	@Transactional
-	public Person getById(int id);
+	public Person getById(int id, boolean showArchived);
 	
 	@Transactional
 	public Person savePerson(Person person);
@@ -31,5 +31,9 @@ public interface IPersonService {
 	public boolean deleteOutfit(Outfit outfit);
 	
 	@Transactional
+	public boolean archiveOutfit(Outfit outfit);
+	
+	@Transactional
 	public Person getByEmail(String email);
+	
 }

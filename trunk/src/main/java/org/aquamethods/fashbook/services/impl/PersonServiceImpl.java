@@ -1,5 +1,6 @@
 package org.aquamethods.fashbook.services.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,34 +9,56 @@ import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.services.IPersonService;
 import org.aquamethods.fashbook.dao.IPersonServiceDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Service("personService")
 public class PersonServiceImpl implements IPersonService{
 
 	@Autowired
 	IPersonServiceDao personDao;
+	private static final Logger logger = LoggerFactory
+			.getLogger(PersonServiceImpl.class);
 	
-	public Person getById(int id){
+	/**
+	 * 
+	 */
+	public Person getById(int id, boolean showArchived){
 		Person p = personDao.getById(id);
-		Person returnPerson ;
+		Person returnPerson = new Person();
 		if (p!=null){
-			returnPerson = new Person();
+			
+			returnPerson.setId(p.getId());
 			returnPerson.setFirstName(p.getFirstName());
 			returnPerson.setLastName(p.getLastName());
 			returnPerson.setAge(p.getAge());
 			returnPerson.setEmail(p.getEmail());
-			returnPerson.getOutfits().addAll(p.getOutfits());
-	
-			System.out.println("Name : " + returnPerson.getFirstName() + " Age " + returnPerson.getAge());
-			//System.out.println("Outfit : " + returnPerson.getOutfits().get(0).getOutfitPicture() );
-			//System.out.println("Tags : " + returnPerson.getOutfits().get(0).getTags().get(0).getTag() );
-
+			
+			ArrayList<Outfit> onlyNonArchivedOutfits = new ArrayList<Outfit>();
+			ArrayList<Outfit> onlyArchivedOutfits = new ArrayList<Outfit>();
+			
+			for (Outfit outfit : p.getOutfits()){
+				if (outfit.isArchived()==false){
+					onlyNonArchivedOutfits.add(outfit);
+				} else{
+					onlyArchivedOutfits.add(outfit);
+				}
+			}
+			
+			if(showArchived){
+				returnPerson.getOutfits().addAll(onlyArchivedOutfits);
+				logger.debug("showArchived is "+showArchived+", Size of archived outfit ::"+onlyArchivedOutfits.size());
+			} else {
+				returnPerson.getOutfits().addAll(onlyNonArchivedOutfits);
+				logger.debug("showArchived is "+showArchived+", Size of non archived outfit ::"+onlyNonArchivedOutfits.size());
+			
+			}
 		}
 		
-		return p;
+		return returnPerson;
 	}
 	
 	public Person savePerson(Person person){
@@ -59,6 +82,10 @@ public class PersonServiceImpl implements IPersonService{
 		return personDao.deleteOutfit(outfit);
 	}
 	
+	public boolean archiveOutfit(Outfit outfit) {
+		return personDao.archiveOutfit(outfit);
+	}
+	
 	public Person search (Person person, String searchString, boolean matchWordFlag){
 		
 		String regex = "\\s*(\\s|,)\\s*";
@@ -68,6 +95,7 @@ public class PersonServiceImpl implements IPersonService{
 		List<Integer> outfitIdList = personDao.getTagPerson(tagList, person.getId(), matchWordFlag);
 		person.getOutfits().clear();
 		
+		logger.debug("outfit id list ::"+outfitIdList.toString());
 		//Tags are eager fetched so outfit list will have them
 		person.getOutfits().addAll(personDao.searchOutfit(outfitIdList));
 		

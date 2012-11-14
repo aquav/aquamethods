@@ -128,16 +128,14 @@ public class WebController {
 			@RequestParam(value="matchWordFlag", required=false) boolean matchWordFlag,
 			Model model) {
 
-		Person person = personService.getById(personId);
+		logger.debug("person Id :"+personId);
+		Person person = personService.getById(personId, false);
 		SearchForm search = new SearchForm();
 		
 		if (searchString != null && !searchString.trim().isEmpty()) {
-			logger.debug("Search String ::" + searchString + "::");
-			// search logic
+			logger.debug("Search String ::" + searchString + ":: for person "+person.getId());
+			// search logic, search will only return outfits which are not archived
 			 person = personService.search(person, searchString, matchWordFlag);
-
-			//person.getOutfits().remove(1);
-			//person.getOutfits().remove(2);
 			
 			search.setSearchString(searchString);
 		}
@@ -150,8 +148,20 @@ public class WebController {
 
 		return "mywardrobe-tile";
 	}
+	
+	@RequestMapping(value = "{personId}/outfit/archived", method = RequestMethod.GET)
+	public String getArchivedOutfit(
+			@PathVariable("personId") int personId, Model model) {
 
-	@RequestMapping(value = "{personId}/outfit/search", method = RequestMethod.GET)
+		Person person = personService.getById(personId, true);
+		
+		PersonForm form = convertToWebForm(person);
+		model.addAttribute("person", form);
+		
+		return "mywardrobe-tile";
+	}
+
+/*	@RequestMapping(value = "{personId}/outfit/search", method = RequestMethod.GET)
 	public String searchOutfit(@ModelAttribute("search") SearchForm search,
 			BindingResult result, Model model) {
 		int personId = search.getPersonId();
@@ -160,7 +170,7 @@ public class WebController {
 
 		return "mywardrobe-tile";
 
-	}
+	}*/
 
 	@RequestMapping(value = "{personId}/outfit/upload", method = RequestMethod.GET)
 	public String uploadOutfit(@PathVariable("personId") int personId,
@@ -263,11 +273,12 @@ public class WebController {
 
 			logger.debug("DB File Path of image for Person id " + personId
 					+ " after uploading pic ::" + dbFilePath);
-			Person personEntity = personService.getById(personId);
+			Person personEntity = personService.getById(personId, false);
 
 			Outfit outfit = new Outfit();
 			outfit.setOutfitPicture(dbFilePath);
 			outfit.setAssociatedPerson(personEntity);
+			outfit.setArchived(false);
 
 			personEntity.getOutfits().add(outfit);
 			personService.updatePerson(personEntity);
@@ -287,16 +298,23 @@ public class WebController {
 	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.GET)
 	public String getTag(@PathVariable("personId") int personId,
 			@PathVariable("outfitId") int outfitId, Model model) {
-		Person person = personService.getById(personId);
-		PersonForm form = convertToWebForm(person);
 
-		OutfitForm outfitForm = null;
-		for (OutfitForm x : form.getOutfits()) {
-			if (x.getId() == outfitId) {
-				outfitForm = x;
-				break;
-			}
+		Outfit outfit = personService.loadOutfit(outfitId);
+		
+		OutfitForm outfitForm = new OutfitForm();
+		outfitForm.setId(outfit.getId());
+		outfitForm.setPersonId(personId);
+		outfitForm.setOutfitPicture(outfit.getOutfitPicture());
+		outfitForm.setOutfitDescription(outfit.getOutfitDescription());
+		outfitForm.setArchived(outfit.isArchived());
+		List<TagForm> tagFormList = new ArrayList<TagForm>();
+		for (Tag tag : outfit.getTags()) {
+			TagForm tagForm = new TagForm();
+			tagForm.setTag(tag.getTag());
+			tagFormList.add(tagForm);
 		}
+		outfitForm.setTags(tagFormList);
+	
 		TagForm tagForm = new TagForm();
 		model.addAttribute("outfit", outfitForm);
 		model.addAttribute("tag", tagForm);
@@ -343,7 +361,7 @@ public class WebController {
 		return "redirect:/person/" + personId + "/outfit/" + outfitId + "/tag";
 	}
 
-	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{personId}/outfit/{outfitId}", method = RequestMethod.DELETE)
 	public String deleteOutfit(@PathVariable("outfitId") int outfitId, @PathVariable("personId") int personId ) {
 
 		boolean b = personService.deleteOutfit(personService.loadOutfit(outfitId));
@@ -351,6 +369,15 @@ public class WebController {
 		return "redirect:/person/"+personId+"/outfit";
 	}
 	
+	@RequestMapping(value = "/{personId}/outfit/{outfitId}/archive", method = RequestMethod.POST)
+	public String archiveOutfit(@PathVariable("outfitId") int outfitId, @PathVariable("personId") int personId ) {
+
+		Outfit outfit = personService.loadOutfit(outfitId);
+		outfit.setArchived(true);
+		boolean b = personService.archiveOutfit(outfit);
+		logger.info("Outfit "+outfitId+" Archived :: "+b);
+		return "redirect:/person/"+personId+"/outfit";
+	}
 	/**
 	 * 
 	 * @param person
@@ -371,6 +398,7 @@ public class WebController {
 			outfitForm.setPersonId(person.getId());
 			outfitForm.setOutfitPicture(outfit.getOutfitPicture());
 			outfitForm.setOutfitDescription(outfit.getOutfitDescription());
+			outfitForm.setArchived(outfit.isArchived());
 			List<TagForm> tagFormList = new ArrayList<TagForm>();
 			for (Tag tag : outfit.getTags()) {
 				TagForm tagForm = new TagForm();
