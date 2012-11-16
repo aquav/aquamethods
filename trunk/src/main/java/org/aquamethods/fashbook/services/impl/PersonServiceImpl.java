@@ -36,6 +36,7 @@ public class PersonServiceImpl implements IPersonService{
 			returnPerson.setLastName(p.getLastName());
 			returnPerson.setAge(p.getAge());
 			returnPerson.setEmail(p.getEmail());
+			returnPerson.setPassword(p.getPassword());
 			
 			ArrayList<Outfit> onlyNonArchivedOutfits = new ArrayList<Outfit>();
 			ArrayList<Outfit> onlyArchivedOutfits = new ArrayList<Outfit>();

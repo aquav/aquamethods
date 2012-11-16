@@ -46,6 +46,10 @@
 		<put-attribute name="content" value="/WEB-INF/pages/uploadfile.jsp" />
 	</definition>
 
+	<definition name="edituploadedfile-tile" extends="page">
+		<put-attribute name="title" value="Upload File" />
+		<put-attribute name="content" value="/WEB-INF/pages/edituploadedfile.jsp" />
+	</definition>
 	<definition name="mytags-tile" extends="page">
 		<put-attribute name="title" value="My Tags" />
 		<put-attribute name="content" value="/WEB-INF/pages/mytags.jsp" />

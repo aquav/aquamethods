@@ -23,7 +23,51 @@ $(document).ready(function() {
 	 $('#refdialog').click(function (e) {
 			<a href="">Add new Tag</a>
 		});
+	 
+	 var max_h =250;
+	 var max_w =250;
+	 $('#actualImage').load(function()
+			   {
+			      var w1=$(this).width();
+			      var h1=$(this).height();
+
+
+			     if(h1>w1)
+			     {
+			        w1=Math.ceil(w1/h1*max_h);
+			        h1=max_h;
+			      }
+			       if(w1>h1)
+			      {
+			         h1=Math.ceil(h1/w1*max_w);
+			          w1=max_w;
+			      }
+			    $(this).css({height:h1, width:w1});
+			   });
+
 	 });
+	 
+function cropPicture(){
+	 $.ajax({
+		 
+		 alert("Hello world!");
+	 url: "cropPhoto.htm",
+	 type: "POST", 
+	 data :{
+	 x : $('input#X1').val(),
+	 y : $('input#Y1').val(),
+	 x2 : $('input#X2').val(),
+	 y2 : $('input#Y2').val(), 
+	 w : $('input#W').val(),
+	 h : $('input#H').val(),
+	 imageName : $('input#imageName').val()
+	 },
+	 success: function (data) { 
+	 window.location = 'photo.htm';
+	 }
+	 }
+
+
 
 
 </script>
@@ -34,5 +78,10 @@ $(document).ready(function() {
 	<div id="refdialog">
 		i am a link
 	</div>
+	<form onSubmit="cropPicture()">
+	<img id = "actualImage" src="http://localhost:8080/resources/fashbook/images/person/10/10_temp.jpg" />
+	<!-- <img id = "actualImage" src="C:\Users\AQUA\Downloads\fashbook_images\Sedona_2 071.JPG" /> -->
+	<input type="submit" value="add"/>
+	</form>
 </body>
 </html>

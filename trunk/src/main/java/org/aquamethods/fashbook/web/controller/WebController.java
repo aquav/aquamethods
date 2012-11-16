@@ -1,17 +1,22 @@
 package org.aquamethods.fashbook.web.controller;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.aquamethods.fashbook.web.form.OutfitForm;
 import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.SearchForm;
@@ -48,6 +53,9 @@ public class WebController {
 	private String uploadFolderPath;
 	private static final Logger logger = LoggerFactory
 			.getLogger(WebController.class);
+	
+	//need to move this in properties
+	public static final String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
 
 	@Autowired
 	private IPersonService personService;
@@ -198,8 +206,7 @@ public class WebController {
 	@RequestMapping(value = "{personId}/outfit/upload", method = RequestMethod.POST)
 	public String saveOutfit(
 			@ModelAttribute("uploadOutfit") UploadOutfitForm uploadOutfit,
-			BindingResult result, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+			BindingResult result, Model model) throws Exception {
 
 		int personId = uploadOutfit.getPersonId();
 		logger.debug("personId ::" + personId);
@@ -217,30 +224,31 @@ public class WebController {
 		try {
 			MultipartFile multipartFile = uploadOutfit.getFileData();
 			String fileName = null;
-			InputStream inputStream = null;
-			OutputStream outputStream = null;
+
 			if (multipartFile.getSize() > 0) {
-				inputStream = multipartFile.getInputStream();
-				if (multipartFile.getSize() > 100000) {
+				/*if (multipartFile.getSize() > 1000000) {
 					logger.error("File Size increases the limit:::"
 							+ multipartFile.getSize());
 					logger.error("File Original Name:::"
 							+ multipartFile.getOriginalFilename());
 					return "uploadfile-tile";
-				}
+				}*/
 				logger.debug("size ::" + multipartFile.getSize());
-				String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
+				
 
 				String filePath = tomcatWebappsDir + "/"
 						+ "resources/fashbook/images/person" + "/" + personId;
-				Calendar cal = Calendar.getInstance();
-				fileName = filePath + "/" + personId+"_"+cal.getTimeInMillis() + ".jpg"; 
+				/*Calendar cal = Calendar.getInstance();
+				fileName = filePath + "/" + personId+"_"+cal.getTimeInMillis() + ".jpg"; */
 				//multipartFile.getOriginalFilename();
 
+				
 				File dir = new File(filePath);
 				if (!dir.exists()) {
 					dir.mkdirs();
 				}
+				
+				fileName = filePath + "/" + personId +"_temp.jpg";
 
 				logger.debug("Path of directory ::" + dir.getAbsolutePath());
 
@@ -255,25 +263,14 @@ public class WebController {
 					logger.error("File uploaded failed:" + e);
 					// return "File uploaded failed:";
 				}
-
-				/*
-				 * outputStream = new FileOutputStream(fileName);
-				 * System.out.println("fileName:" + fileName);
-				 * 
-				 * int readBytes = 0; byte[] buffer = new byte[100000]; while
-				 * ((readBytes = inputStream.read(buffer, 0, 100000)) != -1) {
-				 * outputStream.write(buffer, 0, readBytes); }
-				 * outputStream.close();
-				 */
-				inputStream.close();
+				
+				//resizeImage(fileName);
 			}
 
-			int index = fileName.lastIndexOf("resource");
-			String dbFilePath = fileName.substring(index);
 
-			logger.debug("DB File Path of image for Person id " + personId
-					+ " after uploading pic ::" + dbFilePath);
-			Person personEntity = personService.getById(personId, false);
+			
+		
+			/*Person personEntity = personService.getById(personId, false);
 
 			Outfit outfit = new Outfit();
 			outfit.setOutfitPicture(dbFilePath);
@@ -285,16 +282,55 @@ public class WebController {
 
 			logger.debug("Person id after updating person ::"
 					+ personEntity.getId());
-			// ..........................................
-			// session.setAttribute("uploadFile", file.getOriginalFilename());
+*/
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("Error in upload file");
 			throw e;
 		}
-		return "uploadfile-tile";
+		//return "uploadfile-tile";
+		return "edituploadedfile-tile";
 	}
+	
+	@RequestMapping(value = "/{personId}/outfit/saveimage", method = RequestMethod.POST)
+	public String saveOutfitImage( @PathVariable("personId") int personId ) {
+		
+		String baseFilePath = tomcatWebappsDir+"/resources/fashbook/images/person/"+personId;
+		try{
+		File srcFile = new File(baseFilePath+"/"+personId+"_temp.jpg");
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat ft = new SimpleDateFormat ("yyMMddHHmmssZ");
+		
+		String newFileName = baseFilePath + "/" + personId+"_"+ft.format(cal.getTime()) + ".jpg";
+		
+		File destFile = new File(newFileName);
+		FileUtils.copyFile(srcFile, destFile);
+		
+		Person personEntity = personService.getById(personId, false);
 
+		int index = newFileName.lastIndexOf("resource");
+		String dbFilePath = newFileName.substring(index);
+
+		logger.debug("DB File Path of image for Person id " + personId
+				+ " after uploading pic ::" + dbFilePath);
+		
+		Outfit outfit = new Outfit();
+		outfit.setOutfitPicture(dbFilePath);
+		outfit.setAssociatedPerson(personEntity);
+		outfit.setArchived(false);
+
+		personEntity.getOutfits().add(outfit);
+		personService.updatePerson(personEntity);
+
+		logger.debug("Person id after updating person ::"
+				+ personEntity.getId());
+		}catch(Exception e){
+			logger.error("Error in saving/copying file"+e);
+		}
+		return "redirect:/person/"+personId+"/outfit";
+	}
+	
 	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.GET)
 	public String getTag(@PathVariable("personId") int personId,
 			@PathVariable("outfitId") int outfitId, Model model) {
@@ -428,4 +464,22 @@ public class WebController {
 		return person;
 	}
 
+	public static void resizeImage(String fileName) throws Exception{
+		BufferedImage originalImage = ImageIO.read(new File(fileName));
+		int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+		
+		BufferedImage resizeImageJpg = resizeImagewithType(originalImage, type);
+		ImageIO.write(resizeImageJpg, "jpg", new File(fileName)); 
+		
+	}
+	private static BufferedImage resizeImagewithType(BufferedImage originalImage, int type){
+		int IMG_WIDTH = 100;
+		int IMG_HEIGHT = 100;
+        BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
+        g.dispose();
+
+        return resizedImage;
+    }
 }
