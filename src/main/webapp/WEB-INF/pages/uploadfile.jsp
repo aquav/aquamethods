@@ -3,7 +3,6 @@
 
 	<form:form modelAttribute="uploadOutfit" method="post"
 		enctype="multipart/form-data">
-		<fieldset>
 			<p>
 				<legend>Upload Pics!!</legend>
 			</p>
@@ -19,7 +18,6 @@
 				<input type="submit" value="Upload" />
 			</p>
 
-		</fieldset>
 	</form:form>
 <%-- 	   <spring:url value="/person/{personId}/outfit" var="editUrl">
         	<spring:param name="personId" value="${uploadOutfit.personId}" />
