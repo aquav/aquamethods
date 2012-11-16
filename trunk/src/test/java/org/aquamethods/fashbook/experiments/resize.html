@@ -1,0 +1,33 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery UI Resizable - Default functionality</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <style>
+     #resizable { 
+     padding: 2px;
+     min-width: 400px;
+     min-height: 400px;
+      } 
+    
+    </style>
+    <script>
+    $(function() {
+        $( "#resizable" ).resizable({ aspectRatio: .75 });
+    });
+    </script>
+</head>
+<body>
+ 
+
+   <img id = "resizable"  class="ui-widget-content" src="http://localhost:8080/resources/fashbook/images/person/10/10_temp.jpg" />
+
+ 
+ 
+</body>
+</html>

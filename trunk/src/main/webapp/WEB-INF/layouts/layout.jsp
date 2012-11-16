@@ -11,8 +11,12 @@
 		<tiles:insertAttribute name="title" />
 	</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/styles/fashbook.css" />" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/styles/jcrop/jquery.Jcrop.css" />" />
+  
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+  
 </HEAD>
 <body>
 <c:url value="/logout" var="logoutUrl"/>

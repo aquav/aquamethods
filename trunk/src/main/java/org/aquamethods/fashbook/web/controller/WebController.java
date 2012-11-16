@@ -264,7 +264,8 @@ public class WebController {
 					// return "File uploaded failed:";
 				}
 				
-				//resizeImage(fileName);
+				BufferedImage image=resizeImagewithType(fileName);
+				ImageIO.write(image,"jpg",new File(fileName));
 			}
 
 
@@ -293,19 +294,41 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/{personId}/outfit/saveimage", method = RequestMethod.POST)
-	public String saveOutfitImage( @PathVariable("personId") int personId ) {
+	public String saveOutfitImage( @PathVariable("personId") int personId, HttpServletRequest request, 
+            HttpServletResponse response ) {
 		
+		//Get all the parameters which were populated by JCrop
+	    int x1=Integer.parseInt(request.getParameter("X1"));
+	    int y1=Integer.parseInt(request.getParameter("Y1"));
+	    int x2=Integer.parseInt(request.getParameter("X2"));
+	    int y2=Integer.parseInt(request.getParameter("Y2"));
+	    int w=Integer.parseInt(request.getParameter("W"));
+	    int h=Integer.parseInt(request.getParameter("H"));
+	   
+	    logger.debug(" image dimensions:: "+x1+" "+y1+" "+x2+" "+y2+" "+w+" "+" "+h);
+	    
 		String baseFilePath = tomcatWebappsDir+"/resources/fashbook/images/person/"+personId;
+		
 		try{
+
+			
 		File srcFile = new File(baseFilePath+"/"+personId+"_temp.jpg");
+			
+		BufferedImage image=ImageIO.read(srcFile);
+			
+		BufferedImage out=image.getSubimage(x1,y1,w,h);
 		
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat ft = new SimpleDateFormat ("yyMMddHHmmssZ");
-		
+			
 		String newFileName = baseFilePath + "/" + personId+"_"+ft.format(cal.getTime()) + ".jpg";
 		
-		File destFile = new File(newFileName);
-		FileUtils.copyFile(srcFile, destFile);
+		ImageIO.write(out,"jpg",new File(newFileName));
+		
+		logger.debug("file name after cropping :: "+newFileName);
+		
+		//File destFile = new File(newFileName);
+		//FileUtils.copyFile(srcFile, destFile);
 		
 		Person personEntity = personService.getById(personId, false);
 
@@ -464,17 +487,30 @@ public class WebController {
 		return person;
 	}
 
-	public static void resizeImage(String fileName) throws Exception{
+
+	private static BufferedImage resizeImagewithType(String fileName) throws Exception{
+		
 		BufferedImage originalImage = ImageIO.read(new File(fileName));
 		int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 		
-		BufferedImage resizeImageJpg = resizeImagewithType(originalImage, type);
-		ImageIO.write(resizeImageJpg, "jpg", new File(fileName)); 
+		int origWidth =  originalImage.getWidth();
+		int origHeight = originalImage.getHeight();
+		int IMG_WIDTH = 0;
+		int IMG_HEIGHT = 0;
 		
-	}
-	private static BufferedImage resizeImagewithType(BufferedImage originalImage, int type){
-		int IMG_WIDTH = 100;
-		int IMG_HEIGHT = 100;
+		//Need to improve this logic -----------------------or use different APIs
+		//horizontal pic
+		if (origWidth > origHeight){
+			IMG_WIDTH = 1000;
+			IMG_HEIGHT = 600;
+		} else if (origWidth == origHeight) {
+			IMG_WIDTH = 1000;
+			IMG_HEIGHT = 1000;
+		} else{
+			IMG_WIDTH = 600;
+			IMG_HEIGHT = 1000;
+		}
+		
         BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
         Graphics2D g = resizedImage.createGraphics();
         g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
