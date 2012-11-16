@@ -1,30 +1,36 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/static/styles/jcrop/jquery.Jcrop.css" />" />
+
 <script src="/fashbook/static/js/jquery.Jcrop.js"></script>
 
 <script type="text/javascript">
+/* $(function() {
+    $( "#actualImage" ).resizable({ aspectRatio: .75 });
+}); */
+
 $(function () {
     $('#actualImage').Jcrop({
      setSelect: [0, 0, 300, 500],
+     aspectRatio: 3/5,
      addClass: 'custom',
      bgColor: 'black',
-     bgOpacity: .6,
+     bgOpacity: .4,
      //sideHandles: true
-     allowResize: false,
+     allowResize: true,
      allowSelect: false,
      onSelect: storeCoords
+     
  });
 });
 
 function storeCoords(c) {
 
- jQuery('#X1').val(c.x);
- jQuery('#Y1').val(c.y); 
- jQuery('#X2').val(c.x2);
- jQuery('#Y2').val(c.y2); 
- jQuery('#W').val(c.w);
- jQuery('#H').val(c.h);
+ jQuery('#X1').val(Math.round(c.x));
+ jQuery('#Y1').val(Math.round(c.y)); 
+ jQuery('#X2').val(Math.round(c.x2));
+ jQuery('#Y2').val(Math.round(c.y2)); 
+ jQuery('#W').val(Math.round(c.w));
+ jQuery('#H').val(Math.round(c.h));
 }
 
 
@@ -35,32 +41,22 @@ function storeCoords(c) {
 		return false;
 	};
 
-	/* function cropPicture(){
-	 $.ajax({
-	 url: "cropPhoto.htm",
-	 type: "POST", 
-	 data :{
-	 x : $('input#X1').val(),
-	 y : $('input#Y1').val(),
-	 x2 : $('input#X2').val(),
-	 y2 : $('input#Y2').val(), 
-	 w : $('input#W').val(),
-	 h : $('input#H').val(),
-	 imageName : $('input#imageName').val()
-	 },
-	 success: function (data) { 
-	 window.location = 'photo.htm';
-	 }
-	 } */
+
 </script>
 	
 <form:form method="post" action="/fashbook/person/${sessionScope['scopedTarget.userSessionData'].personId}/outfit/saveimage">
 	<spring:url value="http://localhost:8080/resources/fashbook/images/person/{personId}/{personId}_temp.jpg" var="imageUrl">
 		<spring:param name="personId" value="${sessionScope['scopedTarget.userSessionData'].personId}" />
 	</spring:url>
-	<img height="600" id = "actualImage" src="${fn:escapeXml(imageUrl)}" />
-	
+	<%-- <img id = "actualImage" class="ui-widget-content" src="${fn:escapeXml(imageUrl)}" /> --%>
+	<img id = "actualImage" src="${fn:escapeXml(imageUrl)}" /> 
 	<p>
 			<input type="submit" value="Crop Image" />
 	</p>
+      <input type="hidden" name="X1" id="X1" />
+      <input type="hidden" name="Y1" id="Y1"/>
+      <input type="hidden" name="X2" id="X2"/>
+      <input type="hidden" name="Y2" id="Y2"/>
+      <input type="hidden" name="W" id="W"/>
+      <input type="hidden" name="H" id="H"/>
 </form:form>

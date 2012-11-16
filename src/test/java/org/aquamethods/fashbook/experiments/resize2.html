@@ -1,0 +1,158 @@
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>
+		Upload File
+	</title>
+<link rel="stylesheet" type="text/css" href="/fashbook/static/styles/fashbook.css" />
+<link rel="stylesheet" type="text/css" href="/fashbook/static/styles/jcrop/jquery.Jcrop.css" />
+  
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+  
+</HEAD>
+<body>
+
+<div>
+		<div id="layoutheader">
+			<div id="headerTitle">
+			<h1>Fashbook</h1> Your virtual wardrobe!!
+			</div>
+			<div id="headernav">Vishal  Gupta 
+			<a href="/fashbook/logout"> Logout </a>
+			</div>			
+		</div>
+
+		<div id="layoutleftnav">
+		
+
+
+
+
+
+
+
+<div id="leftmenu">
+	<div class="leftmenulink">
+		
+			
+		
+
+		<a href="/fashbook/person/10/outfit">My Wardrobe</a>
+	</div>
+	<div class="leftmenulink">
+		
+			
+		
+		<a href="/fashbook/person/10/outfit/upload">Upload Pics</a>
+	</div>
+	<div class="leftmenulink">
+		<a href="">Advance Search</a>
+	</div>
+	<div class="leftmenulink">
+		<a href="">Get Ready</a>
+	</div>
+	<div class="leftmenulink">
+			
+			
+		
+		<a href="/fashbook/person/10/outfit/archived">Archive</a>
+	</div>
+</div>
+
+		</div>
+
+		<div id="layoutcenter">
+			
+
+
+
+
+
+
+
+<script src="/fashbook/static/js/jquery.Jcrop.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $( "#actualImage" ).resizable({ aspectRatio: .75 });
+});
+
+$(function () {
+    $('#actualImage').Jcrop({
+     setSelect: [0, 0, 300, 500],
+     aspectRatio: 3/5,
+     addClass: 'custom',
+     bgColor: 'black',
+     bgOpacity: .8,
+     //sideHandles: true
+     allowResize: false,
+     allowSelect: false,
+     onSelect: storeCoords
+     
+ });
+});
+
+function storeCoords(c) {
+
+ jQuery('#X1').val(Math.round(c.x));
+ jQuery('#Y1').val(Math.round(c.y)); 
+ jQuery('#X2').val(Math.round(c.x2));
+ jQuery('#Y2').val(Math.round(c.y2)); 
+ jQuery('#W').val(Math.round(c.w));
+ jQuery('#H').val(Math.round(c.h));
+}
+
+
+	function checkCoords() {
+		if (parseInt($('#W').val()))
+			return true;
+		alert('Please select a crop region then press submit.');
+		return false;
+	};
+
+
+</script>
+	
+<form id="command" action="/fashbook/person/10/outfit/saveimage" method="post">
+	
+		
+	
+	<img id = "actualImage" class="ui-widget-content" src="http://localhost:8080/resources/fashbook/images/person/10/10_temp.jpg" />
+	
+	<p>
+			<input type="submit" value="Crop Image" />
+	</p>
+      <input type="hidden" name="X1" id="X1" />
+      <input type="hidden" name="Y1" id="Y1"/>
+      <input type="hidden" name="X2" id="X2"/>
+      <input type="hidden" name="Y2" id="Y2"/>
+      <input type="hidden" name="W" id="W"/>
+      <input type="hidden" name="H" id="H"/>
+</form>
+
+		</div>
+		<div id="layoutrightnav">
+			
+		</div>
+		<div id="layoutfooter">
+		<HR />
+			Copyright (c) 2010 AquaMethods| About
+		</div>
+	</div>
+
+</body>
+</html>

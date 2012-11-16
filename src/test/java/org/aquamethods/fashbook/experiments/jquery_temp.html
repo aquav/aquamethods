@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="C:\VG_DATA\TECH_MATERIAL\POC\fashbook\trunk\src\main\webapp\static\styles\jcrop\jquery.Jcrop.css" />
+<script src="C:\VG_DATA\TECH_MATERIAL\POC\fashbook\trunk\src\main\webapp\static\js\jquery.Jcrop.js"></script>
 
 <html>
 <head>
@@ -11,6 +13,7 @@
 <body>
 
 <script>
+
 $(document).ready(function() {
 	$("#dialog").dialog({autoOpen : false, modal : true, show : "blind", hide : "blind"});
 	 $("#contactus").click(function() {
@@ -24,28 +27,26 @@ $(document).ready(function() {
 			<a href="">Add new Tag</a>
 		});
 	 
-	 var max_h =250;
-	 var max_w =250;
-	 $('#actualImage').load(function()
-			   {
-			      var w1=$(this).width();
-			      var h1=$(this).height();
-
-
-			     if(h1>w1)
-			     {
-			        w1=Math.ceil(w1/h1*max_h);
-			        h1=max_h;
-			      }
-			       if(w1>h1)
-			      {
-			         h1=Math.ceil(h1/w1*max_w);
-			          w1=max_w;
-			      }
-			    $(this).css({height:h1, width:w1});
-			   });
-
+	    $('#actualImage').Jcrop({
+	        setSelect: [0, 0, 300, 500],
+	        aspectRatio: 3/5
+	        addClass: 'custom',
+	        bgColor: 'black',
+	        bgOpacity: .6,
+	        //sideHandles: true
+	        allowResize: false,
+	        allowSelect: false,
+	        onSelect: storeCoords
+	        
+	    });
+	    
+	    $('#actualImage').resizable();
+	
 	 });
+	 
+$(function() {
+    $( "#actualImage" ).resizable({ aspectRatio: .75 });
+});
 	 
 function cropPicture(){
 	 $.ajax({
@@ -79,9 +80,14 @@ function cropPicture(){
 		i am a link
 	</div>
 	<form onSubmit="cropPicture()">
-	<img id = "actualImage" src="http://localhost:8080/resources/fashbook/images/person/10/10_temp.jpg" />
+	<img id = "actualImage" class="ui-widget-content" src="http://localhost:8080/resources/fashbook/images/person/10/10_temp.jpg" />
 	<!-- <img id = "actualImage" src="C:\Users\AQUA\Downloads\fashbook_images\Sedona_2 071.JPG" /> -->
 	<input type="submit" value="add"/>
 	</form>
+	
+	<div id="resizable">
+    <h3>Resizable</h3>
+</div>
+
 </body>
 </html>

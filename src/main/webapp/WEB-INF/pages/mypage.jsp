@@ -17,12 +17,6 @@ ${person.firstName} ${person.lastName}
 							value="Match exact word" /> <form:label path="matchWordFlag">Match Exact Word</form:label>
 					</td>
 				</tr>
-				<%-- 			<tr>
-				<td colspan="5"><spring:url
-						value="/person/{personId}/outfit/search" var="editUrl">
-						<spring:param name="personId" value="${person.id}" />
-					</spring:url> <a href="${fn:escapeXml(editUrl)}">Advance Search</a></td>
-			</tr> --%>
 			</table>
 		</form:form>
 
