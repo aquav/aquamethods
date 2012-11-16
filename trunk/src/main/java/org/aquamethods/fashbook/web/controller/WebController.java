@@ -499,16 +499,16 @@ public class WebController {
 		int IMG_HEIGHT = 0;
 		
 		//Need to improve this logic -----------------------or use different APIs
-		//horizontal pic
+		//horizontal pic (aspect ratio is 1.5)
 		if (origWidth > origHeight){
-			IMG_WIDTH = 1000;
-			IMG_HEIGHT = 600;
+			IMG_WIDTH = 1200;
+			IMG_HEIGHT = 800;
 		} else if (origWidth == origHeight) {
-			IMG_WIDTH = 1000;
-			IMG_HEIGHT = 1000;
+			IMG_WIDTH = 1200;
+			IMG_HEIGHT = 1200;
 		} else{
-			IMG_WIDTH = 600;
-			IMG_HEIGHT = 1000;
+			IMG_WIDTH = 800;
+			IMG_HEIGHT = 1200;
 		}
 		
         BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
