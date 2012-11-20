@@ -21,7 +21,11 @@
 		<a href="">Advance Search</a>
 	</div>
 	<div class="leftmenulink">
-		<a href="">Get Ready</a>
+		<spring:url value="/person/{personId}/getready/event" var="editUrl">
+			<spring:param name="personId"
+				value="${sessionScope['scopedTarget.userSessionData'].personId}" />
+		</spring:url>
+		<a href="${fn:escapeXml(editUrl)}">Get Ready</a>
 	</div>
 	<div class="leftmenulink">
 			<spring:url value="/person/{personId}/outfit/archived" var="editUrl">

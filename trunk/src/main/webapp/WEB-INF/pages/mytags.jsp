@@ -32,7 +32,7 @@
 		</div>
 		<c:if test="${not outfit.archived}">
 			<div id="tagslarge">
-				<form:form method="post" modelAttribute="tag">
+				<form:form method="post" action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}/tag" modelAttribute="tag">
 					<table>
 						<tr>
 							<td><form:label path="tag">Tag</form:label></td>
@@ -50,6 +50,14 @@
 		<div  id="tags">
 			<p><c:forEach items="${outfit.tags}" var="tag">
 						${tag.tag}</c:forEach>
+			</p>
+		</div>
+		</br>
+		<div  id="tags">
+			click here to select this outfit for :
+			<p><c:forEach items="${outfit.futureEvents}" var="futureEvents">
+						${futureEvents.name}
+				</c:forEach>
 			</p>
 		</div>
 	</div>

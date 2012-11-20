@@ -2,6 +2,7 @@ package org.aquamethods.fashbook.dao;
 
 import java.util.List;
 
+import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Tag;
@@ -23,5 +24,6 @@ public interface IPersonServiceDao {
 	public boolean archiveOutfit(Outfit outfit);
 	public List<Outfit> searchOutfit(List<Integer> outfitIdList);
 	public List<Integer> getTagPerson(List<String> tagList, int personId, boolean matchWordFlag);
+	public Event saveEvent(Event event);
 }
 

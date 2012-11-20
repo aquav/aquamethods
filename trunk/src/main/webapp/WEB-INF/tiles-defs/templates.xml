@@ -50,8 +50,12 @@
 		<put-attribute name="title" value="Upload File" />
 		<put-attribute name="content" value="/WEB-INF/pages/edituploadedfile.jsp" />
 	</definition>
-	<definition name="mytags-tile" extends="page">
+	<definition name="myoutfit-tile" extends="page">
 		<put-attribute name="title" value="My Tags" />
 		<put-attribute name="content" value="/WEB-INF/pages/mytags.jsp" />
+	</definition>
+		<definition name="getready-tile" extends="page">
+		<put-attribute name="title" value="Get ready for party!" />
+		<put-attribute name="content" value="/WEB-INF/pages/getready.jsp" />
 	</definition>
 </tiles-definitions>

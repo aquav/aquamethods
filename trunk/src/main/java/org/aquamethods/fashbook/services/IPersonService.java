@@ -2,6 +2,7 @@ package org.aquamethods.fashbook.services;
 
 import java.util.List;
 
+import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
@@ -36,4 +37,9 @@ public interface IPersonService {
 	@Transactional
 	public Person getByEmail(String email);
 	
+	@Transactional
+	public Event saveEvent(Event event);
+	
+	@Transactional
+	public List<Event> loadFutureEvents(int personId );
 }

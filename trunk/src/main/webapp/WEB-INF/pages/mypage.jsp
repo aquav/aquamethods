@@ -64,7 +64,7 @@ ${person.firstName} ${person.lastName}
 					</br>
 				</c:forEach>
 			</div>
-			<spring:url value="/person/{personId}/outfit/{outfitId}/tag"
+			<spring:url value="/person/{personId}/outfit/{outfitId}"
 				var="tagUrl">
 				<spring:param name="personId" value="${person.id}" />
 				<spring:param name="outfitId" value="${outfit.id}" />
