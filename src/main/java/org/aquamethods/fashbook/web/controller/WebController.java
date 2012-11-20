@@ -17,12 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.aquamethods.fashbook.web.form.EventForm;
 import org.aquamethods.fashbook.web.form.OutfitForm;
 import org.aquamethods.fashbook.web.form.PersonForm;
 import org.aquamethods.fashbook.web.form.SearchForm;
 import org.aquamethods.fashbook.web.form.TagForm;
 import org.aquamethods.fashbook.web.form.UploadOutfitForm;
 import org.aquamethods.fashbook.common.UserSessionData;
+import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Role;
@@ -354,13 +356,24 @@ public class WebController {
 		return "redirect:/person/"+personId+"/outfit";
 	}
 	
-	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.GET)
-	public String getTag(@PathVariable("personId") int personId,
+	@RequestMapping(value = "/{personId}/outfit/{outfitId}", method = RequestMethod.GET)
+	public String getOutfit(@PathVariable("personId") int personId,
 			@PathVariable("outfitId") int outfitId, Model model) {
 
 		Outfit outfit = personService.loadOutfit(outfitId);
-		
 		OutfitForm outfitForm = new OutfitForm();
+		
+		List<Event> futureEventList = personService.loadFutureEvents(personId);
+		List<EventForm> eventFormList = new ArrayList<EventForm>();
+		
+		for (Event event : futureEventList) {
+			EventForm eventForm = new EventForm();
+			eventForm.setName(event.getName());
+		
+			eventFormList.add(eventForm);
+		}
+		
+		outfitForm.setFutureEvents(eventFormList);
 		outfitForm.setId(outfit.getId());
 		outfitForm.setPersonId(personId);
 		outfitForm.setOutfitPicture(outfit.getOutfitPicture());
@@ -377,7 +390,7 @@ public class WebController {
 		TagForm tagForm = new TagForm();
 		model.addAttribute("outfit", outfitForm);
 		model.addAttribute("tag", tagForm);
-		return "mytags-tile";
+		return "myoutfit-tile";
 	}
 
 	@RequestMapping(value = "/{personId}/outfit/{outfitId}/tag", method = RequestMethod.POST)
@@ -417,7 +430,7 @@ public class WebController {
 		map.addAttribute("tag", tagForm);
 
 		// return "mytags";
-		return "redirect:/person/" + personId + "/outfit/" + outfitId + "/tag";
+		return "redirect:/person/" + personId + "/outfit/" + outfitId;
 	}
 
 	@RequestMapping(value = "/{personId}/outfit/{outfitId}", method = RequestMethod.DELETE)

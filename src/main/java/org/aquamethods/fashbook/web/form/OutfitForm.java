@@ -10,6 +10,7 @@ public class OutfitForm {
 	private String outfitPicture;
 	private String outfitDescription;
 	private List<TagForm> tags = new ArrayList<TagForm>();
+	private List<EventForm> futureEvents = new ArrayList<EventForm>();
 	private boolean archived;
 	
 	public int getId() {
@@ -48,6 +49,12 @@ public class OutfitForm {
 	}
 	public void setArchived(boolean archived) {
 		this.archived = archived;
+	}
+	public List<EventForm> getFutureEvents() {
+		return futureEvents;
+	}
+	public void setFutureEvents(List<EventForm> futureEvents) {
+		this.futureEvents = futureEvents;
 	}
 	
 	

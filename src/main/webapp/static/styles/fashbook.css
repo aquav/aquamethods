@@ -47,7 +47,7 @@ body {
 
 #loginForm {
 	margin-top: 20px;
-	width: 240px;
+	width: 300px;
 	margin: 0 auto;
 	border: 1px solid #ccc;
 	-moz-border-radius: 8px;
@@ -56,6 +56,23 @@ body {
 }
 #loginForm h3 { margin-bottom: 15px; }
 #loginForm label { width: 100px; display: block; float: left; }
+
+#eventForm {
+    margin-top: 20px;
+    width: 300px;
+    margin: 0 auto;
+    float:left
+    padding: 10px 0 0 20px
+
+}
+#eventForm label { align: left;}
+
+.formtag{
+ float: right;
+  
+}
+​
+
 
 #logincontainer {
  margin: 0 auto;

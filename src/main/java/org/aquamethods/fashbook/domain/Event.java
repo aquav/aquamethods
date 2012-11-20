@@ -10,11 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "EVENT")
+@NamedQueries({
+	@NamedQuery(name = "Event.loadFutureEvent", query = "SELECT e FROM Event e where date > :date") }
+
+)
 public class Event {
 
 	@Id
@@ -25,6 +31,7 @@ public class Event {
 	private String description;
 	private Date date;
 	private int outfit_id;
+	private int person_id;
 	private boolean master;
 	@OneToMany(mappedBy="masterEvent", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<SubEvent> subEvents = new ArrayList<SubEvent>();
@@ -64,6 +71,18 @@ public class Event {
 	}
 	public void setMaster(boolean master) {
 		this.master = master;
+	}
+	public int getPerson_id() {
+		return person_id;
+	}
+	public void setPerson_id(int person_id) {
+		this.person_id = person_id;
+	}
+	public List<SubEvent> getSubEvents() {
+		return subEvents;
+	}
+	public void setSubEvents(List<SubEvent> subEvents) {
+		this.subEvents = subEvents;
 	}
 	
 }

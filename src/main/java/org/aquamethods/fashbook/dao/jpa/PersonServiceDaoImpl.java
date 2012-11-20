@@ -8,8 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.dao.IPersonServiceDao;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
@@ -158,4 +158,20 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 
 		return result;
 	}
+	
+	public Event saveEvent(Event event){
+		
+		entityManager.persist(event);
+		entityManager.flush();
+		return event;
+	}
+	
+	public List<Event> loadFutureEvents(int personId) {
+		Query query = entityManager.createNamedQuery("Event.loadFutureEvent");
+		query.setParameter("date",);
+		List<Event> eventList = null;
+		eventList = query.getResultList();
+		return eventList;
+	}
+
 }

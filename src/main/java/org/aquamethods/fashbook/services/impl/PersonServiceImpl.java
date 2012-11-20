@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
@@ -105,5 +106,16 @@ public class PersonServiceImpl implements IPersonService{
 	
 	public Person getByEmail(String email){
 		return personDao.getByEmail(email);
+	}
+	
+	public Event saveEvent(Event event){
+		return personDao.saveEvent(event);
+	}
+	
+	public List<Event> loadFutureEvents(int personId ){
+		List<Event> futureEventList = new ArrayList<Event>();
+		
+		
+		return futureEventList;
 	}
 }
