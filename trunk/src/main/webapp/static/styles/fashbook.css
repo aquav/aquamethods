@@ -193,19 +193,27 @@ hr {
 #tagslarge {
 	/* border: 1px solid #D11919; */
 	float: left;	
-	height: 250px;
+	height: 200px;
 	width: 200px;
 	padding: 10px 5px 5px 5px;
 	font-size: 18px;
 }
 
-#events {
+#futureevents {
 	/* border: 1px solid #D11919; */
 	float: left;
-	width: 200px;
+	width: 250px;
 	height: 250px;
 	padding:  20px 5px 5px 5px;
 }
+#events {
+	/* border: 1px solid #D11919; */
+	float: left;
+	width: 250px;
+	height: 250px;
+	padding:  20px 5px 5px 5px;
+}
+
 
 #search {
 	border: 1px solid #DADADA;

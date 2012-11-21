@@ -17,7 +17,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EVENT")
-
+@NamedQueries({
+	@NamedQuery(name = "Event.findEventForOutfit", query = "SELECT e FROM Event e where outfit_id = :outfitId")}
+)
 public class Event {
 
 	@Id

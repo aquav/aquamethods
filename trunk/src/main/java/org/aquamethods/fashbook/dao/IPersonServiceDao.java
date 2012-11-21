@@ -26,5 +26,7 @@ public interface IPersonServiceDao {
 	public List<Integer> getTagPerson(List<String> tagList, int personId, boolean matchWordFlag);
 	public Event saveEvent(Event event);
 	public List<Event> loadFutureEventsNoOutfitAssigned(int personId);
+	public Event loadEventById(int eventId);
+	public List<Event> loadEventsForCurrentOutfit(int outfitId);
 }
 
