@@ -1,6 +1,7 @@
 package org.aquamethods.fashbook.dao.jpa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -166,9 +167,10 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		return event;
 	}
 	
-	public List<Event> loadFutureEvents(int personId) {
-		Query query = entityManager.createNamedQuery("Event.loadFutureEvent");
-		query.setParameter("date",);
+	public List<Event> loadFutureEventsNoOutfitAssigned(int personId) {
+		Query query = entityManager.createQuery("select e from Event e where e.person_id=:personId and e.outfit_id=0 and e.date > :date");
+		query.setParameter("personId",personId);
+		query.setParameter("date",new Date(System.currentTimeMillis()));
 		List<Event> eventList = null;
 		eventList = query.getResultList();
 		return eventList;

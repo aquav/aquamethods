@@ -17,10 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EVENT")
-@NamedQueries({
-	@NamedQuery(name = "Event.loadFutureEvent", query = "SELECT e FROM Event e where date > :date") }
 
-)
 public class Event {
 
 	@Id
