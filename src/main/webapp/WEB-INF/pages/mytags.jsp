@@ -57,13 +57,28 @@
 
 		</div>
 		<c:if test="${not outfit.archived}">
-		<div id="events">
+		<div id="futureevents">
 			<h3>You have planned event with no outfit assigned!!</h3>
-			    <p>click here to select this outfit for :
-			<c:forEach items="${outfit.futureEvents}" var="futureEvents">
-				<h3>${futureEvents.name}</h3>
-			</c:forEach>
+			If you are planning to wear this outfit in one of these event. You can select by clicking button below.
+			This will record it and keep it in history.
+			<c:forEach items="${outfit.futureEvents}" var="futureEvent">
 
+			<spring:url value="/person/{personId}/getready/event/{eventId}/outfit/{outfitId}"
+				var="tagUrl">
+				<spring:param name="personId" value="${sessionScope['scopedTarget.userSessionData'].personId}" />
+				<spring:param name="outfitId" value="${outfit.id}" />
+				<spring:param name="eventId" value="${futureEvent.id}" />
+			</spring:url>
+			<form:form action="${fn:escapeXml(tagUrl)}" method="post">
+				<h3>${futureEvent.name}</h3>
+			<input type="submit" value="Select this event"/>	
+			</form:form>			
+			</c:forEach>
+		</div>
+		<div id="events">
+		<c:forEach items="${outfit.outfitEvents}" var="outfitEvent">
+			You wore or planning to wear this outfit for <h3>${outfitEvent.name}</h3>
+		</c:forEach>
 		</div>
 		</c:if>
 	</div>

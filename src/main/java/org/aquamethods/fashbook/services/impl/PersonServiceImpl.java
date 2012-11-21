@@ -116,4 +116,11 @@ public class PersonServiceImpl implements IPersonService{
 		
 		return personDao.loadFutureEventsNoOutfitAssigned(personId);
 	}
+	
+	public Event loadEventById(int eventId){
+		return personDao.loadEventById(eventId);
+	}
+	public List<Event> loadEventsForCurrentOutfit(int outfitId){
+		return personDao.loadEventsForCurrentOutfit(outfitId);
+	}
 }

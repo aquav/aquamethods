@@ -11,6 +11,7 @@ public class OutfitForm {
 	private String outfitDescription;
 	private List<TagForm> tags = new ArrayList<TagForm>();
 	private List<EventForm> futureEvents = new ArrayList<EventForm>();
+	private List<EventForm> outfitEvents = new ArrayList<EventForm>();
 	private boolean archived;
 	
 	public int getId() {
@@ -55,6 +56,12 @@ public class OutfitForm {
 	}
 	public void setFutureEvents(List<EventForm> futureEvents) {
 		this.futureEvents = futureEvents;
+	}
+	public List<EventForm> getOutfitEvents() {
+		return outfitEvents;
+	}
+	public void setOutfitEvents(List<EventForm> outfitEvents) {
+		this.outfitEvents = outfitEvents;
 	}
 	
 	

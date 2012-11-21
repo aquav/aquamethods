@@ -63,6 +63,19 @@ public class GetReadyController {
 
 	}
 	
+	@RequestMapping(value="/event/{eventId}/outfit/{outfitId}", method=RequestMethod.POST)
+	public String assignOutfitToEvent(@PathVariable("personId") int personId,@PathVariable("eventId") int eventId,@PathVariable("outfitId") int outfitId){
+		
+		Event event = personService.loadEventById(eventId);
+		
+		event.setOutfit_id(outfitId);
+		personService.saveEvent(event);
+		
+		//personService.saveEvent(event);
+		return "redirect:/person/"+personId+"/outfit/"+outfitId;
+	}
+	
+	
 	private Date getEventFormDate(EventForm eventForm){
 		String date = eventForm.getDate();
 		int hour = eventForm.getHour();

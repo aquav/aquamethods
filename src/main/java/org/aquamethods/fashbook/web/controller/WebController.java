@@ -364,16 +364,28 @@ public class WebController {
 		OutfitForm outfitForm = new OutfitForm();
 		
 		List<Event> futureEventList = personService.loadFutureEventsNoOutfitAssigned(personId);
-		List<EventForm> eventFormList = new ArrayList<EventForm>();
+		List<EventForm> futureEventFormList = new ArrayList<EventForm>();
 		
 		for (Event event : futureEventList) {
 			EventForm eventForm = new EventForm();
+			eventForm.setId(event.getId());
+			eventForm.setName(event.getName());
+		
+			futureEventFormList.add(eventForm);
+		}
+		
+		outfitForm.setFutureEvents(futureEventFormList);
+		List<Event> currentOutfitEventList = personService.loadEventsForCurrentOutfit(outfitId);
+		List<EventForm> eventFormList = new ArrayList<EventForm>();
+		
+		for (Event event : currentOutfitEventList) {
+			EventForm eventForm = new EventForm();
+			eventForm.setId(event.getId());
 			eventForm.setName(event.getName());
 		
 			eventFormList.add(eventForm);
 		}
-		
-		outfitForm.setFutureEvents(eventFormList);
+		outfitForm.setOutfitEvents(eventFormList);
 		outfitForm.setId(outfit.getId());
 		outfitForm.setPersonId(personId);
 		outfitForm.setOutfitPicture(outfit.getOutfitPicture());

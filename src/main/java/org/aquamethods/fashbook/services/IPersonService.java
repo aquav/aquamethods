@@ -42,4 +42,10 @@ public interface IPersonService {
 	
 	@Transactional
 	public List<Event> loadFutureEventsNoOutfitAssigned(int personId);
+	
+	@Transactional
+	public Event loadEventById(int eventId);
+	
+	@Transactional
+	public List<Event> loadEventsForCurrentOutfit(int outfitId);
 }

@@ -175,5 +175,17 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		eventList = query.getResultList();
 		return eventList;
 	}
+	public Event loadEventById(int eventId){
+		
+		return entityManager.find(Event.class, eventId);
+	}
+	
+	public List<Event> loadEventsForCurrentOutfit(int outfitId){
+		Query query = entityManager.createNamedQuery("Event.findEventForOutfit");
+		query.setParameter("outfitId",outfitId);
+		List<Event> events = null;
+		events = query.getResultList();
+		return events;
+	}
 
 }
