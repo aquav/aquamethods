@@ -3,45 +3,56 @@ body {
 		sans-serif;
 	font-size: 12px;
 }
+
 #layoutheader {
 	background-color: #D11919;
 	margin-bottom: 10px;
 }
+
 #layoutleftnav {
 	background-color: #FFFFFF;
 	float: left;
 	width: 200px;
 	min-height: 400px;
 }
+
 #layoutcenter {
 	background-color: #FFFFFF;
 	float: left;
 	min-height: 400px;
 	width: 900px;
-/* 	border: 2px solid #DADADA; */
+	/* 	border: 2px solid #DADADA; */
 }
+
 #layoutrightnav {
-	}
+	
+}
+
 #layoutfooter {
 	background-color: #FFFFFF;
 	clear: both;
 	text-align: right;
 	color: #D11919;
 }
+
 #layoutfooter hr {
-	 height: 0; border: 0; border-top: 1px solid #ccc; margin: 5px 5px ;
+	height: 0;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 5px 5px;
 }
 
 #headerTitle {
 	color: #FFFFFF;
 	margin: 0;
 }
+
 #headerTitle h1 {
 	color: #FFFFFF;
 	font-size: 20px;
 }
-#headernav {
-/* 	float: right; */
+
+#headernav { /* 	float: right; */
 	color: #FFFFFF;
 }
 
@@ -54,65 +65,95 @@ body {
 	border-radius: 8px;
 	padding: 20px 30px;
 }
-#loginForm h3 { margin-bottom: 15px; }
-#loginForm label { width: 100px; display: block; float: left; }
+
+#loginForm h3 {
+	margin-bottom: 15px;
+}
+
+#loginForm label {
+	width: 100px;
+	display: block;
+	float: left;
+}
 
 #eventForm {
-    margin-top: 20px;
-    width: 300px;
-    margin: 0 auto;
-    float:left
-    padding: 10px 0 0 20px
-
+	margin-top: 20px;
+	width: 300px;
+	margin: 0 auto;
+	float: left padding:  10px 0 0 20px
 }
-#eventForm label { align: left;}
 
-.formtag{
- float: right;
-  
+#eventForm label {
+	align: left;
 }
+
+.formtag {
+	float: right;
+}
+
 ​
 
 
 #logincontainer {
- margin: 0 auto;
+	margin: 0 auto;
 }
 /* typo */
-h1 { color: #FFFFFF; font-size: 16px; font-weight: bold; margin: 10px 0 20px 0; }
-h2 { color: #444; font-size: 14px; font-weight: bold; margin: 10px 0 10px 0; }
-h3 { color: #333; font-size: 13px; margin: 10px 0 10px 0; }
-h4 { font-size: 12px; }
-hr { height: 0; border: 0; border-top: 1px solid #ccc; margin: 10px 10px; }
+h1 {
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 10px 0 20px 0;
+}
 
+h2 {
+	color: #444;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 10px 0 10px 0;
+}
 
+h3 {
+	color: #333;
+	font-size: 13px;
+	margin: 10px 0 10px 0;
+}
 
+h4 {
+	font-size: 12px;
+}
 
+hr {
+	height: 0;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 10px 10px;
+}
 
 #outfit {
 	float: left;
 	border: 1px solid #DADADA;
 	height: 300px;
 	width: 275px;
-	margin-right:10px;
-	margin-bottom:10px;
-	position:relative;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	position: relative;
 	padding: 5px 0 0 5px
 }
 /*Important:*/
-.link-spanner{
-  position:absolute; 
-  width:100%;
-  height:100%;
-  top:0;
-  left: 0;
-  z-index: 1;
+.link-spanner {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
 
-  /* edit: fixes overlap error in IE7/8, 
+	/* edit: fixes overlap error in IE7/8, 
      make sure you have an empty gif 
   background-image: url('empty.gif');*/
-} 
-#outimage {
-	/* border: 1px solid #DADADA; */
+}
+
+#outimage { /* border: 1px solid #DADADA; */
 	float: left;
 	height: 300px;
 	width: 175px;
@@ -131,27 +172,39 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc; margin: 10px 10px; }
 	border: 1px solid #DADADA;
 	height: 600px;
 	width: 600px;
-	padding: 5px 0 0 5px
 }
 
 #outimagelarge {
-	float: left;
-	height: 600px;
-	width: 350px;
-}
-
-#tagslarge {
-	float: left;
 	/* border: 1px solid #D11919; */
-	height: 550px;
-	width: 200px;
+	float: left;
+	height: 500px;
+	width: 300px;
+	padding: 5px 5px 5px 5px;
 }
 
 #deleteOutfit {
-	float: left;
 	/* border: 1px solid #D11919; */
-	height: 50px;
 	width: 200px;
+	float: left;
+	text-align: right;
+	padding: 5px 5px 5px 5px;
+}
+
+#tagslarge {
+	/* border: 1px solid #D11919; */
+	float: left;	
+	height: 250px;
+	width: 200px;
+	padding: 10px 5px 5px 5px;
+	font-size: 18px;
+}
+
+#events {
+	/* border: 1px solid #D11919; */
+	float: left;
+	width: 200px;
+	height: 250px;
+	padding:  20px 5px 5px 5px;
 }
 
 #search {
@@ -160,14 +213,15 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc; margin: 10px 10px; }
 }
 
 #leftmenu {
-    background-color: #FFFFFF;
-    margin: 2px 5px 5px 1px
+	background-color: #FFFFFF;
+	margin: 2px 5px 5px 1px
 }
-.leftmenulink{
 
-    padding: 5px 0 5px 5px
-          
-}​
+.leftmenulink {
+	padding: 5px 0 5px 5px
+}
+
+​
 .imagepic {
 	width: 175;
 	height: 300;
@@ -178,11 +232,10 @@ hr { height: 0; border: 0; border-top: 1px solid #ccc; margin: 10px 10px; }
 	-webkit-box-shadow: 5px 5px 5px #888;
 }
 
-#actualImage { 
-     padding: 2px; 
+#actualImage {
+	padding: 2px;
+}
 
-     } 
-    
 /* 
 .container {width:950px;margin:0 auto;}
 

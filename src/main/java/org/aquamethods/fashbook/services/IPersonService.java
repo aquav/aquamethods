@@ -41,5 +41,5 @@ public interface IPersonService {
 	public Event saveEvent(Event event);
 	
 	@Transactional
-	public List<Event> loadFutureEvents(int personId );
+	public List<Event> loadFutureEventsNoOutfitAssigned(int personId);
 }

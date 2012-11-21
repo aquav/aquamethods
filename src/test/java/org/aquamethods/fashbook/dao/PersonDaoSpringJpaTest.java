@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.domain.Tag;
 import org.aquamethods.fashbook.domain.Outfit;
@@ -110,7 +111,7 @@ public class PersonDaoSpringJpaTest {
 	@Test
 	public void testGetById() {
 		logger.info("Test get data by id ==========================");
-		Person p = personServiceDao.getById(2);
+		Person p = personServiceDao.getById(10);
 		logger.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		logger.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		logger.info("Tags : " + p.getOutfits().get(0).getTags().get(0) );
@@ -149,5 +150,14 @@ public class PersonDaoSpringJpaTest {
 		Outfit o = personServiceDao.loadOutfit(33);
 		boolean deleted = personServiceDao.deleteOutfit(o);
 		logger.info("Deleted ::"+deleted);
+	}
+	
+	@Test
+	public void testLoadFutureEventsNoOutfitAssigned(){
+		List<Event> eventList = personServiceDao.loadFutureEventsNoOutfitAssigned(10);
+		for (Event event : eventList ){
+			logger.info("Event Name :: "+event.getName());
+		}
+		
 	}
 }

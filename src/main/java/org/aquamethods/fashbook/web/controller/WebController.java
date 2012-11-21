@@ -363,7 +363,7 @@ public class WebController {
 		Outfit outfit = personService.loadOutfit(outfitId);
 		OutfitForm outfitForm = new OutfitForm();
 		
-		List<Event> futureEventList = personService.loadFutureEvents(personId);
+		List<Event> futureEventList = personService.loadFutureEventsNoOutfitAssigned(personId);
 		List<EventForm> eventFormList = new ArrayList<EventForm>();
 		
 		for (Event event : futureEventList) {

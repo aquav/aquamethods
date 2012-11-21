@@ -112,10 +112,8 @@ public class PersonServiceImpl implements IPersonService{
 		return personDao.saveEvent(event);
 	}
 	
-	public List<Event> loadFutureEvents(int personId ){
-		List<Event> futureEventList = new ArrayList<Event>();
+	public List<Event> loadFutureEventsNoOutfitAssigned(int personId){
 		
-		
-		return futureEventList;
+		return personDao.loadFutureEventsNoOutfitAssigned(personId);
 	}
 }

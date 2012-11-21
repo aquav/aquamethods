@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
 
 <c:if test="${not empty outfit}">
-	<br />
 	<div id="outfitlarge" class="shadow">
 		<div id="outimagelarge">
 
@@ -30,9 +29,12 @@
 				</form:form>
 			</c:if>
 		</div>
-		<c:if test="${not outfit.archived}">
-			<div id="tagslarge">
-				<form:form method="post" action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}/tag" modelAttribute="tag">
+		<div id="tagslarge">
+			<c:if test="${not outfit.archived}">
+
+				<form:form method="post"
+					action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}/tag"
+					modelAttribute="tag">
 					<table>
 						<tr>
 							<td><form:label path="tag">Tag</form:label></td>
@@ -45,21 +47,25 @@
 					<!-- Hidden value - need to set person id else it will go as null in form -->
 					<input name="outfitId" type="hidden" value="${outfit.id}" />
 				</form:form>
+
+			</c:if>
+			<hr>
+			<c:forEach items="${outfit.tags}" var="tag">
+				<p>${tag.tag}</p>
+			</c:forEach>
+
+
+		</div>
+		<c:if test="${not outfit.archived}">
+		<div id="events">
+			<h3>You have planned event with no outfit assigned!!</h3>
+			    <p>click here to select this outfit for :
+			<c:forEach items="${outfit.futureEvents}" var="futureEvents">
+				<h3>${futureEvents.name}</h3>
+			</c:forEach>
+
+		</div>
 		</c:if>
-		</br>
-		<div  id="tags">
-			<p><c:forEach items="${outfit.tags}" var="tag">
-						${tag.tag}</c:forEach>
-			</p>
-		</div>
-		</br>
-		<div  id="tags">
-			click here to select this outfit for :
-			<p><c:forEach items="${outfit.futureEvents}" var="futureEvents">
-						${futureEvents.name}
-				</c:forEach>
-			</p>
-		</div>
 	</div>
 </c:if>
 
