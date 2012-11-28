@@ -58,6 +58,7 @@
 		</div>
 		<c:if test="${not outfit.archived}">
 		<div id="futureevents">
+			<c:if test="${not empty outfit.futureEvents}">
 			<h3>You have planned event with no outfit assigned!!</h3>
 			If you are planning to wear this outfit in one of these event. You can select by clicking button below.
 			This will record it and keep it in history.
@@ -74,6 +75,7 @@
 			<input type="submit" value="Select this event"/>	
 			</form:form>			
 			</c:forEach>
+			</c:if>
 		</div>
 		<div id="events">
 		<c:forEach items="${outfit.outfitEvents}" var="outfitEvent">

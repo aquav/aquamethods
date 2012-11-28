@@ -1,6 +1,10 @@
 package org.aquamethods.fashbook.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import org.aquamethods.fashbook.domain.Event;
 import org.aquamethods.fashbook.domain.Person;
@@ -38,6 +42,24 @@ public class GetReadyController {
 		return "getready-tile";
 	}
 	
+	@RequestMapping(value = "/eventlog", method = RequestMethod.GET)
+	public String getEventLog(@PathVariable("personId") int personId, Model model) {
+		
+		List<Event> events = personService.loadAllEventsForPerson(personId);
+		
+		List<EventForm> eventFormList = new ArrayList<EventForm>();
+		
+		for (Event event : events){
+		
+			EventForm eventForm = new EventForm();
+			eventForm.setName(event.getName());
+			eventForm.setDerivedDate(event.getDate());
+			
+			eventFormList.add(eventForm);
+		}
+		model.addAttribute("eventFormList", eventFormList);
+		return "getreadylog-tile";
+	}
 	/**
 	 * 
 	 * @param person
@@ -46,7 +68,7 @@ public class GetReadyController {
 	 */
 	@RequestMapping(value = "/event", method = RequestMethod.POST)
 	public String save(@ModelAttribute("event") EventForm eventForm,@PathVariable("personId") int personId,
-			BindingResult result, Model model) {
+			BindingResult result, Model model) throws Exception {
 		
 		Event eventEntity = new Event();
 		eventEntity.setName(eventForm.getName());
@@ -76,13 +98,17 @@ public class GetReadyController {
 	}
 	
 	
-	private Date getEventFormDate(EventForm eventForm){
+	private Date getEventFormDate(EventForm eventForm) throws Exception{
 		String date = eventForm.getDate();
-		int hour = eventForm.getHour();
-		int min = eventForm.getMinutes();
+		String hour = eventForm.getHour();
+		String min = eventForm.getMinutes();
 		String ampm = eventForm.getAmpm();
 		
+		String dateString =  date +" "+hour+":"+min+":"+00+" "+ampm;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a", Locale.US);
 		
-		return new Date();
+		Date returnDate = format.parse(dateString);
+		
+		return returnDate;
 	}
 }

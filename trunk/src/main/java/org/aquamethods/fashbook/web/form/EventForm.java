@@ -8,10 +8,14 @@ public class EventForm {
 	private String name;
 	private String description;
 	private String date;
-	private int hour;
-	private int minutes;
+	private String hour;
+	private String minutes;
 	private String ampm;
 	private boolean master;
+	private boolean allDayEvent;
+	private Date derivedDate;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -30,28 +34,22 @@ public class EventForm {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isMaster() {
-		return master;
-	}
-	public void setMaster(boolean master) {
-		this.master = master;
-	}
 	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getHour() {
+	public String getHour() {
 		return hour;
 	}
-	public void setHour(int hour) {
+	public void setHour(String hour) {
 		this.hour = hour;
 	}
-	public int getMinutes() {
+	public String getMinutes() {
 		return minutes;
 	}
-	public void setMinutes(int minutes) {
+	public void setMinutes(String minutes) {
 		this.minutes = minutes;
 	}
 	public String getAmpm() {
@@ -60,5 +58,25 @@ public class EventForm {
 	public void setAmpm(String ampm) {
 		this.ampm = ampm;
 	}
+	public boolean isMaster() {
+		return master;
+	}
+	public void setMaster(boolean master) {
+		this.master = master;
+	}
+	public boolean isAllDayEvent() {
+		return allDayEvent;
+	}
+	public void setAllDayEvent(boolean allDayEvent) {
+		this.allDayEvent = allDayEvent;
+	}
+	public Date getDerivedDate() {
+		return derivedDate;
+	}
+	public void setDerivedDate(Date derivedDate) {
+		this.derivedDate = derivedDate;
+	}
+	
+
 	
 }
