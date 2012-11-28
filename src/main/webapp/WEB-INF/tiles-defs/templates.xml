@@ -58,4 +58,8 @@
 		<put-attribute name="title" value="Get ready for party!" />
 		<put-attribute name="content" value="/WEB-INF/pages/getready.jsp" />
 	</definition>
+		<definition name="getreadylog-tile" extends="page">
+		<put-attribute name="title" value="All Events Log" />
+		<put-attribute name="content" value="/WEB-INF/pages/eventlog.jsp" />
+	</definition>
 </tiles-definitions>

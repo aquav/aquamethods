@@ -78,17 +78,31 @@ body {
 
 #eventForm {
 	margin-top: 20px;
-	width: 300px;
+	width: 400px;
 	margin: 0 auto;
-	float: left padding:  10px 0 0 20px
+	float: left;
+	padding: 10px 0 0 20px;
 }
 
 #eventForm label {
-	align: left;
+	clear: both;
+	float: left;
+	width: 40%;
+}
+
+#eventForm  input {
+	float: left;
+	width: 55%;
+}
+
+#masterEvent {
+	margin-top: 20px;
+	margin: 0 auto;
+	float: left padding:   10px 0 0 20px
 }
 
 .formtag {
-	float: right;
+	
 }
 
 ​
@@ -174,46 +188,41 @@ hr {
 	width: 600px;
 }
 
-#outimagelarge {
-	/* border: 1px solid #D11919; */
+#outimagelarge { /* border: 1px solid #D11919; */
 	float: left;
 	height: 500px;
 	width: 300px;
 	padding: 5px 5px 5px 5px;
 }
 
-#deleteOutfit {
-	/* border: 1px solid #D11919; */
+#deleteOutfit { /* border: 1px solid #D11919; */
 	width: 200px;
 	float: left;
 	text-align: right;
 	padding: 5px 5px 5px 5px;
 }
 
-#tagslarge {
-	/* border: 1px solid #D11919; */
-	float: left;	
+#tagslarge { /* border: 1px solid #D11919; */
+	float: left;
 	height: 200px;
 	width: 200px;
 	padding: 10px 5px 5px 5px;
 	font-size: 18px;
 }
 
-#futureevents {
-	/* border: 1px solid #D11919; */
+#futureevents { /* border: 1px solid #D11919; */
 	float: left;
 	width: 250px;
 	height: 250px;
-	padding:  20px 5px 5px 5px;
-}
-#events {
-	/* border: 1px solid #D11919; */
-	float: left;
-	width: 250px;
-	height: 250px;
-	padding:  20px 5px 5px 5px;
+	padding: 20px 5px 5px 5px;
 }
 
+#events { /* border: 1px solid #D11919; */
+	float: left;
+	width: 250px;
+	height: 250px;
+	padding: 20px 5px 5px 5px;
+}
 
 #search {
 	border: 1px solid #DADADA;
@@ -228,7 +237,10 @@ hr {
 .leftmenulink {
 	padding: 5px 0 5px 5px
 }
-
+.leftmenusublink{
+    padding: 5px 0 5px 25px
+}
+​
 ​
 .imagepic {
 	width: 175;

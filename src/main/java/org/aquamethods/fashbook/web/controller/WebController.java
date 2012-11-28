@@ -364,6 +364,7 @@ public class WebController {
 		OutfitForm outfitForm = new OutfitForm();
 		
 		List<Event> futureEventList = personService.loadFutureEventsNoOutfitAssigned(personId);
+		logger.debug("There are future events with no outfits assigned ::"+futureEventList.size());
 		List<EventForm> futureEventFormList = new ArrayList<EventForm>();
 		
 		for (Event event : futureEventList) {

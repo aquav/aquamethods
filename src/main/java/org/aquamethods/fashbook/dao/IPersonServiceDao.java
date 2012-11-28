@@ -28,5 +28,6 @@ public interface IPersonServiceDao {
 	public List<Event> loadFutureEventsNoOutfitAssigned(int personId);
 	public Event loadEventById(int eventId);
 	public List<Event> loadEventsForCurrentOutfit(int outfitId);
+	public List<Event> loadAllEventsForPerson(int personId);
 }
 

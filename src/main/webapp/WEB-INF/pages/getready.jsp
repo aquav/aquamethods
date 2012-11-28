@@ -9,6 +9,8 @@
 				<p>
 					<form:label path="name">Event Name</form:label>
 					<form:input cssClass="formtag" path="name" id="name" />
+					<form:label path="master">Master Event ?</form:label>
+					<form:checkbox cssClass="formtag" path="master" />
 				</p>
 				<p>
 					<form:label path="description">Event Description</form:label>
@@ -19,6 +21,8 @@
 				<p>
 					<form:label path="date">Date</form:label>
 					<form:input cssClass="formtag" path="date" id="date" type="date" />
+					<form:label path="master">All Day Event ?</form:label>
+					<form:checkbox cssClass="formtag" path="allDayEvent" />
 				</p>
 				<p>
 					<form:label path="date">Time</form:label>
@@ -44,13 +48,9 @@
 						<form:option value="45" />
 					</form:select>
 					<form:select cssClass="formtag" path="ampm">
-						<form:option value="AM" />
-						<form:option value="PM" />
+						<form:option value="am" />
+						<form:option value="pm" />
 					</form:select>
-				</p>
-				<p>
-					<form:label path="master">Master</form:label>
-					<form:checkbox cssClass="formtag" path="master" />
 				</p>
 
 			<p>

@@ -48,4 +48,7 @@ public interface IPersonService {
 	
 	@Transactional
 	public List<Event> loadEventsForCurrentOutfit(int outfitId);
+	
+	@Transactional
+	public List<Event> loadAllEventsForPerson(int personId);
 }
