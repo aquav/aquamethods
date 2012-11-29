@@ -15,22 +15,19 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 </HEAD>
 <body>
+	<div id="layoutheader">
+		<div id="headertitle">
+			<h1>Fashbook</h1>
+			Your virtual wardrobe!!
+		</div>
+	</div>
+	<div id="layoutcenter">
+		<tiles:insertAttribute name="content" />
+	</div>
 
-	<div>
-		<div id="layoutheader">
-			<div id="headerTitle">
-				<h1>Fashbook</h1>
-				Your virtual wardrobe!!
-			</div>
-		</div>
-		<div>
-			<tiles:insertAttribute name="content" />
-		</div>
-
-		<div id="layoutfooter">
-			<HR />
-			Copyright (c) 2012 AquaMethods | About
-		</div>
+	<div id="layoutfooter">
+		<HR />
+		Copyright (c) 2012 AquaMethods | About
 	</div>
 
 </body>

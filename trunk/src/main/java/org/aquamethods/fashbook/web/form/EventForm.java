@@ -14,7 +14,8 @@ public class EventForm {
 	private boolean master;
 	private boolean allDayEvent;
 	private Date derivedDate;
-	
+	private int eventOutfitId;
+	private String eventOutfitImagePath;
 	
 	public int getId() {
 		return id;
@@ -75,6 +76,18 @@ public class EventForm {
 	}
 	public void setDerivedDate(Date derivedDate) {
 		this.derivedDate = derivedDate;
+	}
+	public int getEventOutfitId() {
+		return eventOutfitId;
+	}
+	public void setEventOutfitId(int eventOutfitId) {
+		this.eventOutfitId = eventOutfitId;
+	}
+	public String getEventOutfitImagePath() {
+		return eventOutfitImagePath;
+	}
+	public void setEventOutfitImagePath(String eventOutfitImagePath) {
+		this.eventOutfitImagePath = eventOutfitImagePath;
 	}
 	
 

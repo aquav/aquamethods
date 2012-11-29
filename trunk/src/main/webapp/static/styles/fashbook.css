@@ -1,7 +1,6 @@
 body {
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana,
 		sans-serif;
-	font-size: 12px;
 }
 
 #layoutheader {
@@ -33,6 +32,7 @@ body {
 	clear: both;
 	text-align: right;
 	color: #D11919;
+	font-size: 12px;
 }
 
 #layoutfooter hr {
@@ -42,19 +42,42 @@ body {
 	margin: 5px 5px;
 }
 
-#headerTitle {
+/*********************************************/
+/* Header Title Page  */
+
+#headertitle {
 	color: #FFFFFF;
 	margin: 0;
+	font-size: 12px;
 }
 
-#headerTitle h1 {
+#headertitle h1 {
 	color: #FFFFFF;
 	font-size: 20px;
 }
 
-#headernav { /* 	float: right; */
+#headernav { 
+	font-size: 12px;
+/* 	float: right; */
 	color: #FFFFFF;
 }
+
+
+/*********************************************/
+/* Left Menu  */
+#leftmenu {
+	background-color: #FFFFFF;
+	margin: 2px 5px 5px 1px;
+	font-size: 12px;
+}
+
+.leftmenulink {
+	padding: 5px 0 5px 5px;
+}
+.leftmenusublink{
+    padding: 5px 0 5px 25px;
+}
+
 
 #loginForm {
 	margin-top: 20px;
@@ -64,6 +87,7 @@ body {
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	padding: 20px 30px;
+	font-size: 12px;
 }
 
 #loginForm h3 {
@@ -82,6 +106,7 @@ body {
 	margin: 0 auto;
 	float: left;
 	padding: 10px 0 0 20px;
+	font-size: 12px;
 }
 
 #eventForm label {
@@ -105,9 +130,6 @@ body {
 	
 }
 
-​
-
-
 #logincontainer {
 	margin: 0 auto;
 }
@@ -129,7 +151,6 @@ h2 {
 h3 {
 	color: #333;
 	font-size: 13px;
-	margin: 10px 0 10px 0;
 }
 
 h4 {
@@ -151,7 +172,8 @@ hr {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	position: relative;
-	padding: 5px 0 0 5px
+	padding: 5px 0 0 5px;
+	font-size: 12px;
 }
 /*Important:*/
 .link-spanner {
@@ -179,6 +201,7 @@ hr {
 	height: 250px;
 	width: 90px;
 	padding-top: 20px;
+	font-size: 12px;
 }
 
 #outfitlarge {
@@ -186,6 +209,7 @@ hr {
 	border: 1px solid #DADADA;
 	height: 600px;
 	width: 600px;
+	font-size: 12px;
 }
 
 #outimagelarge { /* border: 1px solid #D11919; */
@@ -215,6 +239,7 @@ hr {
 	width: 250px;
 	height: 250px;
 	padding: 20px 5px 5px 5px;
+	font-size: 12px;
 }
 
 #events { /* border: 1px solid #D11919; */
@@ -227,19 +252,10 @@ hr {
 #search {
 	border: 1px solid #DADADA;
 	background-color: #DADADA;
+	font-size: 12px;
 }
 
-#leftmenu {
-	background-color: #FFFFFF;
-	margin: 2px 5px 5px 1px
-}
 
-.leftmenulink {
-	padding: 5px 0 5px 5px
-}
-.leftmenusublink{
-    padding: 5px 0 5px 25px
-}
 ​
 ​
 .imagepic {
@@ -251,10 +267,44 @@ hr {
 	-moz-box-shadow: 5px 5px 5px #888;
 	-webkit-box-shadow: 5px 5px 5px #888;
 }
-
+​
 #actualImage {
 	padding: 2px;
 }
+
+/*********************************************/
+/* Event Log Page  */
+.shadowevent {
+    -moz-box-shadow: 3px 3px 3px #888;
+    -webkit-box-shadow: 3px 3px 3px #888;
+}
+
+#imagethumbnail{
+	padding: 10px;
+}
+#eventlog{
+    float: left;
+    width: 105px;
+    height: 200px;
+    border: 1px solid #DADADA;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+#futureevent{
+    width: 500px;
+    min-height: 300px;
+}
+#pastevent{
+    width: 500px;
+    min-height: 400px;
+}
+
+
+
+
+
+
 
 /* 
 .container {width:950px;margin:0 auto;}

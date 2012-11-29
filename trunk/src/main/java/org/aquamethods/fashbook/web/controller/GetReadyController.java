@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.aquamethods.fashbook.domain.Event;
+import org.aquamethods.fashbook.domain.Outfit;
 import org.aquamethods.fashbook.domain.Person;
 import org.aquamethods.fashbook.services.IPersonService;
 import org.aquamethods.fashbook.web.form.EventForm;
@@ -54,7 +55,8 @@ public class GetReadyController {
 			EventForm eventForm = new EventForm();
 			eventForm.setName(event.getName());
 			eventForm.setDerivedDate(event.getDate());
-			
+			eventForm.setEventOutfitId(event.getOutfit_id());
+			eventForm.setEventOutfitImagePath(getEventOutfitImagePath(event.getOutfit_id()));
 			eventFormList.add(eventForm);
 		}
 		model.addAttribute("eventFormList", eventFormList);
@@ -110,5 +112,14 @@ public class GetReadyController {
 		Date returnDate = format.parse(dateString);
 		
 		return returnDate;
+	}
+	private String getEventOutfitImagePath(int outfitId){
+		Outfit outfit = personService.loadOutfit(outfitId);
+		if (outfit == null){
+			return "/fashbook/static/images/nooutfitfound.png";
+		}else{
+			return outfit.getOutfitPicture();
+		}
+				
 	}
 }
