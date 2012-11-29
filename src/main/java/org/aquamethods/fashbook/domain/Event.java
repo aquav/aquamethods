@@ -22,7 +22,7 @@ import javax.persistence.Table;
 	@NamedQuery(name = "Event.findAllEventsForPerson",	query = "SELECT e FROM Event e where person_id = :personId")
 }
 )
-public class Event {
+public class Event implements Comparable<Event> {
 
 	@Id
 	@GeneratedValue
@@ -84,6 +84,12 @@ public class Event {
 	}
 	public void setSubEvents(List<SubEvent> subEvents) {
 		this.subEvents = subEvents;
+	}
+	
+
+	@Override
+	public int compareTo(Event event) {
+		return getDate().compareTo(event.getDate());
 	}
 	
 }

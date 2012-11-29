@@ -1,6 +1,7 @@
 package org.aquamethods.fashbook.dao.jpa;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -193,6 +194,8 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		query.setParameter("personId",personId);
 		List<Event> events = null;
 		events = query.getResultList();
+		//sort the collection
+		Collections.sort(events);
 		return events;
 	}
 
