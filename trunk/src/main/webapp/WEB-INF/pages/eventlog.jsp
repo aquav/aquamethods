@@ -20,6 +20,13 @@
 					</spring:url>
 					<img width="85" height="150" src="${fn:escapeXml(imageUrl)}" />
 				</div>
+			<spring:url value="/person/{personId}/getready/event/{eventId}/outfit/{outfitId}"
+				var="tagUrl">
+				<spring:param name="personId" value="${sessionScope['scopedTarget.userSessionData'].personId}" />
+				<spring:param name="eventId" value="${event.id}" />
+				<spring:param name="outfitId" value="${event.eventOutfitId}" />
+			</spring:url>
+			<a href="${fn:escapeXml(tagUrl)}"><span class="link-spanner"></span></a>
 			</div>
 		</c:if>
 	</c:forEach>
