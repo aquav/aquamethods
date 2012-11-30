@@ -11,7 +11,7 @@
 			</spring:url>
 			<img width="300" height="500" src="${fn:escapeXml(imageUrl)}" />
 		</div>
-		<div id="deleteOutfit">
+		<div id="deleteoutfit">
 			<form:form
 				action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}"
 				method="delete">

@@ -1,7 +1,9 @@
 package org.aquamethods.fashbook.web.controller;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -33,16 +35,13 @@ public class GetReadyController {
 	@Autowired
 	private IPersonService personService;
 	
-	@RequestMapping(value = "/event", method = RequestMethod.GET)
-	public String getEvent(@PathVariable("personId") int personId, Model model) {
-		
-		EventForm event = new EventForm();
-		
-		model.addAttribute("event", event);
-		
-		return "getready-tile";
-	}
-	
+	// GET for URL /eventlog
+	/**
+	 * 
+	 * @param personId
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/eventlog", method = RequestMethod.GET)
 	public String getEventLog(@PathVariable("personId") int personId, Model model) {
 		
@@ -53,6 +52,7 @@ public class GetReadyController {
 		for (Event event : events){
 		
 			EventForm eventForm = new EventForm();
+			eventForm.setId(event.getId());
 			eventForm.setName(event.getName());
 			eventForm.setDerivedDate(event.getDate());
 			eventForm.setEventOutfitId(event.getOutfit_id());
@@ -62,6 +62,25 @@ public class GetReadyController {
 		model.addAttribute("eventFormList", eventFormList);
 		return "getreadylog-tile";
 	}
+	
+	
+	//GET and POST for URL /event
+	/**
+	 * 
+	 * @param personId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/event", method = RequestMethod.GET)
+	public String getEvent(@PathVariable("personId") int personId, Model model) {
+		
+		EventForm event = new EventForm();
+		
+		model.addAttribute("event", event);
+		
+		return "getready-tile";
+	}
+	
 	/**
 	 * 
 	 * @param person
@@ -87,6 +106,37 @@ public class GetReadyController {
 
 	}
 	
+	// GET and POST for URL /event/{eventId}/outfit/{outfitId}
+	
+	@RequestMapping(value = "/event/{eventId}/outfit/{outfitId}", method = RequestMethod.GET)
+	public String getSingleEvent(@PathVariable("personId") int personId, @PathVariable("eventId") int eventId, Model model) {
+		
+		EventForm eventForm = new EventForm();
+		
+
+		
+		if (eventId != 0) {
+			Event event = personService.loadEventById(eventId);
+			eventForm.setId(event.getId());
+			eventForm.setName(event.getName());
+			eventForm.setDescription(event.getDescription());
+			
+			Calendar cal  = Calendar.getInstance();
+			cal.setTime(event.getDate());
+			DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+			String dateStr = format.format(event.getDate());
+			
+			eventForm.setDerivedDate(event.getDate());
+			eventForm.setDate(dateStr);
+			eventForm.setEventOutfitId(event.getOutfit_id());
+			eventForm.setEventOutfitImagePath(getEventOutfitImagePath(event
+					.getOutfit_id()));
+		}
+		model.addAttribute("event", eventForm);
+		
+		return "getreadyevent-tile";
+	}
+	
 	@RequestMapping(value="/event/{eventId}/outfit/{outfitId}", method=RequestMethod.POST)
 	public String assignOutfitToEvent(@PathVariable("personId") int personId,@PathVariable("eventId") int eventId,@PathVariable("outfitId") int outfitId){
 		
@@ -99,6 +149,17 @@ public class GetReadyController {
 		return "redirect:/person/"+personId+"/outfit/"+outfitId;
 	}
 	
+	@RequestMapping(value="/event/{eventId}/outfit/{outfitId}", method=RequestMethod.DELETE)
+	public String unAssignOutfitFromEvent(@PathVariable("personId") int personId,@PathVariable("eventId") int eventId,@PathVariable("outfitId") int outfitId){
+		
+		Event event = personService.loadEventById(eventId);
+		outfitId=0;
+		event.setOutfit_id(outfitId);
+		personService.saveEvent(event);
+		
+		//personService.saveEvent(event);
+		return "redirect:/person/"+personId+"/getready/event/"+eventId+"/outfit/"+outfitId;
+	}
 	
 	private Date getEventFormDate(EventForm eventForm) throws Exception{
 		String date = eventForm.getDate();

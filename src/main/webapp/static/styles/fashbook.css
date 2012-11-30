@@ -102,7 +102,7 @@ body {
 
 #eventForm {
 	margin-top: 20px;
-	width: 400px;
+	width: 600px;
 	margin: 0 auto;
 	float: left;
 	padding: 10px 0 0 20px;
@@ -120,12 +120,18 @@ body {
 	width: 55%;
 }
 
-#masterEvent {
+#masterevent {
 	margin-top: 20px;
 	margin: 0 auto;
-	float: left padding:   10px 0 0 20px
+	float: left;
+	padding:   10px 0 0 20px
 }
-
+#mastereventimage {
+	margin-top: 20px;
+	margin: 0 auto;
+	float: left;
+	padding:   10px 0 0 20px
+}
 .formtag {
 	
 }
@@ -171,7 +177,7 @@ hr {
 	width: 275px;
 	margin-right: 10px;
 	margin-bottom: 10px;
-	position: relative;
+	position: relative; /* important for link spanner to work*/
 	padding: 5px 0 0 5px;
 	font-size: 12px;
 }
@@ -188,6 +194,7 @@ hr {
      make sure you have an empty gif 
   background-image: url('empty.gif');*/
 }
+
 
 #outimage { /* border: 1px solid #DADADA; */
 	float: left;
@@ -219,7 +226,7 @@ hr {
 	padding: 5px 5px 5px 5px;
 }
 
-#deleteOutfit { /* border: 1px solid #D11919; */
+#deleteoutfit { /* border: 1px solid #D11919; */
 	width: 200px;
 	float: left;
 	text-align: right;
@@ -290,6 +297,7 @@ hr {
     margin-right: 5px;
     margin-bottom: 10px;
     font-size: 12px;
+    position: relative; /* important for link spanner to work*/
 }
 #futureevent{
     width: 500px;
