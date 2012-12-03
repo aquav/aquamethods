@@ -57,8 +57,8 @@ public class WebController {
 			.getLogger(WebController.class);
 	
 	//need to move this in properties
-	public static final String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
-
+	//public static final String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
+	public static final String tomcatWebappsDir = "C:/Users/aquav_000/Documents/VG_DATA/TOOLS/apache-tomcat-6.0.33/webapps";
 	@Autowired
 	private IPersonService personService;
 	
