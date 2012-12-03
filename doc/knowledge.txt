@@ -1,4 +1,21 @@
-in order to enable deployment of app from Maven - 
+NEW SETUP
+- install java and setup JAVA_HOME snd edit system path
+-
+- install tortoise SVN, checkout project from google SVN
+-
+-Install eclipse indigo and add plugins (maven)
+-Install STS
+once application is compiled and maven is able to generate a war.
+
+-install mysql (server only)
+root password - password77
+
+-install HeidiSQL
+-run DB Scripts (there might be error, change the order of table crration and try)s
+
+-follow below steps for auto deployment
+--------------------------------------------------------------------------------------
+-in order to enable deployment of app from Maven - 
 
 added plugin in POM
 
@@ -15,9 +32,33 @@ file changed -
       <password>password</password>
     </server>
 add external configuration in Eclipse to run Maven
+
 clean tomcat:redeploy -Dmaven.test.skip=true
+C:\Users\aquav_000\Documents\VG_DATA\TOOLS\apache-maven-2.2.1\bin\mvn.bat
+
 
 ------------------------------------------------------
+
+- project properties > Spring > Dependency Management > checkbox "Automatic update dependencies from Maven pom.xml"
+- project > right click > Maven > update project
+
+ had a similar problem when running a spring web application in an Eclipse managed tomcat. I solved this problem by adding maven dependencies in the project's web deployment assembly.
+
+1) Open the project's properties (e.g., right-click on the project's name in the project explorer and select "Properties")
+2) select "Deployment Assembly"
+3) Click the "Add..." button on the right margin
+4) Select "Java Build Path Entries" from the menu of Directive Type and click "Next"
+5) Select "Maven Dependencies" from the Java Build Path Entries menu and click "Finish".
+
+You should see "Maven Dependencies" added to the Web Deployment Assembly definition.
+-------------------------------
+
+OPEN the server in STS and change all three port to 8006, 8090 and 8010
+the start the local tomcat on 8080 and also deploy the application on STS tomcat which is running on 8090
+that way both server will run...we need to run both server so that we can deploy app on STS tomcat and see images hosted on other tomcat
+
+
+
 
 Getting It Early.
 Another challenging requirement was selective data display. For example, if a manager searched for registrations, we needed to display all the penalties that the registered parties recorded. This information is not otherwise available to a normal caseworker. for some registrations, we needed to display all the penalties that the registered parties recorded. This information is not otherwise available to a normal caseworker.
