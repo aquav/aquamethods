@@ -168,8 +168,8 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		return event;
 	}
 	
-	public List<Event> loadFutureEventsNoOutfitAssigned(int personId) {
-		Query query = entityManager.createQuery("select e from Event e where e.person_id=:personId and e.outfit_id=0 and e.date > :date");
+	public List<Event> loadEventsNoOutfitAssigned(int personId) {
+		Query query = entityManager.createQuery("select e from Event e where e.person_id=:personId and e.outfit_id=0");
 		query.setParameter("personId",personId);
 		query.setParameter("date",new Date(System.currentTimeMillis()));
 		List<Event> eventList = null;

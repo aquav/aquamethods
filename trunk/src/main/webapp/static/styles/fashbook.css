@@ -241,10 +241,11 @@ hr {
 	font-size: 18px;
 }
 
-#futureevents { /* border: 1px solid #D11919; */
+#unassignedevents { 
+	border: 1px solid #D11919;
 	float: left;
-	width: 250px;
-	height: 250px;
+	width: 200px;
+	height: 600px;
 	padding: 20px 5px 5px 5px;
 	font-size: 12px;
 }
@@ -300,11 +301,11 @@ hr {
     position: relative; /* important for link spanner to work*/
 }
 #futureevent{
-    width: 500px;
+    width: 800px;
     min-height: 300px;
 }
 #pastevent{
-    width: 500px;
+    width: 800px;
     min-height: 400px;
 }
 
