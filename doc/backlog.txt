@@ -15,7 +15,7 @@
 15- password encryption
 16- replace existing photo with better one
 17- assign outfit id to new image  --- X (how to get outfid id before saving image)
-
+ff
 
 GUI
 
