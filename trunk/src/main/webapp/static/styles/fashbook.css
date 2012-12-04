@@ -6,6 +6,8 @@ body {
 #layoutheader {
 	background-color: #D11919;
 	margin-bottom: 10px;
+	/* border: 1px solid #DADADA; */
+	height: 50px;
 }
 
 #layoutleftnav {
@@ -44,24 +46,32 @@ body {
 
 /*********************************************/
 /* Header Title Page  */
-
-#headertitle {
+#headerimage{
 	color: #FFFFFF;
-	margin: 0;
-	font-size: 12px;
+	padding: 0px 0px 0px 5px;
 }
-
-#headertitle h1 {
+#headertitle {
+	float: left;
+	font-size: 12px;
+	padding: 0px 0px 0px 5px;
+	width:200px;
+	/* border: 1px solid #DADADA; */
 	color: #FFFFFF;
-	font-size: 20px;
 }
 
 #headernav { 
 	font-size: 12px;
-/* 	float: right; */
+	font-weight: bold;
+	float: right;
+	color: #FFFFFF;
+	padding: 0px 10px 0px 5px;
+	/* border: 1px solid #DADADA; */
+}
+#headernav a { 
+	font-size: 12px;
+	font-weight: normal;
 	color: #FFFFFF;
 }
-
 
 /*********************************************/
 /* Left Menu  */
@@ -141,21 +151,16 @@ body {
 }
 /* typo */
 h1 {
-	color: #FFFFFF;
 	font-size: 16px;
 	font-weight: bold;
-	margin: 10px 0 20px 0;
 }
 
 h2 {
-	color: #444;
 	font-size: 14px;
 	font-weight: bold;
-	margin: 10px 0 10px 0;
 }
 
 h3 {
-	color: #333;
 	font-size: 13px;
 }
 
@@ -213,48 +218,50 @@ hr {
 
 #outfitlarge {
 	float: left;
-	border: 1px solid #DADADA;
-	height: 600px;
+	/* border: 1px solid #DADADA; */
 	width: 600px;
 	font-size: 12px;
 }
 
-#outimagelarge { /* border: 1px solid #D11919; */
+#outimagelarge { 
+    border: 1px solid #DADADA; 
 	float: left;
-	height: 500px;
-	width: 300px;
+	height: 600px;
+	width: 360px;
 	padding: 5px 5px 5px 5px;
 }
 
-#deleteoutfit { /* border: 1px solid #D11919; */
-	width: 200px;
-	float: left;
-	text-align: right;
+#deleteoutfit { 
+   /*  border: 1px solid #D11919;  */
+	width: 360px;
 	padding: 5px 5px 5px 5px;
 }
 
-#tagslarge { /* border: 1px solid #D11919; */
-	float: left;
-	height: 200px;
+#tagslarge { 
+ border: 2px solid #DADADA; 
+	float: right;
+	min-height: 200px;
 	width: 200px;
 	padding: 10px 5px 5px 5px;
 	font-size: 18px;
 }
 
 #unassignedevents { 
-	border: 1px solid #D11919;
-	float: left;
+	border: 2px solid #DADADA;
+	float: right;
 	width: 200px;
-	height: 600px;
+	min-height: 200px;
 	padding: 20px 5px 5px 5px;
 	font-size: 12px;
+	margin:  5px 0px 5px 10px;
 }
 
-#events { /* border: 1px solid #D11919; */
-	float: left;
-	width: 250px;
-	height: 250px;
-	padding: 20px 5px 5px 5px;
+#events { 
+    border: 2px solid #DADADA; 
+    float: right;
+    width: 200px;
+	padding: 0px 5px 5px 5px;
+	margin:  10px 0px 5px 5px;
 }
 
 #search {
@@ -282,22 +289,28 @@ hr {
 
 /*********************************************/
 /* Event Log Page  */
-.shadowevent {
-    -moz-box-shadow: 3px 3px 3px #888;
-    -webkit-box-shadow: 3px 3px 3px #888;
-}
 
-#imagethumbnail{
-	padding: 10px;
-}
 #eventlog{
     float: left;
     width: 105px;
-    height: 200px;
+    height: 215px;
     border: 1px solid #DADADA;
     margin-right: 5px;
     margin-bottom: 10px;
-    font-size: 12px;
+    padding: 0px 0px 0px 5px;
+    background-color: #DADADA;
+    position: relative; /* important for link spanner to work*/
+}
+#futureeventlog{
+    float: left;
+    width: 105px;
+    height: 215px;
+    border: 1px solid #DADADA;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 0px 0px 0px 5px;
+    -moz-box-shadow: 3px 3px 3px #888;
+    -webkit-box-shadow: 3px 3px 3px #888;
     position: relative; /* important for link spanner to work*/
 }
 #futureevent{
@@ -308,9 +321,21 @@ hr {
     width: 800px;
     min-height: 400px;
 }
+#eventlogtitle{
+	font-size: 12px;
+	float: left;
+	height: 40px;
+}
+#eventlogdate{
+	font-size: 11px;
+	font-weight: bold;
+	float: left;
+}
 
 
-
+#imagethumbnail{
+	float: left;
+}
 
 
 

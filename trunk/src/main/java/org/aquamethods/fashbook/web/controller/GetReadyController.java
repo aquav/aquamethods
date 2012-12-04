@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -46,11 +47,13 @@ public class GetReadyController {
 	public String getEventLog(@PathVariable("personId") int personId, Model model) {
 		
 		List<Event> events = personService.loadAllEventsForPerson(personId);
-		
+		//sort the collection
+		Collections.sort(events);
+		Collections.reverse(events);
 		List<EventForm> eventFormList = new ArrayList<EventForm>();
 		
 		for (Event event : events){
-		
+			logger.debug("event date :"+event.getDate());
 			EventForm eventForm = new EventForm();
 			eventForm.setId(event.getId());
 			eventForm.setName(event.getName());

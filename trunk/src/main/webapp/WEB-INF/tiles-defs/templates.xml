@@ -7,16 +7,22 @@
 
 	<!-- Default Main Template -->
 	<definition name="page" template="/WEB-INF/layouts/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp"
+			type="template" />
 		<put-attribute name="leftmenu" value="/WEB-INF/layouts/menu.jsp"
 			type="template" />
-		<put-attribute name="rightmenu" value="/WEB-INF/layouts/rightmenu.jsp" />
-			
+		<put-attribute name="rightmenu" value="/WEB-INF/layouts/rightmenu.jsp"
+			type="template" />
+
 	</definition>
-	
+
 	<!-- Login Template -->
 	<definition name="login" template="/WEB-INF/layouts/loginlayout.jsp">
-			
+		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp"
+			type="template" />
 	</definition>
+
+	<!-- EXTENSIONS -->
 	<definition name="loginpage-tile" extends="login">
 		<put-attribute name="title" value="Welcome to Fashbook"
 			type="string" />
@@ -27,14 +33,11 @@
 		<put-attribute name="title" value="Create User" />
 		<put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
 	</definition>
-	
+
 	<!-- Application Home -->
-<!-- 	<definition name="home" extends="page">
-		<put-attribute name="title" value="Welcome to Fashbook"
-			type="string" />
-		<put-attribute name="content" value="/WEB-INF/pages/home.jsp"
-			type="template" />
-	</definition> -->
+	<!-- <definition name="home" extends="page"> <put-attribute name="title" 
+		value="Welcome to Fashbook" type="string" /> <put-attribute name="content" 
+		value="/WEB-INF/pages/home.jsp" type="template" /> </definition> -->
 
 	<definition name="mywardrobe-tile" extends="page">
 		<put-attribute name="title" value="My Wardrobe" />
@@ -48,21 +51,22 @@
 
 	<definition name="edituploadedfile-tile" extends="page">
 		<put-attribute name="title" value="Upload File" />
-		<put-attribute name="content" value="/WEB-INF/pages/edituploadedfile.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/pages/edituploadedfile.jsp" />
 	</definition>
 	<definition name="myoutfit-tile" extends="page">
 		<put-attribute name="title" value="My Tags" />
 		<put-attribute name="content" value="/WEB-INF/pages/mytags.jsp" />
 	</definition>
-		<definition name="getready-tile" extends="page">
+	<definition name="getready-tile" extends="page">
 		<put-attribute name="title" value="Get ready for party!" />
 		<put-attribute name="content" value="/WEB-INF/pages/getready.jsp" />
 	</definition>
-		<definition name="getreadylog-tile" extends="page">
+	<definition name="getreadylog-tile" extends="page">
 		<put-attribute name="title" value="All Events Log" />
 		<put-attribute name="content" value="/WEB-INF/pages/eventlog.jsp" />
 	</definition>
-			<definition name="getreadyevent-tile" extends="page">
+	<definition name="getreadyevent-tile" extends="page">
 		<put-attribute name="title" value="Event" />
 		<put-attribute name="content" value="/WEB-INF/pages/event.jsp" />
 	</definition>

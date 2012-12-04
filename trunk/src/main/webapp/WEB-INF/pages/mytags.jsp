@@ -1,16 +1,7 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
 
 <c:if test="${not empty outfit}">
-	<div id="outfitlarge" class="shadow">
-		<div id="outimagelarge">
-
-			<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
-			<spring:url value="http://localhost:8080/{dbImagePath}"
-				var="imageUrl">
-				<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
-			</spring:url>
-			<img width="300" height="500" src="${fn:escapeXml(imageUrl)}" />
-		</div>
+		<div id="outfitlarge">
 		<div id="deleteoutfit">
 			<form:form
 				action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}"
@@ -29,6 +20,18 @@
 				</form:form>
 			</c:if>
 		</div>
+		<div id="outimagelarge" class="shadow">
+
+			<%-- <img src="<spring:url value="http://localhost:8080/resources/DSC_0915.JPG" htmlEscape="true" />"/> --%>
+			<spring:url value="http://localhost:8080/{dbImagePath}"
+				var="imageUrl">
+				<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
+			</spring:url>
+			<img width="360" height="600" src="${fn:escapeXml(imageUrl)}" />
+		</div>
+
+
+
 		<div id="tagslarge">
 			<c:if test="${not outfit.archived}">
 
@@ -58,12 +61,16 @@
 		</div>
 		
 		<div id="events">
+		<table>
+		<tr><td><h3>Outfit log</h3></td><tr>
+		
 		<c:forEach items="${outfit.outfitEvents}" var="outfitEvent">
-			You wore or planning to wear this outfit for <h3>${outfitEvent.name}</h3>
+		<tr><td>	 ${outfitEvent.name} </td></tr>
 		</c:forEach>
+		</table>
 		</div>
 		
-	</div>
+
 	<c:if test="${not outfit.archived}">
 			<div id="unassignedevents">
 			<c:if test="${not empty outfit.futureEvents}">
@@ -86,5 +93,6 @@
 			</c:if>
 		</div>
 	</c:if>	
+	</div>
 </c:if>
 
