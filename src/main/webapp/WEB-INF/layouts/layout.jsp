@@ -20,17 +20,10 @@
 
 </HEAD>
 <body>
-	<c:url value="/logout" var="logoutUrl" />
+	
 	<div id="layoutheader">
-		<div id="headertitle">
-			<h1>Fashbook</h1>
-			Your virtual wardrobe!!
-		</div>
-		<div id="headernav">
-			${sessionScope['scopedTarget.userSessionData'].personFirstName}
-			${sessionScope['scopedTarget.userSessionData'].personLastName} <a
-				href="${logoutUrl}"> Logout </a>
-		</div>
+		<tiles:insertAttribute name="header" />
+
 	</div>
 
 	<div id="layoutleftnav">

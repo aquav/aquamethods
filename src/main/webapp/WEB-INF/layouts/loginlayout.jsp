@@ -16,10 +16,7 @@
 </HEAD>
 <body>
 	<div id="layoutheader">
-		<div id="headertitle">
-			<h1>Fashbook</h1>
-			Your virtual wardrobe!!
-		</div>
+		<tiles:insertAttribute name="header" />
 	</div>
 	<div id="layoutcenter">
 		<tiles:insertAttribute name="content" />

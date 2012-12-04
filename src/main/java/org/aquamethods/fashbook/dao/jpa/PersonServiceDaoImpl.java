@@ -171,7 +171,7 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 	public List<Event> loadEventsNoOutfitAssigned(int personId) {
 		Query query = entityManager.createQuery("select e from Event e where e.person_id=:personId and e.outfit_id=0");
 		query.setParameter("personId",personId);
-		query.setParameter("date",new Date(System.currentTimeMillis()));
+		//query.setParameter("date",new Date(System.currentTimeMillis()));
 		List<Event> eventList = null;
 		eventList = query.getResultList();
 		return eventList;
@@ -194,8 +194,6 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		query.setParameter("personId",personId);
 		List<Event> events = null;
 		events = query.getResultList();
-		//sort the collection
-		Collections.sort(events);
 		return events;
 	}
 
