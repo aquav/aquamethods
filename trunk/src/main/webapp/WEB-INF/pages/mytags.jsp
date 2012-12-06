@@ -38,15 +38,10 @@
 				<form:form method="post"
 					action="/fashbook/person/${outfit.personId}/outfit/${outfit.id}/tag"
 					modelAttribute="tag">
-					<table>
-						<tr>
-							<td><form:label path="tag">Tag</form:label></td>
-							<td><form:input path="tag" id="tag" /></td>
-						</tr>
-						<tr>
-							<td colspan="2"><input type="submit" value="Add" /></td>
-						</tr>
-					</table>
+							<form:label path="tag">Tag</form:label>
+							<form:input path="tag" id="tag" />
+						<input type="submit" value="Add" />
+
 					<!-- Hidden value - need to set person id else it will go as null in form -->
 					<input name="outfitId" type="hidden" value="${outfit.id}" />
 				</form:form>
@@ -54,7 +49,7 @@
 			</c:if>
 			<hr>
 			<c:forEach items="${outfit.tags}" var="tag">
-				<p>${tag.tag}</p>
+				<div id= "tagtext">${tag.tag}</div>
 			</c:forEach>
 
 
@@ -62,7 +57,7 @@
 		
 		<div id="events">
 		<table>
-		<tr><td><h3>Outfit log</h3></td><tr>
+		<thead><tr><th>Outfit log</th></tr></thead>
 		
 		<c:forEach items="${outfit.outfitEvents}" var="outfitEvent">
 		<tr><td>	 ${outfitEvent.name} </td></tr>
@@ -74,9 +69,11 @@
 	<c:if test="${not outfit.archived}">
 			<div id="unassignedevents">
 			<c:if test="${not empty outfit.futureEvents}">
-			<h3>You have event with no outfit assigned!!</h3>
-			If you are planning to wear this outfit in one of these event. You can select by clicking button below.
-			This will record it and keep it in history.
+			<table>
+			<thead><tr><th colspan="2">You have event with no outfit assigned!!<br>
+			<!-- Click Select if you are planning to wear this outfit on this event --></th></tr></thead>
+<!-- 			<tr><td colspan="2">If you are planning to wear this outfit in one of these event. You can select by clicking button below.
+			This will record it and keep it in history.</td></tr> -->
 			<c:forEach items="${outfit.futureEvents}" var="futureEvent">
 
 			<spring:url value="/person/{personId}/getready/event/{eventId}/outfit/{outfitId}"
@@ -86,10 +83,11 @@
 				<spring:param name="eventId" value="${futureEvent.id}" />
 			</spring:url>
 			<form:form action="${fn:escapeXml(tagUrl)}" method="post">
-				<h3>${futureEvent.name}</h3>
-			<input type="submit" value="Select this event"/>	
+				<tr><td>${futureEvent.name} <br>on <fmt:formatDate type="date" value="${futureEvent.derivedDate}" /></td>
+				<td><input type="submit" value="Select"/>	</td></tr>
 			</form:form>			
 			</c:forEach>
+			</table>
 			</c:if>
 		</div>
 	</c:if>	
