@@ -8,16 +8,11 @@ ${person.firstName} ${person.lastName}
 <c:if test="${not empty search}">
 	<div id="search">
 		<form:form method="get" modelAttribute="search">
-			<table>
-				<tr>
-					<td><form:label path="searchString">Tags</form:label></td>
-					<td><form:input path="searchString" id="searchString" /></td>
-					<td colspan="2"><input type="submit" value="Search Outfits" /></td>
-					<td><form:checkbox path="matchWordFlag"
+					Tags
+					<form:input path="searchString" id="searchString" />
+					<input type="submit" value="Search Outfits" />
+					<form:checkbox path="matchWordFlag"
 							value="Match exact word" /> <form:label path="matchWordFlag">Match Exact Word</form:label>
-					</td>
-				</tr>
-			</table>
 		</form:form>
 
 		<c:if test="${not empty search.searchString}">

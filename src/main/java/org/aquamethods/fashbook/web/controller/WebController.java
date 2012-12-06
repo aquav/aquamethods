@@ -371,7 +371,7 @@ public class WebController {
 			EventForm eventForm = new EventForm();
 			eventForm.setId(event.getId());
 			eventForm.setName(event.getName());
-		
+			eventForm.setDerivedDate(event.getDate());
 			unassignedEventFormList.add(eventForm);
 		}
 		
