@@ -1,16 +1,14 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
 <c:if test="${empty event.name}">
-	<div id="eventForm">
-		<h3>Get Ready!</h3>
-		<h4>Create an Event</h4>
-
+	<div id="eventform">
+		<h3>Get Ready! Create an Event</h3>
+		<div id="masterevent">
 		<form:form method="post" modelAttribute="event">
-			<div id="masterEvent">
 				<p>
 					<form:label path="name">Event Name</form:label>
 					<form:input cssClass="formtag" path="name" id="name" />
-					<form:label path="master">Master Event ?</form:label>
-					<form:checkbox cssClass="formtag" path="master" />
+					<%-- <form:label path="master">Master Event ?</form:label>
+					<form:checkbox cssClass="formtag" path="master" /> --%>
 				</p>
 				<p>
 					<form:label path="description">Event Description</form:label>
@@ -21,11 +19,11 @@
 				<p>
 					<form:label path="date">Date</form:label>
 					<form:input cssClass="formtag" path="date" id="date" type="date" />
-					<form:label path="master">All Day Event ?</form:label>
-					<form:checkbox cssClass="formtag" path="allDayEvent" />
+					<%-- <form:label path="master">All Day Event ?</form:label>
+					<form:checkbox cssClass="formtag" path="allDayEvent" /> --%>
 				</p>
 				<p>
-					<form:label path="date">Time</form:label>
+					<form:label path="date">Start Time</form:label>
 					<form:select cssClass="formtag" path="hour">
 						<form:option value="01" />
 						<form:option value="02" />
@@ -56,8 +54,8 @@
 			<p>
 				<input type="submit" value="Create event" />
 			</p>
-			</div>
 		</form:form>
+		</div>
 	</div>
 </c:if>
 <c:if test="${not empty event.name}">
@@ -68,7 +66,10 @@
 		on
 		<h2>${event.date} ${event.hour}:${event.minutes} ${event.ampm}</h2>
 	</h3>
-
-	<p>This event will appear in your wardrobe. You can select outfit
+			<spring:url value="/person/{personId}/outfit"
+				var="tagUrl">
+				<spring:param name="personId" value="${sessionScope['scopedTarget.userSessionData'].personId}" />
+			</spring:url>
+	<p>This event will appear in your wardrobe. Go to <a href="${fn:escapeXml(tagUrl)}">My Wardrobe</a> to select outfit
 		for this event now!</p>
 </c:if>

@@ -63,7 +63,7 @@ public class GetReadyController {
 			eventFormList.add(eventForm);
 		}
 		model.addAttribute("eventFormList", eventFormList);
-		return "getreadylog-tile";
+		return "eventlog-tile";
 	}
 	
 	
@@ -111,7 +111,7 @@ public class GetReadyController {
 	
 	// GET and POST for URL /event/{eventId}/outfit/{outfitId}
 	
-	@RequestMapping(value = "/event/{eventId}/outfit/{outfitId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.GET)
 	public String getSingleEvent(@PathVariable("personId") int personId, @PathVariable("eventId") int eventId, Model model) {
 		
 		EventForm eventForm = new EventForm();
@@ -137,20 +137,10 @@ public class GetReadyController {
 		}
 		model.addAttribute("event", eventForm);
 		
-		return "getreadyevent-tile";
+		return "getsingleevent-tile";
 	}
 	
-	@RequestMapping(value="/event/{eventId}/outfit/{outfitId}", method=RequestMethod.POST)
-	public String assignOutfitToEvent(@PathVariable("personId") int personId,@PathVariable("eventId") int eventId,@PathVariable("outfitId") int outfitId){
-		
-		Event event = personService.loadEventById(eventId);
-		
-		event.setOutfit_id(outfitId);
-		personService.saveEvent(event);
-		
-		//personService.saveEvent(event);
-		return "redirect:/person/"+personId+"/outfit/"+outfitId;
-	}
+
 	
 	@RequestMapping(value="/event/{eventId}/outfit/{outfitId}", method=RequestMethod.DELETE)
 	public String unAssignOutfitFromEvent(@PathVariable("personId") int personId,@PathVariable("eventId") int eventId,@PathVariable("outfitId") int outfitId){
@@ -159,9 +149,8 @@ public class GetReadyController {
 		outfitId=0;
 		event.setOutfit_id(outfitId);
 		personService.saveEvent(event);
-		
-		//personService.saveEvent(event);
-		return "redirect:/person/"+personId+"/getready/event/"+eventId+"/outfit/"+outfitId;
+
+		return "redirect:/person/"+personId+"/getready/event/"+eventId;
 	}
 	
 	private Date getEventFormDate(EventForm eventForm) throws Exception{

@@ -1,13 +1,13 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
-<div id="eventForm">
+<div id="eventform">
 	<h3>Edit your Event</h3>
 	<div id="masterevent">
-		<form:form method="put" modelAttribute="event">
+		<form:form method="post" modelAttribute="event">
 			<p>
 				<form:label path="name">Event Name</form:label>
 				<form:input cssClass="formtag" path="name" id="name" />
-				<form:label path="master">Master Event ?</form:label>
-				<form:checkbox cssClass="formtag" path="master" />
+<%-- 				<form:label path="master">Master Event ?</form:label>
+				<form:checkbox cssClass="formtag" path="master" /> --%>
 			</p>
 			<p>
 				<form:label path="description">Event Description</form:label>
@@ -17,9 +17,9 @@
 			<br>
 			<p>
 				<form:label path="date">Date</form:label>
-				<form:input cssClass="formtag" path="date" id="date" type="date" />
-				<form:label path="master">All Day Event ?</form:label>
-				<form:checkbox cssClass="formtag" path="allDayEvent" />
+				<form:input cssClass="formtag" path="date" id="date" type="date"/>
+<%-- 				<form:label path="master">All Day Event ?</form:label>
+				<form:checkbox cssClass="formtag" path="allDayEvent" /> --%>
 			</p>
 			<p>
 				<form:label path="date">Time</form:label>
@@ -71,9 +71,9 @@
 		</spring:url>
 
 		<form:form action="${fn:escapeXml(tagUrl)}" method="delete">
-              remove this outfit<input alt="Remove Outfit from this Event"
-				src="/fashbook/static/images/delete.png" title="Delete Outfit"
-				type="image"  height="20px" width="20px" value="Delete Outfit" />
+              remove outfit<input
+				src="/fashbook/static/images/delete.png" title="Remove Outfit from this Event"
+				type="image"  height="20px" width="20px" />
 		</form:form>
 	</div>
 </div>
