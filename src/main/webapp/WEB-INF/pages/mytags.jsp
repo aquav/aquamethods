@@ -76,7 +76,7 @@
 			This will record it and keep it in history.</td></tr> -->
 			<c:forEach items="${outfit.futureEvents}" var="futureEvent">
 
-			<spring:url value="/person/{personId}/getready/event/{eventId}/outfit/{outfitId}"
+			<spring:url value="/person/{personId}/outfit/{outfitId}/event/{eventId}"
 				var="tagUrl">
 				<spring:param name="personId" value="${sessionScope['scopedTarget.userSessionData'].personId}" />
 				<spring:param name="outfitId" value="${outfit.id}" />

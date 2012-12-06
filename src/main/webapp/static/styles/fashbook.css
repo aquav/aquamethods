@@ -33,7 +33,7 @@ body {
 	background-color: #FFFFFF;
 	clear: both;
 	text-align: right;
-	color: #D11919;
+	color: #990000;
 	font-size: 12px;
 }
 
@@ -109,38 +109,42 @@ body {
 	display: block;
 	float: left;
 }
+/*********************************************/
+/* Get Ready  */
 
-#eventForm {
+#eventform {
+	/* border: 1px solid #DADADA; */
 	margin-top: 20px;
 	width: 600px;
 	margin: 0 auto;
 	float: left;
-	padding: 10px 0 0 20px;
+	padding: 5px 5px 5px 5px;
 	font-size: 12px;
 }
 
-#eventForm label {
+#masterevent label {
 	clear: both;
 	float: left;
 	width: 40%;
 }
 
-#eventForm  input {
+#masterevent  input {
 	float: left;
 	width: 55%;
 }
 
 #masterevent {
-	margin-top: 20px;
-	margin: 0 auto;
+	/* border: 1px solid #DADADA; */
+	width: 400px;
+	margin-top: 10px;
 	float: left;
-	padding:   10px 0 0 20px
+	padding:   5px 0 0 5px
 }
 #mastereventimage {
-	margin-top: 20px;
-	margin: 0 auto;
 	float: left;
-	padding:   10px 0 0 20px
+	padding: 5px 5px 5px 5px;
+	    -moz-box-shadow: 3px 3px 3px #888;
+    -webkit-box-shadow: 3px 3px 3px #888;
 }
 .formtag {
 	
