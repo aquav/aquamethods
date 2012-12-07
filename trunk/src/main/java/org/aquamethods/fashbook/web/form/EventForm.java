@@ -9,7 +9,7 @@ public class EventForm {
 	private String description;
 	private String date;
 	private String hour;
-	private String minutes;
+	private String minute;
 	private String ampm;
 	private boolean master;
 	private boolean allDayEvent;
@@ -47,11 +47,12 @@ public class EventForm {
 	public void setHour(String hour) {
 		this.hour = hour;
 	}
-	public String getMinutes() {
-		return minutes;
+
+	public String getMinute() {
+		return minute;
 	}
-	public void setMinutes(String minutes) {
-		this.minutes = minutes;
+	public void setMinute(String minute) {
+		this.minute = minute;
 	}
 	public String getAmpm() {
 		return ampm;

@@ -341,6 +341,7 @@ hr {
 #eventlogtitle{
 	font-size: 12px;
 	float: left;
+	width:100px;
 	height: 40px;
 }
 #eventlogdate{

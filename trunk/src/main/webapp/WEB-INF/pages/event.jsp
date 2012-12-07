@@ -2,7 +2,9 @@
 <div id="eventform">
 	<h3>Edit your Event</h3>
 	<div id="masterevent">
+
 		<form:form method="post" modelAttribute="event">
+			
 			<p>
 				<form:label path="name">Event Name</form:label>
 				<form:input cssClass="formtag" path="name" id="name" />
@@ -17,7 +19,7 @@
 			<br>
 			<p>
 				<form:label path="date">Date</form:label>
-				<form:input cssClass="formtag" path="date" id="date" type="date"/>
+				<form:input cssClass="formtag" path="date" id="date" type="date" />
 <%-- 				<form:label path="master">All Day Event ?</form:label>
 				<form:checkbox cssClass="formtag" path="allDayEvent" /> --%>
 			</p>
@@ -38,7 +40,7 @@
 					<form:option value="12" />
 				</form:select>
 				:
-				<form:select cssClass="formtag" path="minutes">
+				<form:select cssClass="formtag" path="minute">
 					<form:option value="00" />
 					<form:option value="15" />
 					<form:option value="30" />
@@ -52,6 +54,21 @@
 			<p>
 				<input type="submit" value="Save Changes" />
 			</p>
+		</form:form>
+	</div>
+	<div>
+			<spring:url
+			value="/person/{personId}/getready/event/{eventId}"
+			var="tagUrl">
+			<spring:param name="personId"
+				value="${sessionScope['scopedTarget.userSessionData'].personId}" />
+			<spring:param name="eventId" value="${event.id}" />
+		</spring:url>
+		
+		<form:form action="${fn:escapeXml(tagUrl)}" method="delete">
+              Delete Event <input
+				src="/fashbook/static/images/delete.png" title="Delete this Event"
+				type="image"   />
 		</form:form>
 	</div>
 	<div id="mastereventimage">
@@ -69,11 +86,12 @@
 			<spring:param name="eventId" value="${event.id}" />
 			<spring:param name="outfitId" value="${event.eventOutfitId}" />
 		</spring:url>
-
+		<c:if test ="${event.eventOutfitId != 0 }">
 		<form:form action="${fn:escapeXml(tagUrl)}" method="delete">
               remove outfit<input
-				src="/fashbook/static/images/delete.png" title="Remove Outfit from this Event"
-				type="image"  height="20px" width="20px" />
+				src="/fashbook/static/images/remove.png" title="Remove Outfit from this Event"
+				type="image"   />
 		</form:form>
+		</c:if>
 	</div>
 </div>

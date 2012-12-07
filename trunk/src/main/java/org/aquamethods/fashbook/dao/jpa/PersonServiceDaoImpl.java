@@ -196,5 +196,12 @@ public class PersonServiceDaoImpl implements IPersonServiceDao {
 		events = query.getResultList();
 		return events;
 	}
+	public boolean deleteEvent(int eventId){
+	
+		Event event = this.loadEventById(eventId);
+		entityManager.remove(event);
+		entityManager.flush();
+		return true;
+	}
 
 }

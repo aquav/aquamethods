@@ -127,4 +127,7 @@ public class PersonServiceImpl implements IPersonService{
 	public List<Event> loadAllEventsForPerson(int personId){
 		return personDao.loadAllEventsForPerson(personId);
 	}
+	public boolean deleteEvent(int eventId){
+		return personDao.deleteEvent(eventId);
+	}
 }
