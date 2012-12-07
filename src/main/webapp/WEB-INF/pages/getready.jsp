@@ -39,7 +39,7 @@
 						<form:option value="12" />
 					</form:select>
 					:
-					<form:select cssClass="formtag" path="minutes">
+					<form:select cssClass="formtag" path="minute">
 						<form:option value="00" />
 						<form:option value="15" />
 						<form:option value="30" />
@@ -64,7 +64,7 @@
 		You have created event
 		<h2>${event.name}</h2>
 		on
-		<h2>${event.date} ${event.hour}:${event.minutes} ${event.ampm}</h2>
+		<h2>${event.date} ${event.hour}:${event.minute} ${event.ampm}</h2>
 	</h3>
 			<spring:url value="/person/{personId}/outfit"
 				var="tagUrl">

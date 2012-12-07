@@ -29,5 +29,6 @@ public interface IPersonServiceDao {
 	public Event loadEventById(int eventId);
 	public List<Event> loadEventsForCurrentOutfit(int outfitId);
 	public List<Event> loadAllEventsForPerson(int personId);
+	public boolean deleteEvent(int eventId);
 }
 

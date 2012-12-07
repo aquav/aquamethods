@@ -51,4 +51,7 @@ public interface IPersonService {
 	
 	@Transactional
 	public List<Event> loadAllEventsForPerson(int personId);
+	
+	@Transactional
+	public boolean deleteEvent(int eventId);
 }

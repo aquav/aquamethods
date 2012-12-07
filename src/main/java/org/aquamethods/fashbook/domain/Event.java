@@ -34,6 +34,9 @@ public class Event implements Comparable<Event> {
 	private int outfit_id;
 	private int person_id;
 	private boolean master;
+	private String hour;
+	private String minute;
+	private String ampm;
 	@OneToMany(mappedBy="masterEvent", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<SubEvent> subEvents = new ArrayList<SubEvent>();
 	
@@ -87,6 +90,24 @@ public class Event implements Comparable<Event> {
 	}
 	
 
+	public String getHour() {
+		return hour;
+	}
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
+	public String getMinute() {
+		return minute;
+	}
+	public void setMinute(String minute) {
+		this.minute = minute;
+	}
+	public String getAmpm() {
+		return ampm;
+	}
+	public void setAmpm(String ampm) {
+		this.ampm = ampm;
+	}
 	@Override
 	public int compareTo(Event event) {
 		return getDate().compareTo(event.getDate());

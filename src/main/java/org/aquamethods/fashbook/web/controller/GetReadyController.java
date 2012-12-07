@@ -100,6 +100,9 @@ public class GetReadyController {
 		eventEntity.setDate(getEventFormDate(eventForm));
 		eventEntity.setMaster(eventForm.isMaster());
 		eventEntity.setPerson_id(personId);
+		eventEntity.setHour(eventForm.getHour());
+		eventEntity.setMinute(eventForm.getMinute());
+		eventEntity.setAmpm(eventForm.getAmpm());
 		
 		Event eventSaved = personService.saveEvent(eventEntity);
 		if (eventSaved.getId() != 0){
@@ -112,7 +115,7 @@ public class GetReadyController {
 	// GET and POST for URL /event/{eventId}/outfit/{outfitId}
 	
 	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.GET)
-	public String getSingleEvent(@PathVariable("personId") int personId, @PathVariable("eventId") int eventId, Model model) {
+	public String getSingleEventForEdit(@PathVariable("personId") int personId, @PathVariable("eventId") int eventId, Model model) {
 		
 		EventForm eventForm = new EventForm();
 		
@@ -123,14 +126,15 @@ public class GetReadyController {
 			eventForm.setId(event.getId());
 			eventForm.setName(event.getName());
 			eventForm.setDescription(event.getDescription());
-			
-			Calendar cal  = Calendar.getInstance();
-			cal.setTime(event.getDate());
+			eventForm.setDerivedDate(event.getDate());
+		
 			DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 			String dateStr = format.format(event.getDate());
-			
-			eventForm.setDerivedDate(event.getDate());
 			eventForm.setDate(dateStr);
+			
+			eventForm.setHour(event.getHour());
+			eventForm.setMinute(event.getMinute());
+			eventForm.setAmpm(event.getAmpm());
 			eventForm.setEventOutfitId(event.getOutfit_id());
 			eventForm.setEventOutfitImagePath(getEventOutfitImagePath(event
 					.getOutfit_id()));
@@ -139,8 +143,11 @@ public class GetReadyController {
 		
 		return "getsingleevent-tile";
 	}
-	
-
+	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.DELETE)
+	public String deleteSingleEvent(@PathVariable("personId") int personId, @PathVariable("eventId") int eventId){
+		personService.deleteEvent(eventId);
+		return "redirect:/person/"+personId+"/getready/eventlog";
+	}
 	
 	@RequestMapping(value="/event/{eventId}/outfit/{outfitId}", method=RequestMethod.DELETE)
 	public String unAssignOutfitFromEvent(@PathVariable("personId") int personId,@PathVariable("eventId") int eventId,@PathVariable("outfitId") int outfitId){
@@ -156,7 +163,7 @@ public class GetReadyController {
 	private Date getEventFormDate(EventForm eventForm) throws Exception{
 		String date = eventForm.getDate();
 		String hour = eventForm.getHour();
-		String min = eventForm.getMinutes();
+		String min = eventForm.getMinute();
 		String ampm = eventForm.getAmpm();
 		
 		String dateString =  date +" "+hour+":"+min+":"+00+" "+ampm;
