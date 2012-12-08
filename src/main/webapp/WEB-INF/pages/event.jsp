@@ -3,7 +3,7 @@
 	<h3>Edit your Event</h3>
 	<div id="masterevent">
 
-		<form:form method="post" modelAttribute="event">
+		<form:form method="put" modelAttribute="event">
 			
 			<p>
 				<form:label path="name">Event Name</form:label>
@@ -18,8 +18,8 @@
 			</p>
 			<br>
 			<p>
-				<form:label path="date">Date</form:label>
-				<form:input cssClass="formtag" path="date" id="date" type="date" />
+				<form:label path="date">Date (mm/dd/yyyy)</form:label>
+				<form:input cssClass="formtag" path="date" id="date" />
 <%-- 				<form:label path="master">All Day Event ?</form:label>
 				<form:checkbox cssClass="formtag" path="allDayEvent" /> --%>
 			</p>

@@ -111,7 +111,28 @@ public class GetReadyController {
 		return "getready-tile";
 
 	}
-	
+	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.PUT)
+	public String editEvent(@ModelAttribute("event") EventForm eventForm,@PathVariable("personId") int personId,
+			@PathVariable("eventId") int eventId,
+			BindingResult result, Model model) throws Exception {
+		
+		Event eventEntity = personService.loadEventById(eventId);
+		//eventEntity.setName(eventForm.getName());
+		eventEntity.setDescription(eventForm.getDescription());
+		eventEntity.setDate(getEventFormDate(eventForm));
+		eventEntity.setMaster(eventForm.isMaster());
+		//eventEntity.setPerson_id(personId);
+		eventEntity.setHour(eventForm.getHour());
+		eventEntity.setMinute(eventForm.getMinute());
+		eventEntity.setAmpm(eventForm.getAmpm());
+		
+		Event eventSaved = personService.saveEvent(eventEntity);
+		if (eventSaved.getId() != 0){
+			model.addAttribute("event", eventForm);
+		} 
+		return "redirect:/person/"+personId+"/getready/eventlog";
+
+	}
 	// GET and POST for URL /event/{eventId}/outfit/{outfitId}
 	
 	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.GET)
@@ -167,7 +188,7 @@ public class GetReadyController {
 		String ampm = eventForm.getAmpm();
 		
 		String dateString =  date +" "+hour+":"+min+":"+00+" "+ampm;
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a", Locale.US);
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a", Locale.US);
 		
 		Date returnDate = format.parse(dateString);
 		
