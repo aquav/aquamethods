@@ -1,21 +1,22 @@
 1 - Display tag as Hyperlink - for search
 2 - Tag Cloud
-3 - Remove Outfit
-4 - Archive Outfit
 5 - Remove Tag
 6 - Edit Tag
-7 - Advance Search
+7 - Advance Search (tag cloud, tag search, event search)
 8 - Login page - Spring security
 9 - Image Thumbnail
-10- Wear log
-11- Get Ready page
 12- cache
-13- session, personid
-14- send email for password reset
+14- send email for password reset, forgot password
 15- password encryption
 16- replace existing photo with better one
-17- assign outfit id to new image  --- X (how to get outfid id before saving image)
-ff
+17- VALIDATION
+18- SUCCESS AND FAILURE Message
+19- Improvement in image crop
+20- iPhone image rotation problem
+21- popup windows
+22- NEXT functionality for images and event (pagination)
+23- app engine research
+
 
 GUI
 
@@ -29,3 +30,8 @@ DONE
 - Aspect 
 1 - Apache tiles
 2- Pic has unique id - time in millisecondss
+3 - Remove Outfit
+4 - Archive Outfit
+10- Wear log
+11- Get Ready page
+13- session, personid
