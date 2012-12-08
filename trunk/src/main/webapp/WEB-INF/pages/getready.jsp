@@ -17,8 +17,8 @@
 				</p>
 				<br>
 				<p>
-					<form:label path="date">Date</form:label>
-					<form:input cssClass="formtag" path="date" id="date" type="date" />
+					<form:label path="date">Date (mm/dd/yyyy)</form:label>
+					<form:input cssClass="formtag" path="date" id="date" />
 					<%-- <form:label path="master">All Day Event ?</form:label>
 					<form:checkbox cssClass="formtag" path="allDayEvent" /> --%>
 				</p>
