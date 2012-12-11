@@ -23,8 +23,7 @@
 	<!-- Maps '/' requests to the 'home' view -->
 	<!-- <mvc:view-controller path="/" view-name="home"/> -->
 	
-	<!-- <mvc:resources mapping="/static/**" location="/static/, classpath:C:/fashbook/images/person" 
-		/> -->
+	<mvc:resources mapping="/static/**" location="/static/"	/>
 	<!-- Since we are using tiles - UrlBasedViewResolver, below bean has to 
 		be comented. dont know why -->
 <!-- 	<bean
