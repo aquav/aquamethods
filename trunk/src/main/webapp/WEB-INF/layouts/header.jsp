@@ -1,11 +1,11 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
 <c:url value="/logout" var="logoutUrl" />
 <div id="headerimage">
-	<h1>Fashbook</h1>
+	<h1>Fashrobe</h1>
 </div>
 
 <div id="headertitle">
-	Your virtual wardrobe!!
+	Your virtual fashion wardrobe!!
 </div>
 
 <c:if test="${not empty sessionScope['scopedTarget.userSessionData'].personFirstName}">
