@@ -154,7 +154,7 @@ public class PersonDaoSpringJpaTest {
 	
 	@Test
 	public void testLoadFutureEventsNoOutfitAssigned(){
-		List<Event> eventList = personServiceDao.loadFutureEventsNoOutfitAssigned(10);
+		List<Event> eventList = personServiceDao.loadAllEventsForPerson(10);
 		for (Event event : eventList ){
 			logger.info("Event Name :: "+event.getName());
 		}

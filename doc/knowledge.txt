@@ -1,3 +1,7 @@
+
+tomcat local (not the STS one) -- C:\Users\aquav_000\Documents\VG_DATA\TOOLS\apache-tomcat-6.0.33
+start local tomcat to display pics
+
 NEW SETUP
 - install java and setup JAVA_HOME snd edit system path
 -
