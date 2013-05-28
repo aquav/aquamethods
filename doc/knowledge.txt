@@ -1,4 +1,10 @@
 
+workspace - C:\VG_DATA\TECH_MATERIAL\fashbook-nogae\trunk
+Open Spring STS and also start tomcat at below location
+start Spring tomcat as well
+project is named as 1
+
+
 tomcat local (not the STS one) -- C:\Users\aquav_000\Documents\VG_DATA\TOOLS\apache-tomcat-6.0.33
 start local tomcat to display pics
 -------------------------------
