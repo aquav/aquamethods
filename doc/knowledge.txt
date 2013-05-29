@@ -1,8 +1,11 @@
 
 workspace - C:\VG_DATA\TECH_MATERIAL\fashbook-nogae\trunk
 Open Spring STS and also start tomcat at below location
-start Spring tomcat as well
+start Spring tomcat (http://localhost:8090/) as well
 project is named as 1
+
+sometime application doesnt come up.. just delete the war in tomcat and again run on server
+app should come up on http://localhost:8090/fashbook
 
 
 tomcat local (not the STS one) -- C:\Users\aquav_000\Documents\VG_DATA\TOOLS\apache-tomcat-6.0.33
