@@ -9,7 +9,19 @@ app should come up on http://localhost:8090/fashbook
 
 
 tomcat local (not the STS one) -- C:\Users\aquav_000\Documents\VG_DATA\TOOLS\apache-tomcat-6.0.33
+
+C:\mytools\apache-tomcat-7.0.47
+
 start local tomcat to display pics
+OR
+
+Configure the tomcat in STS by selecting option in 'Server Location'
+second radio button - Use Tomcat Installation
+this will start the tomcat server from install directory.
+It will still be creating app under wtpwebapps 
+
+this way, all the pics (under "C:\mytools\apache-tomcat-7.0.47\webapps\resources" directory will also be displayed)
+if you dont select this option then pics wont be displayed but app will run
 -------------------------------
 google code - <https://aquamethods.googlecode.com:443> Google Code Subversion Repository
 user - aqua.vishal@gmail.com
@@ -31,11 +43,13 @@ NEW SETUP
 -Install STS
 once application is compiled and maven is able to generate a war.
 
--install mysql (server only)
+-install mysql (server only) - mysql-5.5.40-winx64.msi
 root password - password77
 
 -install HeidiSQL
 -run DB Scripts (there might be error, change the order of table crration and try)s
+
+latest scripts is in email - search " [aquamethods] r56 committed - 1208_12"
 
 -follow below steps for auto deployment
 --------------------------------------------------------------------------------------
