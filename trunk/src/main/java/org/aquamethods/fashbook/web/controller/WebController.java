@@ -57,8 +57,8 @@ public class WebController {
 			.getLogger(WebController.class);
 	
 	//need to move this in properties
-	//public static final String tomcatWebappsDir = "C:/Tools/apache-tomcat-6.0.33/webapps";
-	public static final String tomcatWebappsDir = "C:/Users/aquav_000/Documents/VG_DATA/TOOLS/apache-tomcat-6.0.33/webapps";
+	//public static final String tomcatWebappsDir = "C:/Users/aquav_000/Documents/VG_DATA/TOOLS/apache-tomcat-6.0.33/webapps";
+	public static final String tomcatWebappsDir = "C:/mytools/apache-tomcat-7.0.47/webapps";
 	@Autowired
 	private IPersonService personService;
 	
@@ -264,6 +264,8 @@ public class WebController {
 				} catch (IOException e) {
 					logger.error("File uploaded failed:" + e);
 					// return "File uploaded failed:";
+				} catch (Exception ex){
+					logger.error("Exception - File uploaded failed:" + ex);
 				}
 				
 				BufferedImage image=resizeImagewithType(fileName);
