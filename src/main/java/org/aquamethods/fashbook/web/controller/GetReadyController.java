@@ -186,7 +186,9 @@ public class GetReadyController {
 		String hour = eventForm.getHour();
 		String min = eventForm.getMinute();
 		String ampm = eventForm.getAmpm();
-		
+		if (date == null || date ==""){
+			return null;
+		}
 		String dateString =  date +" "+hour+":"+min+":"+00+" "+ampm;
 		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a", Locale.US);
 		
