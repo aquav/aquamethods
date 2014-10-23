@@ -5,6 +5,7 @@ import java.util.Date;
 public class EventForm {
 
 	private int id;
+	private String eventType;
 	private String name;
 	private String description;
 	private String date;
@@ -22,6 +23,13 @@ public class EventForm {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getEventType() {
+		return eventType;
+	}
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
 	}
 	public String getName() {
 		return name;

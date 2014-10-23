@@ -110,7 +110,10 @@ public class Event implements Comparable<Event> {
 	}
 	@Override
 	public int compareTo(Event event) {
-		return getDate().compareTo(event.getDate());
+		if (getDate() != null && event.getDate() != null) { 
+			return getDate().compareTo(event.getDate());
+		}
+		return 0;
 	}
 	
 }

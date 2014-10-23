@@ -1,10 +1,25 @@
 <%@ include file="/WEB-INF/pages/includes.jsp"%>
+<script type="text/javascript">
+
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.display = 'none';
+    }
+    else document.getElementById('ifYes').style.display = 'block';
+
+}
+
+</script>
 <div id="eventform">
 	<h3>Edit your Event</h3>
 	<div id="masterevent">
 
 		<form:form method="put" modelAttribute="event">
-			
+			<p>
+				<form:label path="name">Specific Event?</form:label>
+				<form:radiobuttons onclick="javascript:yesnoCheck();" cssClass="formtag" path="eventType" id="yesCheck" value="Y" />
+				<form:radiobuttons onclick="javascript:yesnoCheck();" cssClass="formtag" path="eventType" id="noCheck" value="N" />
+			</p>
 			<p>
 				<form:label path="name">Event Name</form:label>
 				<form:input cssClass="formtag" path="name" id="name" />
@@ -17,6 +32,7 @@
 					id="description" />
 			</p>
 			<br>
+			<div id="ifYes" style="display:none">
 			<p>
 				<form:label path="date">Date (mm/dd/yyyy)</form:label>
 				<form:input cssClass="formtag" path="date" id="date" />
@@ -51,6 +67,7 @@
 					<form:option value="pm" />
 				</form:select>
 			</p>
+			</div>
 			<p>
 				<input type="submit" value="Save Changes" />
 			</p>

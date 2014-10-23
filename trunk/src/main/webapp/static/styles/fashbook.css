@@ -133,9 +133,21 @@ body {
 	width: 55%;
 }
 
-#masterevent {
+#mastereventradio {
+	float: left;
 	/* border: 1px solid #DADADA; */
-	width: 400px;
+	width: 55%;
+}
+
+#mastereventdate {
+	float: left;
+	/* border: 1px solid #DADADA; */
+	width: 500px;
+}
+
+#masterevent {
+	border: 1px solid #DADADA;
+	width: 500px;
 	margin-top: 10px;
 	float: left;
 	padding:   5px 0 0 5px
@@ -146,6 +158,7 @@ body {
 	    -moz-box-shadow: 3px 3px 3px #888;
     -webkit-box-shadow: 3px 3px 3px #888;
 }
+
 .formtag {
 	
 }
