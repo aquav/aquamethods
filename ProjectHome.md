@@ -1,0 +1,1 @@
+I wanted to develop a small app using Spring, Hibernate and share the learning by creating collaborative env. among my friends
