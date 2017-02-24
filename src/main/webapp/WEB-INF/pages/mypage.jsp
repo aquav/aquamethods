@@ -47,8 +47,8 @@ ${person.firstName} ${person.lastName}
 
 		<div id="outfit" class="shadow">
 			<div id="outimage">
-				<spring:url value="http://localhost:8080/{dbImagePath}"
-					var="imageUrl">
+				<spring:url value="http://localhost:8080/{dbImagePath}" var="imageUrl">
+				<%-- <spring:url value="file:///C://{dbImagePath}" var="imageUrl"> --%>
 					<spring:param name="dbImagePath" value="${outfit.outfitPicture}" />
 				</spring:url>
 				<img width="150" height="250" src="${fn:escapeXml(imageUrl)}" />

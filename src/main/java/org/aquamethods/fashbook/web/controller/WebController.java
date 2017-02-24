@@ -58,7 +58,7 @@ public class WebController {
 	
 	//need to move this in properties
 	//public static final String tomcatWebappsDir = "C:/Users/aquav_000/Documents/VG_DATA/TOOLS/apache-tomcat-6.0.33/webapps";
-	public static final String tomcatWebappsDir = "C:/mytools/apache-tomcat-7.0.47/webapps";
+	public static final String tomcatWebappsDir = "C:/VG_DATA/INSTALLERS/apache-tomcat-8.5.11/webapps";
 	@Autowired
 	private IPersonService personService;
 	

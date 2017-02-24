@@ -40,13 +40,13 @@ public class PersonServiceImplTest {
 	@Test
 	public void testGetById() {
 		logger.info("Test get data by id ==========================");
-		Person p = personService.getById(61, false);
+		Person p = personService.getById(1, false);
 		logger.info("Name : " + p.getFirstName() + " Age " + p.getAge());
 		logger.info("Outfit : " + p.getOutfits().get(0).getOutfitPicture() );
 		logger.info("Tags : " + p.getOutfits().get(0).getTags().get(0).getTag() );
 	}
 	
-	@Test
+/*	@Test
 	public void testSavePerson() {
 		logger.info("Test Save Person ==========================");
 		Person p = new Person();
@@ -65,9 +65,9 @@ public class PersonServiceImplTest {
 		personService.savePerson(p);
 
 		logger.info("ID of saved Person : " + p.getId());
-	}
+	}*/
 	
-	@Test
+/*	@Test
 	public void testSaveCompleteHierarchy(){
 		logger.info("Test Save Person ==========================");
 		Person p = new Person();
@@ -109,13 +109,13 @@ public class PersonServiceImplTest {
 		logger.info("Outfit pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getOutfitPicture());
 		logger.info("Tag pic of Updated Person : " + updatedPerson2.getOutfits().get(0).getTags().get(0).getTag());
 	
-	}
-	
+	}*/
+/*	
 	@Test
 	public void deleteOutfit(){
 		Outfit o = personService.loadOutfit(33);
 		boolean b = personService.deleteOutfit(o);
 		logger.info("Deleted ::"+b);
 		
-	}
+	}*/
 }
